@@ -11,7 +11,7 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
     backgroundColor: '#000000',
     color: '#ffffff',
     borderRight: 'none',
-    paddingTop: theme.spacing(5), // Align with main content padding
+    paddingTop: theme.spacing(1.2), // Align with main content padding
     display: 'flex',
     flexDirection: 'column',
     transition: theme.transitions.create(['width'], {

@@ -1,16 +1,14 @@
 import React, { Suspense } from 'react';
-import { LoadingSpinner } from './LoadingSpinner';
+import { LoadingSpinner } from '../feedback';
 
 interface SuspensePageProps {
   children: React.ReactNode;
-  message?: string;
 }
 
 export const SuspensePage: React.FC<SuspensePageProps> = ({
   children,
-  message = ""
 }) => (
-  <Suspense fallback={<LoadingSpinner message={message} />}>
+  <Suspense fallback={<LoadingSpinner />}>
     {children}
   </Suspense>
 );

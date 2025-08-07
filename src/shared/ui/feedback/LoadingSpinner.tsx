@@ -1,14 +1,12 @@
 import React from 'react';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 
 interface LoadingSpinnerProps {
-  message?: string;
   size?: number;
   minHeight?: string;
 }
 
 export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
-  message = '',
   size = 40,
   minHeight = '60vh'
 }) => {
@@ -24,11 +22,6 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
       }}
     >
       <CircularProgress size={size} />
-      {message && (
-        <Typography variant="body2" color="text.secondary">
-          {message}
-        </Typography>
-      )}
     </Box>
   );
 };

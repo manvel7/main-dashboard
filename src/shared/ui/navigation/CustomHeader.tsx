@@ -12,6 +12,7 @@ const HeaderContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   marginBottom: theme.spacing(2),
   borderBottom: `1px solid ${theme.palette.divider}`,
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   maxHeight: '150px',
   padding: theme.spacing(2, 3),
   overflow: 'auto',
