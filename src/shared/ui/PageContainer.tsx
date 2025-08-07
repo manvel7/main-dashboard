@@ -17,7 +17,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   actions
 }) => {
   return (
-    <Container maxWidth={maxWidth} sx={{ p: 0 }}>
+    <Container maxWidth={maxWidth} sx={{ px: 1.5 }}>
       <Box sx={{ mt: 4, mb: 2 }}>
         {(title || actions) && (
           <Box sx={{

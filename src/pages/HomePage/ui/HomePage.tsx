@@ -56,7 +56,7 @@ export const HomePage: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <PageContainer title="Home">
+    <PageContainer>
       <HomeContainer disableGutters maxWidth="xl">
         {/* Welcome Section */}
         <WelcomeSection elevation={0}>

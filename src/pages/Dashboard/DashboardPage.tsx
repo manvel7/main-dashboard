@@ -13,10 +13,6 @@ export const DashboardPage: React.FC = () => {
   return (
     <Container maxWidth="xl">
       <Box sx={{ mt: 4, mb: 4 }}>
-        <Typography variant="h3" component="h1" gutterBottom sx={{ mb: 4 }}>
-          Dashboard
-        </Typography>
-
         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 3, mb: 4 }}>
           {stats.map((stat, index) => (
             <Card key={index} sx={{ height: '100%' }}>
