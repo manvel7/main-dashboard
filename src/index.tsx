@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import App from '@app/App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeWrapper } from '@app/theme';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeWrapper>
+      <App />
+    </ThemeWrapper>
   </React.StrictMode>
 );
 
