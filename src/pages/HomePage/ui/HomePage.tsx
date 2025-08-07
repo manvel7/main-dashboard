@@ -13,7 +13,7 @@ import {
 } from '@mui/icons-material';
 import { PageContainer } from '@shared/ui';
 import { FeatureGrid, FeatureData } from '@widgets/featureGrid';
-import { CustomFeatureContent } from '@pages/HomePage/ui/CustomFeatureContent';
+import { CustomFeatureContent } from '@widgets/featureGrid/ui/CustomFeatureContent';
 import {
   HomeContainer,
   WelcomeSection

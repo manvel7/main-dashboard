@@ -8,7 +8,7 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
 
 export const MainContent = styled(Box)(({ theme }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3, 2),
+  padding: theme.spacing(4, 1),
   transition: theme.transitions.create(['margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,

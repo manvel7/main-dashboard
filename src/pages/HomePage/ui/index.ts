@@ -1,2 +1,2 @@
 export { HomePage } from './HomePage';
-export { CustomFeatureContent } from './CustomFeatureContent';
+export { CustomFeatureContent } from '../../../widgets/featureGrid/ui/CustomFeatureContent';

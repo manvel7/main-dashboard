@@ -13,7 +13,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   children,
   title,
   subtitle,
-  maxWidth = 'lg',
+  maxWidth = 'xl',
   actions
 }) => {
   return (

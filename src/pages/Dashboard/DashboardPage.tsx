@@ -11,7 +11,7 @@ export const DashboardPage: React.FC = () => {
   ];
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Box sx={{ mt: 4, mb: 4 }}>
         <Typography variant="h3" component="h1" gutterBottom sx={{ mb: 4 }}>
           Dashboard

@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { Box, Paper, Container } from '@mui/material';
 
 export const HomeContainer = styled(Container)(({ theme }) => ({
-  // maxWidth: '1200px',
+  maxWidth: '1200px',
   margin: '0 auto',
 }));
 
