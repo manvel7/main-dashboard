@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Paper, Box, Grid, Card, CardContent } from '@mui/material';
+import { Container, Typography, Box, Card, CardContent } from '@mui/material';
 import { Dashboard as DashboardIcon, TrendingUp, People, Settings } from '@mui/icons-material';
 
 export const DashboardPage: React.FC = () => {
@@ -32,12 +32,6 @@ export const DashboardPage: React.FC = () => {
             </Card>
           ))}
         </Box>
-
-        <Paper sx={{ p: 4, borderRadius: 2 }}>
-          <Typography variant="body1" color="text.secondary">
-            Dashboard analytics and metrics will be displayed here. This page will show key performance indicators, charts, and real-time data about your application.
-          </Typography>
-        </Paper>
       </Box>
     </Container>
   );

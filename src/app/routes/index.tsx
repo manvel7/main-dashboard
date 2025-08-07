@@ -9,7 +9,7 @@ import {
 } from '@mui/icons-material';
 import { Layout } from '@widgets/layout';
 import { HomePage, DashboardPage } from '@pages';
-import { SuspensePage } from '@shared/ui';
+import { SuspensePage } from '@shared/index';
 
 // Route paths as constants for type safety and easy imports
 export const ROUTES = {

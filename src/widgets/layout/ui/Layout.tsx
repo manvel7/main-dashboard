@@ -1,7 +1,7 @@
 import { Sidebar } from '@widgets/sidebar';
 import { LayoutProps } from '@widgets/layout/model/types';
 import { LayoutContainer, MainContent } from '@widgets/layout/ui/styles';
-import { CustomHeader } from '@shared/ui';
+import { CustomHeader } from '@shared/index';
 import { useLocation } from 'react-router-dom';
 
 export const Layout: React.FC<LayoutProps> = ({
