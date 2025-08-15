@@ -9,10 +9,12 @@ import {
   HomeContainer,
   WelcomeSection
 } from '@pages/HomePage/styles';
+import { useTranslation } from 'react-i18next';
 
 export const HomePage: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { t } = useTranslation();
 
   return (
     <PageContainer>
@@ -25,14 +27,13 @@ export const HomePage: React.FC = () => {
             gutterBottom
             fontWeight="bold"
           >
-            Welcome to Your Dashboard
+            {t('Welcome to Your Dashboard')}
           </Typography>
           <Typography
             variant={isMobile ? "body1" : "h6"}
             sx={{ mb: 3, opacity: 0.9 }}
           >
-            Your central hub for managing and monitoring all aspects of your system.
-            Get insights, manage users, and control your platform efficiently.
+            {t('Your central hub for managing and monitoring all aspects of your system. Get insights, manage users, and control your platform efficiently')}
           </Typography>
           <Button
             variant="contained"
@@ -45,7 +46,7 @@ export const HomePage: React.FC = () => {
               }
             }}
           >
-            Get Started
+            {t('Get Started')}
           </Button>
         </WelcomeSection>
 

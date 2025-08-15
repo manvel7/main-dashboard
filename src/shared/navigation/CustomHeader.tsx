@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
+import LanguageSelector from './LanguageSelector';
 
 interface CustomHeaderProps {
   title: string;
@@ -66,11 +67,10 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
           </Typography>
         </TitleSection>
 
-        {otherChildren && (
-          <OtherChildrenSection>
-            {otherChildren}
-          </OtherChildrenSection>
-        )}
+        <OtherChildrenSection>
+          <LanguageSelector />
+          {otherChildren}
+        </OtherChildrenSection>
       </HeaderTop>
 
       {children && (

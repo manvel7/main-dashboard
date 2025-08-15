@@ -32,23 +32,7 @@ export const navigationRoutes = [
     label: 'Dashboard',
     icon: <DashboardIcon />,
   },
-  // {
-  //   path: ROUTES.USERS,
-  //   label: 'Users',
-  //   icon: <UsersIcon />,
-  // },
-  // {
-  //   path: ROUTES.SETTINGS,
-  //   label: 'Settings',
-  //   icon: <SettingsIcon />,
-  //   children: [
-  //     {
-  //       path: ROUTES.SETTINGS_SUBSCRIPTIONS,
-  //       label: 'Subscriptions',
-  //       icon: <AccountBalanceWallet />,
-  //     },
-  //   ],
-  // },
+  // Route labels are plain strings used as i18n keys
 ];
 
 

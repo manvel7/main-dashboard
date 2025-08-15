@@ -2,6 +2,7 @@ import React from 'react';
 import { ListItemIcon, ListItemText } from '@mui/material';
 import { Logout as LogoutIcon } from '@mui/icons-material';
 import { StyledListItem, StyledListItemButton } from './styles';
+import { useTranslation } from 'react-i18next';
 
 interface LogoutActionProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ export const LogoutAction: React.FC<LogoutActionProps> = ({
   isOpen,
   onLogout
 }) => {
+  const { t } = useTranslation();
   return (
     <>
       <StyledListItem disablePadding>
@@ -30,7 +32,7 @@ export const LogoutAction: React.FC<LogoutActionProps> = ({
           </ListItemIcon>
           {isOpen && (
             <ListItemText
-              primary="Logout"
+              primary={t('Logout')}
               sx={{
                 color: 'inherit',
               }}

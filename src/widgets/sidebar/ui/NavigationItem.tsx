@@ -2,6 +2,7 @@ import React from 'react';
 import { ListItemIcon, ListItemText } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { StyledListItem, StyledListItemButton } from './styles';
+import { useTranslation } from 'react-i18next';
 import { NavigationItemWrapper } from './NavigationItemWrapper';
 
 interface NavigationItemProps {
@@ -29,13 +30,14 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
   isChild = false,
   onClick
 }) => {
+  const { t } = useTranslation();
   return (
     <StyledListItem
       disablePadding
       selected={isSelected}
     >
       <NavigationItemWrapper
-        label={label}
+        label={t(label)}
         onClick={onClick}
         isMobile={isMobile}
         isOpen={isOpen}
@@ -54,7 +56,7 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
             {icon}
           </ListItemIcon>
           <ListItemText
-            primary={label}
+            primary={t(label)}
             sx={{
               display: isOpen ? 'block' : 'none'
             }}

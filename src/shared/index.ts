@@ -2,4 +2,7 @@
 export { PageContainer, SuspensePage } from './containers';
 export { ConfirmDialog } from './dialogs';
 export { LoadingSpinner } from './feedback';
-export { CustomHeader } from './navigation';
+export { CustomHeader, LanguageSelector } from './navigation';
+
+// Shared hooks exports
+export { useLanguageSelector } from './hooks';

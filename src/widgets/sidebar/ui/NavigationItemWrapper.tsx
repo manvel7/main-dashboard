@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tooltip } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface NavigationItemWrapperProps {
   children: React.ReactNode;
@@ -16,10 +17,11 @@ export const NavigationItemWrapper: React.FC<NavigationItemWrapperProps> = ({
   isMobile,
   isOpen
 }) => {
+  const { t } = useTranslation();
   if (isMobile && !isOpen) {
     return (
       <Tooltip
-        title={label}
+        title={t(label)}
         placement="right"
         arrow
         sx={{
