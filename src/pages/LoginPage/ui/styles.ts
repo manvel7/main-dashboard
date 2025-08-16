@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material';
 import { Box, Card, CardContent } from '@mui/material';
 
 export const LoginContainer = styled(Box)(({ theme }) => ({
@@ -7,7 +7,9 @@ export const LoginContainer = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   WebkitBoxPack: 'center',
   justifyContent: 'center',
-  background: theme.palette.login.background,
+  background: theme.palette.mode === 'dark'
+    ? theme.palette.custom.background[100]
+    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
   minHeight: '100vh',
   padding: 0,
 }));
@@ -16,9 +18,12 @@ export const LoginCard = styled(Card)(({ theme }) => ({
   width: '100%',
   maxWidth: 400,
   borderRadius: theme.spacing(3),
-  boxShadow: `0 8px 32px ${theme.palette.login.cardShadow}`,
+  boxShadow: `0 8px 32px ${theme.palette.custom.shadow[100]}`,
   backdropFilter: 'blur(10px)',
-  border: `1px solid ${theme.palette.login.cardBorder}`,
+  border: `1px solid ${theme.palette.custom.border[100]}`,
+  background: theme.palette.mode === 'dark'
+    ? theme.palette.custom.background[500]
+    : theme.palette.custom.background[100],
   [theme.breakpoints.down('sm')]: {
     margin: theme.spacing(0, 1), // 8px left and right padding on mobile
   },
@@ -40,12 +45,12 @@ export const IconContainer = styled(Box)(({ theme }) => ({
   width: 64,
   height: 64,
   borderRadius: '50%',
-  background: theme.palette.login.iconGradient,
+  background: theme.palette.custom.gradient.primary,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   margin: '0 auto 16px',
-  boxShadow: `0 4px 16px ${theme.palette.login.iconShadow}`,
+  boxShadow: `0 4px 16px ${theme.palette.custom.shadow[200]}`,
 }));
 
 export const Icon = styled('div')(({ theme }) => ({
@@ -56,7 +61,7 @@ export const Icon = styled('div')(({ theme }) => ({
 export const Title = styled('h1')(({ theme }) => ({
   fontWeight: 700,
   marginBottom: theme.spacing(1),
-  background: theme.palette.login.titleGradient,
+  background: theme.palette.custom.gradient.primary,
   backgroundClip: 'text',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
