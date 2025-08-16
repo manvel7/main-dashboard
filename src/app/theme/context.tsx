@@ -18,10 +18,13 @@ interface ThemeWrapperProps {
 }
 
 export const ThemeWrapper: React.FC<ThemeWrapperProps> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem('isDarkMode') === 'true' || false
+  );
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
+    localStorage.setItem('isDarkMode', String(!isDarkMode));
   };
 
   const theme = isDarkMode ? darkTheme : lightTheme;

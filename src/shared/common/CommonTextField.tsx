@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Controller, useFormContext, FieldError } from 'react-hook-form';
 import get from 'lodash/get';
-import { FormControl, FormControlProps, FormHelperText } from '@mui/material';
+import { FormControl, FormControlProps } from '@mui/material';
 
 type FormValue = string | number | undefined;
 

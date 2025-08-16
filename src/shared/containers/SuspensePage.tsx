@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { LoadingSpinner } from '../feedback';
+import { LoadingSpinner } from '@shared/containers/LoadingSpinner';
 
 interface SuspensePageProps {
   children: React.ReactNode;

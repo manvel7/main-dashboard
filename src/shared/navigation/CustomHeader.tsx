@@ -1,7 +1,8 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
-import LanguageSelector from './LanguageSelector';
+import LanguageSelector from '@shared/common/LanguageSelector';
+import { ThemeToggle } from './ThemeToggle';
 
 interface CustomHeaderProps {
   title: string;
@@ -68,6 +69,7 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
         </TitleSection>
 
         <OtherChildrenSection>
+          <ThemeToggle />
           <LanguageSelector />
           {otherChildren}
         </OtherChildrenSection>
