@@ -31,7 +31,6 @@ export const NavigationList: React.FC<NavigationListProps> = ({
   onExpandClick,
   isChildList = false
 }) => {
-  console.log('currentPath', currentPath);
   const handleItemClick = (route: NavigationRoute) => {
     if (route.children) {
       onExpandClick(route.path);
