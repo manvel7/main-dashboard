@@ -7,9 +7,9 @@ import {
   // AccountBalanceWallet,
 } from '@mui/icons-material';
 import { Layout } from '@widgets/layout';
-import { LoadingSpinner } from '@shared/index';
+import { LoadingSpinner, SuspensePage } from '@shared/index';
 import PrivateRoute from '@app/routes/PrivetRoutes';
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 
 // Lazy load pages for better performance
 const HomePage = lazy(() =>
@@ -61,9 +61,9 @@ export const routes = [
   {
     path: ROUTES.LOGIN,
     element: (
-      <Suspense fallback={<LoadingSpinner />}>
+      <SuspensePage>
         <LoginPage />
-      </Suspense>
+      </SuspensePage>
     ),
   },
   {
@@ -74,9 +74,9 @@ export const routes = [
         index: true,
         element: (
           <PrivateRoute>
-            <Suspense fallback={<LoadingSpinner />}>
+            <SuspensePage>
               <HomePage />
-            </Suspense>
+            </SuspensePage>
           </PrivateRoute>
         ),
       },
@@ -84,9 +84,9 @@ export const routes = [
         path: ROUTES.DASHBOARD,
         element: (
           <PrivateRoute>
-            <Suspense fallback={<LoadingSpinner />}>
+            <SuspensePage>
               <DashboardPage />
-            </Suspense>
+            </SuspensePage>
           </PrivateRoute>
         ),
       },
