@@ -1,14 +1,6 @@
-import {
-  Typography,
-  Button,
-  useTheme,
-  useMediaQuery,
-} from '@mui/material';
+import { Typography, Button, useTheme, useMediaQuery } from '@mui/material';
 import { PageContainer } from '@shared/index';
-import {
-  HomeContainer,
-  WelcomeSection
-} from '@pages/HomePage/styles';
+import { HomeContainer, WelcomeSection } from '@pages/HomePage/styles';
 import { useTranslation } from 'react-i18next';
 
 export const HomePage: React.FC = () => {
@@ -22,7 +14,7 @@ export const HomePage: React.FC = () => {
         {/* Welcome Section */}
         <WelcomeSection elevation={0}>
           <Typography
-            variant={isMobile ? "h4" : "h3"}
+            variant={isMobile ? 'h4' : 'h3'}
             component="h1"
             gutterBottom
             fontWeight="bold"
@@ -30,10 +22,12 @@ export const HomePage: React.FC = () => {
             {t('Welcome to Your Dashboard')}
           </Typography>
           <Typography
-            variant={isMobile ? "body1" : "h6"}
+            variant={isMobile ? 'body1' : 'h6'}
             sx={{ mb: 3, opacity: 0.9 }}
           >
-            {t('Your central hub for managing and monitoring all aspects of your system. Get insights, manage users, and control your platform efficiently')}
+            {t(
+              'Your central hub for managing and monitoring all aspects of your system. Get insights, manage users, and control your platform efficiently'
+            )}
           </Typography>
           <Button
             variant="contained"
@@ -43,14 +37,13 @@ export const HomePage: React.FC = () => {
               backdropFilter: 'blur(10px)',
               '&:hover': {
                 backgroundColor: 'rgba(255,255,255,0.3)',
-              }
+              },
             }}
           >
             {t('Get Started')}
           </Button>
         </WelcomeSection>
-
       </HomeContainer>
-    </PageContainer >
+    </PageContainer>
   );
 };

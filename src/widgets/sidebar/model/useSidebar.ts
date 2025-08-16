@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme, useMediaQuery } from '@mui/material';
+import Cookies from 'js-cookie';
 
 interface UseSidebarProps {
   open?: boolean;
@@ -25,19 +26,28 @@ export const useSidebar = ({ open: controlledOpen }: UseSidebarProps = {}) => {
 
   const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen;
 
-
-  const handleNavigate = useCallback((path: string) => {
-    navigate(path);
-    // On mobile, navigation doesn't affect sidebar state since it auto-manages
-  }, [navigate]);
+  const handleNavigate = useCallback(
+    (path: string) => {
+      navigate(path);
+      // On mobile, navigation doesn't affect sidebar state since it auto-manages
+    },
+    [navigate]
+  );
 
   const handleExpandClick = useCallback((path: string) => {
-    setExpandedItems(prev =>
+    setExpandedItems((prev) =>
       prev.includes(path)
-        ? prev.filter(item => item !== path)
+        ? prev.filter((item) => item !== path)
         : [...prev, path]
     );
   }, []);
+
+  const handleLogout = useCallback(() => {
+    Cookies.remove('token');
+    Cookies.remove('i18next');
+    localStorage.removeItem('i18nextLng');
+    navigate('/login');
+  }, [navigate]);
 
   return {
     isOpen,
@@ -46,5 +56,6 @@ export const useSidebar = ({ open: controlledOpen }: UseSidebarProps = {}) => {
     expandedItems,
     handleNavigate,
     handleExpandClick,
+    handleLogout,
   };
 };

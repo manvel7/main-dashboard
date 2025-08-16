@@ -8,7 +8,7 @@ interface LoadingSpinnerProps {
 
 export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 40,
-  minHeight = '60vh'
+  minHeight = '60vh',
 }) => {
   return (
     <Box

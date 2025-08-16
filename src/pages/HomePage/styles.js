@@ -15,7 +15,3 @@ export const WelcomeSection = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   boxShadow: '0 8px 32px rgba(25, 118, 210, 0.2)',
 }));
-
-
-
-

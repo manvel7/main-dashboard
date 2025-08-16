@@ -3,9 +3,9 @@ import { Controller, useFormContext, FieldError } from 'react-hook-form';
 import get from 'lodash/get';
 import { FormControl, FormControlProps, FormHelperText } from '@mui/material';
 
-type FormValue = string | number | string[] | undefined;
+type FormValue = string | number | undefined;
 
-interface SelectRenderPropParams<TRef = unknown> {
+interface TextFieldRenderPropParams<TRef = unknown> {
   value: FormValue;
   onChange: (value: FormValue) => void;
   onBlur: () => void;
@@ -13,24 +13,42 @@ interface SelectRenderPropParams<TRef = unknown> {
   hasError: boolean;
   error?: FieldError;
   label?: string;
+  InputLabelProps?: {
+    shrink: boolean;
+  };
+  inputProps?: {
+    autoComplete: string;
+  };
 }
 
-export interface CustomSelectProps<TRef = unknown>
+export interface CustomTextFieldProps<TRef = unknown>
   extends Omit<FormControlProps, 'children'> {
   name: string;
   label?: string;
   maxWidth?: string;
-  children: (props: SelectRenderPropParams<TRef>) => ReactElement;
+  InputLabelProps?: {
+    shrink: boolean;
+  };
+  inputProps?: {
+    autoComplete: string;
+  };
+  children: (props: TextFieldRenderPropParams<TRef>) => ReactElement;
 }
 
-function CustomSelect<TRef = unknown>({
+function CustomTextField<TRef = unknown>({
   name,
   label,
   maxWidth = '100%',
   variant = 'outlined',
   children,
+  InputLabelProps = {
+    shrink: true,
+  },
+  inputProps = {
+    autoComplete: 'off',
+  },
   ...formControlProps
-}: CustomSelectProps<TRef>) {
+}: CustomTextFieldProps<TRef>) {
   const { control, formState } = useFormContext();
   const error = get(formState.errors, name) as FieldError | undefined;
   const hasError = Boolean(error);
@@ -55,15 +73,13 @@ function CustomSelect<TRef = unknown>({
             hasError,
             error,
             label,
+            InputLabelProps,
+            inputProps,
           })
         }
       />
-
-      {hasError && error?.message && (
-        <FormHelperText>{error.message}</FormHelperText>
-      )}
     </FormControl>
   );
 }
 
-export default CustomSelect;
+export default CustomTextField;

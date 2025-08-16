@@ -28,14 +28,11 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
   hasChildren = false,
   isExpanded = false,
   isChild = false,
-  onClick
+  onClick,
 }) => {
   const { t } = useTranslation();
   return (
-    <StyledListItem
-      disablePadding
-      selected={isSelected}
-    >
+    <StyledListItem disablePadding selected={isSelected}>
       <NavigationItemWrapper
         label={t(label)}
         onClick={onClick}
@@ -49,7 +46,7 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
           }}
           sx={{
             justifyContent: isOpen ? 'flex-start' : 'center',
-            paddingLeft: isChild ? (isOpen ? 4 : 1.5) : (isOpen ? 2 : 1.5),
+            paddingLeft: isChild ? (isOpen ? 4 : 1.5) : isOpen ? 2 : 1.5,
           }}
         >
           <ListItemIcon sx={{ color: 'inherit', minWidth: 'auto' }}>
@@ -58,12 +55,12 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
           <ListItemText
             primary={t(label)}
             sx={{
-              display: isOpen ? 'block' : 'none'
+              display: isOpen ? 'block' : 'none',
             }}
           />
-          {hasChildren && isOpen && (
-            isExpanded ? <ExpandLess /> : <ExpandMore />
-          )}
+          {hasChildren &&
+            isOpen &&
+            (isExpanded ? <ExpandLess /> : <ExpandMore />)}
         </StyledListItemButton>
       </NavigationItemWrapper>
     </StyledListItem>

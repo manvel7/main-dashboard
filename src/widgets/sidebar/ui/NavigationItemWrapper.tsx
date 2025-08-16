@@ -15,7 +15,7 @@ export const NavigationItemWrapper: React.FC<NavigationItemWrapperProps> = ({
   label,
   onClick,
   isMobile,
-  isOpen
+  isOpen,
 }) => {
   const { t } = useTranslation();
   if (isMobile && !isOpen) {
@@ -32,7 +32,7 @@ export const NavigationItemWrapper: React.FC<NavigationItemWrapperProps> = ({
           },
           '& .MuiTooltip-arrow': {
             color: '#333',
-          }
+          },
         }}
       >
         <div onClick={onClick} style={{ cursor: 'pointer' }}>

@@ -1,5 +1,4 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
-import { Box } from '@mui/material';
 import {
   Dashboard as DashboardIcon,
   // People as UsersIcon,
@@ -8,12 +7,27 @@ import {
   // AccountBalanceWallet,
 } from '@mui/icons-material';
 import { Layout } from '@widgets/layout';
-import { HomePage, DashboardPage } from '@pages';
-import { SuspensePage } from '@shared/index';
+import { LoadingSpinner } from '@shared/index';
+import PrivateRoute from '@app/routes/PrivetRoutes';
+import { lazy, Suspense } from 'react';
+
+// Lazy load pages for better performance
+const HomePage = lazy(() =>
+  import('@pages/HomePage').then((module) => ({ default: module.HomePage }))
+);
+const DashboardPage = lazy(() =>
+  import('@pages/Dashboard/DashboardPage').then((module) => ({
+    default: module.DashboardPage,
+  }))
+);
+const LoginPage = lazy(() =>
+  import('@pages/LoginPage').then((module) => ({ default: module.LoginPage }))
+);
 
 // Route paths as constants for type safety and easy imports
 export const ROUTES = {
   HOME: '/',
+  LOGIN: '/login',
   DASHBOARD: '/dashboard',
   // USERS: '/users',
   // SETTINGS: '/settings',
@@ -35,7 +49,6 @@ export const navigationRoutes = [
   // Route labels are plain strings used as i18n keys
 ];
 
-
 // Root layout component
 const RootLayout = () => (
   <Layout>
@@ -46,39 +59,51 @@ const RootLayout = () => (
 // Route definitions for the main dashboard application
 export const routes = [
   {
+    path: ROUTES.LOGIN,
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <LoginPage />
+      </Suspense>
+    ),
+  },
+  {
     path: '/',
     element: <RootLayout />,
     children: [
       {
         index: true,
         element: (
-          <SuspensePage>
-            <HomePage />
-          </SuspensePage>
+          <PrivateRoute>
+            <Suspense fallback={<LoadingSpinner />}>
+              <HomePage />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
       {
         path: ROUTES.DASHBOARD,
         element: (
-          <SuspensePage>
-            <DashboardPage />
-          </SuspensePage>
+          <PrivateRoute>
+            <Suspense fallback={<LoadingSpinner />}>
+              <DashboardPage />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
       // {
       //   path: ROUTES.USERS,
       //   element: (
-      //     <SuspensePage>
+      //     <Suspense fallback={<LoadingSpinner />}>
       //       <UsersPage />
-      //     </SuspensePage>
+      //     </Suspense>
       //   ),
       // },
       // {
       //   path: ROUTES.SETTINGS,
       //   element: (
-      //     <SuspensePage>
+      //     <Suspense fallback={<LoadingSpinner />}>
       //       <SettingsPage />
-      //     </SuspensePage>
+      //     </Suspense>
       //   ),
       //   children: [
       //     {
@@ -93,9 +118,9 @@ export const routes = [
       //     {
       //       path: 'subscriptions',
       //       element: (
-      //         <SuspensePage>
+      //         <Suspense fallback={<LoadingSpinner />}>
       //           <SubscriptionsPage />
-      //         </SuspensePage>
+      //         </Suspense>
       //       ),
       //     },
       //   ],
@@ -108,4 +133,4 @@ export const routes = [
 export const router = createBrowserRouter(routes);
 
 // Type for route paths
-export type RoutePath = typeof ROUTES[keyof typeof ROUTES];
+export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];

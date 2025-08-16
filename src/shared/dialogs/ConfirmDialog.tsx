@@ -6,7 +6,7 @@ import {
   DialogActions,
   DialogContentText,
   Button,
-  Box
+  Box,
 } from '@mui/material';
 import { Warning as WarningIcon } from '@mui/icons-material';
 
@@ -29,28 +29,19 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   cancelText = 'Cancel',
   variant = 'default',
   onConfirm,
-  onCancel
+  onCancel,
 }) => {
   return (
-    <Dialog
-      open={open}
-      onClose={onCancel}
-      maxWidth="xs"
-      fullWidth
-    >
+    <Dialog open={open} onClose={onCancel} maxWidth="xs" fullWidth>
       <DialogTitle>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          {variant === 'danger' && (
-            <WarningIcon color="error" />
-          )}
+          {variant === 'danger' && <WarningIcon color="error" />}
           {title}
         </Box>
       </DialogTitle>
 
       <DialogContent>
-        <DialogContentText>
-          {message}
-        </DialogContentText>
+        <DialogContentText>{message}</DialogContentText>
       </DialogContent>
 
       <DialogActions>

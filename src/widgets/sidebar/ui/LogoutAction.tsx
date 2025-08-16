@@ -11,7 +11,7 @@ interface LogoutActionProps {
 
 export const LogoutAction: React.FC<LogoutActionProps> = ({
   isOpen,
-  onLogout
+  onLogout,
 }) => {
   const { t } = useTranslation();
   return (

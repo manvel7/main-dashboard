@@ -3,9 +3,9 @@ import { Controller, useFormContext, FieldError } from 'react-hook-form';
 import get from 'lodash/get';
 import { FormControl, FormControlProps, FormHelperText } from '@mui/material';
 
-type FormValue = string | number | string[] | undefined;
+type FormValue = boolean | undefined;
 
-interface SelectRenderPropParams<TRef = unknown> {
+interface CheckboxRenderPropParams<TRef = unknown> {
   value: FormValue;
   onChange: (value: FormValue) => void;
   onBlur: () => void;
@@ -15,22 +15,22 @@ interface SelectRenderPropParams<TRef = unknown> {
   label?: string;
 }
 
-export interface CustomSelectProps<TRef = unknown>
+export interface CustomCheckboxProps<TRef = unknown>
   extends Omit<FormControlProps, 'children'> {
   name: string;
   label?: string;
   maxWidth?: string;
-  children: (props: SelectRenderPropParams<TRef>) => ReactElement;
+  children: (props: CheckboxRenderPropParams<TRef>) => ReactElement;
 }
 
-function CustomSelect<TRef = unknown>({
+function CustomCheckbox<TRef = unknown>({
   name,
   label,
   maxWidth = '100%',
   variant = 'outlined',
   children,
   ...formControlProps
-}: CustomSelectProps<TRef>) {
+}: CustomCheckboxProps<TRef>) {
   const { control, formState } = useFormContext();
   const error = get(formState.errors, name) as FieldError | undefined;
   const hasError = Boolean(error);
@@ -48,7 +48,7 @@ function CustomSelect<TRef = unknown>({
         control={control}
         render={({ field }) =>
           children({
-            value: field.value ?? '',
+            value: field.value ?? false,
             onChange: field.onChange,
             onBlur: field.onBlur,
             ref: field.ref,
@@ -66,4 +66,4 @@ function CustomSelect<TRef = unknown>({
   );
 }
 
-export default CustomSelect;
+export default CustomCheckbox;

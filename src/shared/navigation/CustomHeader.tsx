@@ -73,11 +73,7 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
         </OtherChildrenSection>
       </HeaderTop>
 
-      {children && (
-        <ChildrenSection>
-          {children}
-        </ChildrenSection>
-      )}
+      {children && <ChildrenSection>{children}</ChildrenSection>}
     </HeaderContainer>
   );
 };

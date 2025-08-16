@@ -68,11 +68,13 @@ const LanguageSelector: React.FC = () => {
         onChange={handleLanguageChange}
         displayEmpty
         renderValue={(value) => {
-          const currentLang = languages.find(lang => lang.code === value);
+          const currentLang = languages.find((lang) => lang.code === value);
           return (
             <LanguageOption>
               <FlagIcon>{currentLang?.flag}</FlagIcon>
-              <LanguageName>{getTranslatedLanguageName(currentLang?.name || 'English')}</LanguageName>
+              <LanguageName>
+                {getTranslatedLanguageName(currentLang?.name || 'English')}
+              </LanguageName>
             </LanguageOption>
           );
         }}
@@ -81,7 +83,9 @@ const LanguageSelector: React.FC = () => {
           <MenuItem key={language.code} value={language.code}>
             <LanguageOption>
               <FlagIcon>{language.flag}</FlagIcon>
-              <LanguageName>{getTranslatedLanguageName(language.name)}</LanguageName>
+              <LanguageName>
+                {getTranslatedLanguageName(language.name)}
+              </LanguageName>
             </LanguageOption>
           </MenuItem>
         ))}

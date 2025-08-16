@@ -12,22 +12,20 @@ void i18n
   .init({
     resources: {
       en: { translation: en },
-      ru: { translation: ru }
+      ru: { translation: ru },
     },
     fallbackLng: 'en',
     supportedLngs: ['en', 'ru'],
     // Keys are the same as display text (no nesting or dot-notation)
     keySeparator: false,
     interpolation: {
-      escapeValue: false
+      escapeValue: false,
     },
     detection: {
       order: ['querystring', 'localStorage', 'cookie', 'navigator', 'htmlTag'],
-      caches: ['localStorage', 'cookie']
+      caches: ['localStorage', 'cookie'],
     },
-    returnEmptyString: false
+    returnEmptyString: false,
   });
 
 export default i18n;
-
-

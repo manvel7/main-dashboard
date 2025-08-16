@@ -1,0 +1,20 @@
+# Ignore build outputs
+dist/
+build/
+out/
+
+# Ignore node_modules
+node_modules/
+
+# Ignore specific files
+*.min.js
+*.lock
+
+# Ignore coverage reports
+coverage/
+
+# Ignore JSON configuration files
+package.json
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

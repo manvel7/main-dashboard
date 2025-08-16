@@ -29,7 +29,7 @@ export const NavigationList: React.FC<NavigationListProps> = ({
   isMobile,
   onNavigate,
   onExpandClick,
-  isChildList = false
+  isChildList = false,
 }) => {
   const handleItemClick = (route: NavigationRoute) => {
     if (route.children) {
@@ -40,7 +40,7 @@ export const NavigationList: React.FC<NavigationListProps> = ({
   };
 
   return (
-    <StyledList component={isChildList ? "div" : undefined}>
+    <StyledList component={isChildList ? 'div' : undefined}>
       {routes.map((route) => (
         <div key={route.path}>
           <NavigationItem
@@ -57,7 +57,11 @@ export const NavigationList: React.FC<NavigationListProps> = ({
           />
 
           {route.children && (
-            <Collapse in={expandedItems.includes(route.path)} timeout="auto" unmountOnExit>
+            <Collapse
+              in={expandedItems.includes(route.path)}
+              timeout="auto"
+              unmountOnExit
+            >
               <NavigationList
                 routes={route.children}
                 currentPath={currentPath}

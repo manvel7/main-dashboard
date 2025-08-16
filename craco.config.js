@@ -1,15 +1,24 @@
-const path = require('path');
+const path = require("path");
+// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
   webpack: {
     alias: {
-      '@app': path.resolve(__dirname, 'src/app'),
-      '@widgets': path.resolve(__dirname, 'src/widgets'),
-      '@pages': path.resolve(__dirname, 'src/pages'),
-      // '@features': path.resolve(__dirname, 'src/features'),
-      // '@entities': path.resolve(__dirname, 'src/entities'),
-      '@shared': path.resolve(__dirname, 'src/shared'),
-      // '@assets': path.resolve(__dirname, 'src/assets'),
+      "@app": path.resolve(__dirname, "src/app"),
+      "@widgets": path.resolve(__dirname, "src/widgets"),
+      "@pages": path.resolve(__dirname, "src/pages"),
+      "@features": path.resolve(__dirname, "src/features"),
+      "@shared": path.resolve(__dirname, "src/shared"),
     },
+    // configure: (webpackConfig, { env, paths }) => {
+    //   // Only add bundle analyzer in production if you want
+    //   webpackConfig.plugins.push(
+    //     new BundleAnalyzerPlugin({
+    //       analyzerMode: "server", // "static" for HTML file
+    //       openAnalyzer: true,
+    //     })
+    //   );
+    //   return webpackConfig;
+    // },
   },
 };

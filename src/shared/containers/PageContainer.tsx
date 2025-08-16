@@ -14,18 +14,20 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   title,
   subtitle,
   maxWidth = 'xl',
-  actions
+  actions,
 }) => {
   return (
     <Container maxWidth={maxWidth} sx={{ px: 1.5 }}>
       <Box sx={{ mt: 4, mb: 2 }}>
         {(title || actions) && (
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            mb: subtitle ? 2 : 4
-          }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              mb: subtitle ? 2 : 4,
+            }}
+          >
             {title && (
               <Box>
                 <Typography variant="h3" component="h1" gutterBottom>
@@ -38,11 +40,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
                 )}
               </Box>
             )}
-            {actions && (
-              <Box>
-                {actions}
-              </Box>
-            )}
+            {actions && <Box>{actions}</Box>}
           </Box>
         )}
 

@@ -1,5 +1,11 @@
 import { styled } from '@mui/material/styles';
-import { Drawer, ListItemButton, IconButton, List, ListItem } from '@mui/material';
+import {
+  Drawer,
+  ListItemButton,
+  IconButton,
+  List,
+  ListItem,
+} from '@mui/material';
 
 export const SIDEBAR_WIDTH = 200;
 export const SIDEBAR_WIDTH_COLLAPSED = 50;
@@ -32,14 +38,18 @@ export const StyledList = styled(List)<{ component?: React.ElementType }>({
   },
 });
 
-export const StyledListItem = styled(ListItem)<{ selected?: boolean }>(({ selected }) => ({
-  padding: 0,
-  margin: 0,
-  backgroundColor: selected ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
-  '&:hover': {
-    backgroundColor: selected ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.1)',
-  },
-}));
+export const StyledListItem = styled(ListItem)<{ selected?: boolean }>(
+  ({ selected }) => ({
+    padding: 0,
+    margin: 0,
+    backgroundColor: selected ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
+    '&:hover': {
+      backgroundColor: selected
+        ? 'rgba(255, 255, 255, 0.25)'
+        : 'rgba(255, 255, 255, 0.1)',
+    },
+  })
+);
 
 export const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   gap: theme.spacing(2), // 16px gap

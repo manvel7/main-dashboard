@@ -18,7 +18,10 @@ export const useLanguageSelector = () => {
   // Load language from localStorage on hook initialization
   useEffect(() => {
     const savedLanguage = localStorage.getItem('selectedLanguage');
-    if (savedLanguage && languages.find(lang => lang.code === savedLanguage)) {
+    if (
+      savedLanguage &&
+      languages.find((lang) => lang.code === savedLanguage)
+    ) {
       i18n.changeLanguage(savedLanguage);
     }
   }, [i18n]);
@@ -34,7 +37,9 @@ export const useLanguageSelector = () => {
 
   // Get current language object
   const getCurrentLanguage = () => {
-    return languages.find(lang => lang.code === i18n.language) || languages[0];
+    return (
+      languages.find((lang) => lang.code === i18n.language) || languages[0]
+    );
   };
 
   // Get translated language name

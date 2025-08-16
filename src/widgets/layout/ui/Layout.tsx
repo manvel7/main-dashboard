@@ -9,7 +9,7 @@ import { useMemo } from 'react';
 export const Layout: React.FC<LayoutProps> = ({
   children,
   sidebarOpen,
-  onSidebarToggle
+  onSidebarToggle,
 }) => {
   const location = useLocation();
   const { t } = useTranslation();
@@ -24,7 +24,7 @@ export const Layout: React.FC<LayoutProps> = ({
       .replace(/-/g, ' ')
       .trim()
       .split(' ')
-      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join(' ');
 
     return t(formatted || 'Page');
@@ -43,9 +43,7 @@ export const Layout: React.FC<LayoutProps> = ({
       </Sidebar>
 
       <MainContent>
-        <CustomHeader
-          title={computedLocation}
-        />
+        <CustomHeader title={computedLocation} />
         {children}
       </MainContent>
     </LayoutContainer>
