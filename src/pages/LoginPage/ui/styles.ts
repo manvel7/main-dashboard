@@ -1,86 +1,88 @@
-import { SxProps, Theme } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Box, Card, CardContent } from '@mui/material';
 
-export const styles = {
-  container: {
-    display: 'flex',
-    WebkitBoxAlign: 'center',
-    alignItems: 'center',
-    WebkitBoxPack: 'center',
-    justifyContent: 'center',
-    background: 'rgb(26, 32, 58)',
-    minHeight: '100vh',
-    padding: 0,
-  } as SxProps<Theme>,
+export const LoginContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  WebkitBoxAlign: 'center',
+  alignItems: 'center',
+  WebkitBoxPack: 'center',
+  justifyContent: 'center',
+  background: theme.palette.login.background,
+  minHeight: '100vh',
+  padding: 0,
+}));
 
-  card: {
-    width: '100%',
-    maxWidth: 400,
-    borderRadius: 3,
-    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-    backdropFilter: 'blur(10px)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
-  } as SxProps<Theme>,
+export const LoginCard = styled(Card)(({ theme }) => ({
+  width: '100%',
+  maxWidth: 400,
+  borderRadius: theme.spacing(3),
+  boxShadow: `0 8px 32px ${theme.palette.login.cardShadow}`,
+  backdropFilter: 'blur(10px)',
+  border: `1px solid ${theme.palette.login.cardBorder}`,
+  [theme.breakpoints.down('sm')]: {
+    margin: theme.spacing(0, 1), // 8px left and right padding on mobile
+  },
+}));
 
-  cardContent: {
-    padding: 4,
-    '&:last-child': {
-      paddingBottom: 4,
-    },
-  } as SxProps<Theme>,
+export const LoginCardContent = styled(CardContent)(({ theme }) => ({
+  padding: theme.spacing(4),
+  '&:last-child': {
+    paddingBottom: theme.spacing(4),
+  },
+}));
 
-  header: {
-    textAlign: 'center',
-    marginBottom: 3,
-  } as SxProps<Theme>,
+export const LoginHeader = styled(Box)(({ theme }) => ({
+  textAlign: 'center',
+  marginBottom: theme.spacing(3),
+}));
 
-  iconContainer: {
-    width: 64,
-    height: 64,
-    borderRadius: '50%',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 auto 16px',
-    boxShadow: '0 4px 16px rgba(102, 126, 234, 0.3)',
-  } as SxProps<Theme>,
+export const IconContainer = styled(Box)(({ theme }) => ({
+  width: 64,
+  height: 64,
+  borderRadius: '50%',
+  background: theme.palette.login.iconGradient,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  margin: '0 auto 16px',
+  boxShadow: `0 4px 16px ${theme.palette.login.iconShadow}`,
+}));
 
-  icon: {
-    fontSize: 32,
-    color: 'white',
-  } as SxProps<Theme>,
+export const Icon = styled('div')(({ theme }) => ({
+  fontSize: 32,
+  color: 'white',
+}));
 
-  title: {
-    fontWeight: 700,
-    marginBottom: 1,
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    backgroundClip: 'text',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-  } as SxProps<Theme>,
+export const Title = styled('h1')(({ theme }) => ({
+  fontWeight: 700,
+  marginBottom: theme.spacing(1),
+  background: theme.palette.login.titleGradient,
+  backgroundClip: 'text',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+}));
 
-  subtitle: {
-    color: 'text.secondary',
-    opacity: 0.8,
-  } as SxProps<Theme>,
+export const Subtitle = styled('p')(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  opacity: 0.8,
+}));
 
-  alert: {
-    marginBottom: 2,
-  } as SxProps<Theme>,
+export const AlertContainer = styled(Box)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+}));
 
-  footer: {
-    marginTop: 3,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: 1,
-  } as SxProps<Theme>,
+export const Footer = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(3),
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+}));
 
-  link: {
-    textDecoration: 'none',
-    color: 'primary.main',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  } as SxProps<Theme>,
-};
+export const Link = styled('a')(({ theme }) => ({
+  textDecoration: 'none',
+  color: theme.palette.primary.main,
+  '&:hover': {
+    textDecoration: 'underline',
+  },
+}));

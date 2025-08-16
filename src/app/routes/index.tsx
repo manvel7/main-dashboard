@@ -7,7 +7,7 @@ import {
   // AccountBalanceWallet,
 } from '@mui/icons-material';
 import { Layout } from '@widgets/layout';
-import { LoadingSpinner, SuspensePage } from '@shared/index';
+import { SuspensePage } from '@shared/index';
 import PrivateRoute from '@app/routes/PrivetRoutes';
 import { lazy } from 'react';
 

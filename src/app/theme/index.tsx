@@ -1,6 +1,30 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { ReactNode } from 'react';
+
+// Extend the Material-UI theme to include custom login colors
+declare module '@mui/material/styles' {
+  interface Palette {
+    login: {
+      background: string;
+      cardBorder: string;
+      iconGradient: string;
+      titleGradient: string;
+      iconShadow: string;
+      cardShadow: string;
+    };
+  }
+  interface PaletteOptions {
+    login?: {
+      background: string;
+      cardBorder: string;
+      iconGradient: string;
+      titleGradient: string;
+      iconShadow: string;
+      cardShadow: string;
+    };
+  }
+}
 
 // Define custom colors for the dashboard
 const colors = {
@@ -24,6 +48,14 @@ const colors = {
     primary: '#212121',
     secondary: '#757575',
   },
+  login: {
+    background: 'rgb(26, 32, 58)',
+    cardBorder: 'rgba(255, 255, 255, 0.2)',
+    iconGradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    titleGradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    iconShadow: 'rgba(102, 126, 234, 0.3)',
+    cardShadow: 'rgba(0, 0, 0, 0.1)',
+  },
 };
 
 // Create the Material UI theme
@@ -34,6 +66,7 @@ export const theme = createTheme({
     secondary: colors.secondary,
     background: colors.background,
     text: colors.text,
+    login: colors.login,
   },
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
