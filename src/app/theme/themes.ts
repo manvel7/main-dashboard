@@ -61,7 +61,6 @@ declare module '@mui/material/styles' {
   }
 }
 
-
 // Common typography configuration
 const typography = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',

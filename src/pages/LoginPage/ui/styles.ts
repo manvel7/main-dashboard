@@ -7,9 +7,10 @@ export const LoginContainer = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   WebkitBoxPack: 'center',
   justifyContent: 'center',
-  background: theme.palette.mode === 'dark'
-    ? theme.palette.custom.background[100]
-    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  background:
+    theme.palette.mode === 'dark'
+      ? theme.palette.custom.background[100]
+      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
   minHeight: '100vh',
   padding: 0,
 }));
@@ -21,9 +22,10 @@ export const LoginCard = styled(Card)(({ theme }) => ({
   boxShadow: `0 8px 32px ${theme.palette.custom.shadow[100]}`,
   backdropFilter: 'blur(10px)',
   border: `1px solid ${theme.palette.custom.border[100]}`,
-  background: theme.palette.mode === 'dark'
-    ? theme.palette.custom.background[500]
-    : theme.palette.custom.background[100],
+  background:
+    theme.palette.mode === 'dark'
+      ? theme.palette.custom.background[500]
+      : theme.palette.custom.background[100],
   [theme.breakpoints.down('sm')]: {
     margin: theme.spacing(0, 1), // 8px left and right padding on mobile
   },

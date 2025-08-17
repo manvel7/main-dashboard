@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { styled } from '@mui/material/styles';
 import { Select, MenuItem, FormControl, Box, Typography } from '@mui/material';
-import { useLanguageSelector } from '../hooks/useLanguageSelector';
+import { useLanguageSelector } from '@shared/hooks/useLanguageSelector';
 
 const StyledFormControl = styled(FormControl)(({ theme }) => ({
   minWidth: 120,

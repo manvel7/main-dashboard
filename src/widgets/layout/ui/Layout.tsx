@@ -1,10 +1,11 @@
+import { useMemo } from 'react';
 import { Sidebar } from '@widgets/sidebar';
-import { LayoutProps } from '@widgets/layout/model/types';
-import { LayoutContainer, MainContent } from '@widgets/layout/ui/styles';
 import { CustomHeader } from '@shared/index';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import { LayoutProps } from '@widgets/layout/model/types';
+import { LayoutContainer, MainContent } from '@widgets/layout/ui/styles';
+import NotifictaionContent from '@features/notification/ui/NotifictaionContent';
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
@@ -43,7 +44,10 @@ export const Layout: React.FC<LayoutProps> = ({
       </Sidebar>
 
       <MainContent>
-        <CustomHeader title={computedLocation} />
+        <CustomHeader
+          title={computedLocation}
+          otherChildren={<NotifictaionContent />}
+        />
         {children}
       </MainContent>
     </LayoutContainer>

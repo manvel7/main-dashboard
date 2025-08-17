@@ -10,15 +10,15 @@ module.exports = {
       "@features": path.resolve(__dirname, "src/features"),
       "@shared": path.resolve(__dirname, "src/shared"),
     },
-    // configure: (webpackConfig, { env, paths }) => {
-    //   // Only add bundle analyzer in production if you want
-    //   webpackConfig.plugins.push(
-    //     new BundleAnalyzerPlugin({
-    //       analyzerMode: "server", // "static" for HTML file
-    //       openAnalyzer: true,
-    //     })
-    //   );
-    //   return webpackConfig;
-    // },
+    configure: (webpackConfig) => {
+      // Only add bundle analyzer in production if you want
+      // webpackConfig.plugins.push(
+      //   new BundleAnalyzerPlugin({
+      //     analyzerMode: "server", // "static" for HTML file
+      //     openAnalyzer: true,
+      //   })
+      // );
+      return webpackConfig;
+    },
   },
 };

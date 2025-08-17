@@ -8,5 +8,18 @@
   "Language": "Language",
   "Select Language": "Select Language",
   "Your central hub for managing and monitoring all aspects of your system. Get insights, manage users, and control your platform efficiently": "Your central hub for managing and monitoring all aspects of your system. Get insights, manage users, and control your platform efficiently",
-  "Get Started": "Get Started"
+  "Get Started": "Get Started",
+  "Notifications": "Notifications",
+  "All": "All",
+  "Unread": "Unread",
+  "Archived": "Archived",
+  "Mark All Read": "Mark All Read",
+  "No notifications yet": "No notifications yet",
+  "You're all caught up! When you receive new notifications, they'll appear here.": "You're all caught up! When you receive new notifications, they'll appear here.",
+  "No unread notifications": "No unread notifications",
+  "Great job! You've read all your notifications.": "Great job! You've read all your notifications.",
+  "No archived notifications": "No archived notifications",
+  "Archived notifications will appear here when you archive them.": "Archived notifications will appear here when you archive them.",
+  "No notifications": "No notifications",
+  "No notifications to display.": "No notifications to display."
 }

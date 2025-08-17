@@ -7,7 +7,9 @@ export const ThemeToggle: React.FC = () => {
   const { isDarkMode, toggleTheme } = useThemeMode();
 
   return (
-    <Tooltip title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}>
+    <Tooltip
+      title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+    >
       <IconButton
         onClick={toggleTheme}
         color="inherit"

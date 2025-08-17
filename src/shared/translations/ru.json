@@ -8,5 +8,18 @@
   "Language": "Язык",
   "Select Language": "Выберите язык",
   "Your central hub for managing and monitoring all aspects of your system. Get insights, manage users, and control your platform efficiently": "Ваш центральный центр для управления и мониторинга всех аспектов вашей системы. Получайте аналитику, управляйте пользователями и эффективно контролируйте свою платформу",
-  "Get Started": "Начать"
+  "Get Started": "Начать",
+  "Notifications": "Уведомления",
+  "All": "Все",
+  "Unread": "Непрочитанные",
+  "Archived": "Архив",
+  "Mark All Read": "Отметить все как прочитанные",
+  "No notifications yet": "Пока нет уведомлений",
+  "You're all caught up! When you receive new notifications, they'll appear here.": "Вы в курсе всего! Когда вы получите новые уведомления, они появятся здесь.",
+  "No unread notifications": "Нет непрочитанных уведомлений",
+  "Great job! You've read all your notifications.": "Отличная работа! Вы прочитали все свои уведомления.",
+  "No archived notifications": "Нет архивных уведомлений",
+  "Archived notifications will appear here when you archive them.": "Архивные уведомления появятся здесь, когда вы их заархивируете.",
+  "No notifications": "Нет уведомлений",
+  "No notifications to display.": "Нет уведомлений для отображения."
 }
