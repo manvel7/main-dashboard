@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from '@app/App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeWrapper } from '@app/theme';
+import { ReduxProvider } from '@app/providers';
 import '@shared/lib/i18n';
 
 const root = ReactDOM.createRoot(
@@ -10,9 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThemeWrapper>
-      <App />
-    </ThemeWrapper>
+    <ReduxProvider>
+      <ThemeWrapper>
+        <App />
+      </ThemeWrapper>
+    </ReduxProvider>
   </React.StrictMode>
 );
 

@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import {
   Dashboard as DashboardIcon,
-  // People as UsersIcon,
+  People as UsersIcon,
   // Settings as SettingsIcon,
   Home as HomeIcon,
   // AccountBalanceWallet,
@@ -15,9 +15,9 @@ import { lazy } from 'react';
 const HomePage = lazy(() =>
   import('@pages/HomePage').then((module) => ({ default: module.HomePage }))
 );
-const DashboardPage = lazy(() =>
-  import('@pages/Dashboard/DashboardPage').then((module) => ({
-    default: module.DashboardPage,
+const UserCardPage = lazy(() =>
+  import('@pages/User/UserCardPage').then((module) => ({
+    default: module.UserCardPage,
   }))
 );
 const LoginPage = lazy(() =>
@@ -28,8 +28,8 @@ const LoginPage = lazy(() =>
 export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
-  DASHBOARD: '/dashboard',
-  // USERS: '/users',
+  USERS: '/users',
+  USERS_CARD: '/users/user-cards',
   // SETTINGS: '/settings',
   // SETTINGS_SUBSCRIPTIONS: '/settings/subscriptions',
 } as const;
@@ -42,9 +42,16 @@ export const navigationRoutes = [
     icon: <HomeIcon />,
   },
   {
-    path: ROUTES.DASHBOARD,
-    label: 'Dashboard',
-    icon: <DashboardIcon />,
+    path: ROUTES.USERS,
+    label: 'Users',
+    icon: <UsersIcon />,
+    children: [
+      {
+        path: ROUTES.USERS_CARD,
+        label: 'User Cards',
+        icon: <DashboardIcon />,
+      },
+    ],
   },
   // Route labels are plain strings used as i18n keys
 ];
@@ -81,14 +88,30 @@ export const routes = [
         ),
       },
       {
-        path: ROUTES.DASHBOARD,
-        element: (
-          <PrivateRoute>
-            <SuspensePage>
-              <DashboardPage />
-            </SuspensePage>
-          </PrivateRoute>
-        ),
+        path: ROUTES.USERS,
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: (
+              <PrivateRoute>
+                <SuspensePage>
+                  <UserCardPage />
+                </SuspensePage>
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: ROUTES.USERS_CARD,
+            element: (
+              <PrivateRoute>
+                <SuspensePage>
+                  <UserCardPage />
+                </SuspensePage>
+              </PrivateRoute>
+            ),
+          },
+        ],
       },
       // {
       //   path: ROUTES.USERS,
