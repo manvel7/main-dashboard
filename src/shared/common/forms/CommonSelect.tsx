@@ -59,9 +59,15 @@ function CustomSelect<TRef = unknown>({
         }
       />
 
-      {hasError && error?.message && (
-        <FormHelperText>{error.message}</FormHelperText>
-      )}
+      <FormHelperText
+        sx={{
+          minHeight: '20px',
+          margin: 0,
+          visibility: hasError ? 'visible' : 'hidden',
+        }}
+      >
+        {hasError ? error?.message : ' '}
+      </FormHelperText>
     </FormControl>
   );
 }

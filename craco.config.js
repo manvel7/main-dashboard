@@ -1,5 +1,5 @@
 const path = require("path");
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
   webpack: {
@@ -13,13 +13,12 @@ module.exports = {
       "@assets": path.resolve(__dirname, "src/assets"),
     },
     configure: (webpackConfig) => {
-      // Only add bundle analyzer in production if you want
-      // webpackConfig.plugins.push(
-      //   new BundleAnalyzerPlugin({
-      //     analyzerMode: "server", // "static" for HTML file
-      //     openAnalyzer: true,
-      //   })
-      // );
+      webpackConfig.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: "server", // "static" for HTML file
+          openAnalyzer: false,
+        })
+      );
       return webpackConfig;
     },
   },

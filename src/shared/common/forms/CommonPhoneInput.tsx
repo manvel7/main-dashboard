@@ -2,10 +2,12 @@ import React, { ReactElement } from 'react';
 import { Controller, useFormContext, FieldError } from 'react-hook-form';
 import get from 'lodash/get';
 import { FormControl, FormControlProps, FormHelperText } from '@mui/material';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
-type FormValue = string | number | undefined;
+type FormValue = string | undefined;
 
-interface TextFieldRenderPropParams<TRef = unknown> {
+interface PhoneInputRenderPropParams<TRef = HTMLInputElement> {
   value: FormValue;
   onChange: (value: FormValue) => void;
   onBlur: () => void;
@@ -13,42 +15,26 @@ interface TextFieldRenderPropParams<TRef = unknown> {
   hasError: boolean;
   error?: FieldError;
   label?: string;
-  InputLabelProps?: {
-    shrink: boolean;
-  };
-  inputProps?: {
-    autoComplete: string;
-  };
 }
 
-export interface CustomTextFieldProps<TRef = unknown>
+export interface CustomPhoneInputProps<TRef = HTMLInputElement>
   extends Omit<FormControlProps, 'children'> {
   name: string;
   label?: string;
   maxWidth?: string;
-  InputLabelProps?: {
-    shrink: boolean;
-  };
-  inputProps?: {
-    autoComplete: string;
-  };
-  children: (props: TextFieldRenderPropParams<TRef>) => ReactElement;
+  country?: string;
+  children: (props: PhoneInputRenderPropParams<TRef>) => ReactElement;
 }
 
-function CustomTextField<TRef = unknown>({
+function CustomPhoneInput<TRef = HTMLInputElement>({
   name,
   label,
   maxWidth = '100%',
   variant = 'outlined',
+  country = 'us',
   children,
-  InputLabelProps = {
-    shrink: true,
-  },
-  inputProps = {
-    autoComplete: 'off',
-  },
   ...formControlProps
-}: CustomTextFieldProps<TRef>) {
+}: CustomPhoneInputProps<TRef>) {
   const { control, formState } = useFormContext();
   const error = get(formState.errors, name) as FieldError | undefined;
   const hasError = Boolean(error);
@@ -73,8 +59,6 @@ function CustomTextField<TRef = unknown>({
             hasError,
             error,
             label,
-            InputLabelProps,
-            inputProps,
           })
         }
       />
@@ -92,4 +76,4 @@ function CustomTextField<TRef = unknown>({
   );
 }
 
-export default CustomTextField;
+export default CustomPhoneInput;

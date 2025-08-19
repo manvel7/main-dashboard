@@ -1,0 +1,98 @@
+/* Phone Input Field Styles */
+
+/* CSS Custom Properties for dynamic theming */
+:root {
+  --phone-input-border: rgba(0, 0, 0, 0.12);
+  --phone-input-background: #f5f5f5;
+  --phone-input-color: #212121;
+  --phone-input-error-border: #d32f2f;
+}
+
+[data-mui-color-scheme='dark'] {
+  --phone-input-border: rgba(255, 255, 255, 0.12);
+  --phone-input-background: #2d2d2d;
+  --phone-input-color: #ffffff;
+  --phone-input-error-border: #d32f2f;
+}
+
+/* Phone input field styles */
+.phone-input-field {
+  width: 100%;
+  height: 56px;
+  border: 1px solid var(--phone-input-border);
+  border-radius: 8px;
+  font-size: 16px;
+  padding-left: 48px;
+  background-color: var(--phone-input-background);
+  color: var(--phone-input-color);
+}
+
+.phone-input-field.error {
+  border-color: var(--phone-input-error-border);
+}
+
+/* Phone input button styles */
+.phone-input-button {
+  border: 1px solid var(--phone-input-border);
+  border-radius: 8px 0 0 8px;
+  background-color: var(--phone-input-background);
+}
+
+.phone-input-button.error {
+  border-color: var(--phone-input-error-border);
+}
+
+/* Remove hover effects from country list */
+.react-tel-input .country-list .country:hover {
+  background-color: transparent !important;
+}
+
+.react-tel-input .country-list .country:focus {
+  background-color: transparent !important;
+}
+
+.react-tel-input .country-list .country.highlight {
+  background-color: transparent !important;
+}
+
+/* Fixed positioning for dropdown to prevent layout shifts */
+.react-tel-input .country-list {
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+
+/* Prevent body scrolling when dropdown is open */
+body.react-tel-input-open {
+  overflow: hidden !important;
+}
+
+/* Light mode styles */
+.react-tel-input .country-list {
+  background-color: #ffffff;
+  color: #212121;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode styles */
+[data-mui-color-scheme='dark'] .react-tel-input .country-list {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Search input styles */
+.react-tel-input .country-list .search {
+  background-color: #ffffff;
+  color: #212121;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+[data-mui-color-scheme='dark'] .react-tel-input .country-list .search {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}

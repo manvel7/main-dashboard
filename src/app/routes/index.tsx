@@ -1,27 +1,35 @@
+import { lazy } from 'react';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import {
   Dashboard as DashboardIcon,
   People as UsersIcon,
-  // Settings as SettingsIcon,
   Home as HomeIcon,
-  // AccountBalanceWallet,
+  Add as AddIcon,
 } from '@mui/icons-material';
 import { Layout } from '@widgets/layout';
 import { SuspensePage } from '@shared/index';
 import PrivateRoute from '@app/routes/PrivetRoutes';
-import { lazy } from 'react';
 
-// Lazy load pages for better performance
+// Home page
 const HomePage = lazy(() =>
   import('@pages/HomePage').then((module) => ({ default: module.HomePage }))
 );
+
+// Auth pages
+const LoginPage = lazy(() =>
+  import('@pages/LoginPage').then((module) => ({ default: module.LoginPage }))
+);
+
+// User pages
 const UserCardPage = lazy(() =>
   import('@pages/User/UserCardPage').then((module) => ({
     default: module.UserCardPage,
   }))
 );
-const LoginPage = lazy(() =>
-  import('@pages/LoginPage').then((module) => ({ default: module.LoginPage }))
+const UserCreatePage = lazy(() =>
+  import('@pages/User/UserCreatePage').then((module) => ({
+    default: module.UserCreatePage,
+  }))
 );
 
 // Route paths as constants for type safety and easy imports
@@ -30,8 +38,7 @@ export const ROUTES = {
   LOGIN: '/login',
   USERS: '/users',
   USERS_CARD: '/users/user-cards',
-  // SETTINGS: '/settings',
-  // SETTINGS_SUBSCRIPTIONS: '/settings/subscriptions',
+  CREATE_USER: '/users/user-create',
 } as const;
 
 // Navigation items for sidebar (routes with labels and icons)
@@ -51,9 +58,13 @@ export const navigationRoutes = [
         label: 'User Cards',
         icon: <DashboardIcon />,
       },
+      {
+        path: ROUTES.CREATE_USER,
+        label: 'Create User',
+        icon: <AddIcon />,
+      },
     ],
   },
-  // Route labels are plain strings used as i18n keys
 ];
 
 // Root layout component
@@ -111,43 +122,18 @@ export const routes = [
               </PrivateRoute>
             ),
           },
+          {
+            path: ROUTES.CREATE_USER,
+            element: (
+              <PrivateRoute>
+                <SuspensePage>
+                  <UserCreatePage />
+                </SuspensePage>
+              </PrivateRoute>
+            ),
+          },
         ],
       },
-      // {
-      //   path: ROUTES.USERS,
-      //   element: (
-      //     <Suspense fallback={<LoadingSpinner />}>
-      //       <UsersPage />
-      //     </Suspense>
-      //   ),
-      // },
-      // {
-      //   path: ROUTES.SETTINGS,
-      //   element: (
-      //     <Suspense fallback={<LoadingSpinner />}>
-      //       <SettingsPage />
-      //     </Suspense>
-      //   ),
-      //   children: [
-      //     {
-      //       index: true,
-      //       element: (
-      //         <Box sx={{ mt: 2 }}>
-      //           <h2>Settings Overview</h2>
-      //           <p>Select a settings category from the sidebar.</p>
-      //         </Box>
-      //       ),
-      //     },
-      //     {
-      //       path: 'subscriptions',
-      //       element: (
-      //         <Suspense fallback={<LoadingSpinner />}>
-      //           <SubscriptionsPage />
-      //         </Suspense>
-      //       ),
-      //     },
-      //   ],
-      // },
     ],
   },
 ];

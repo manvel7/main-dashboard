@@ -224,3 +224,10 @@ export const ErrorMessage = styled(Box)(({ theme }) => ({
   fontSize: 18,
   textAlign: 'center',
 }));
+
+export const UserCreateFormContainer = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(3),
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(2),
+  },
+}));

@@ -1,6 +1,8 @@
 export { default as CustomSelect } from './forms/CommonSelect';
 export { default as CustomTextField } from './forms/CommonTextField';
 export { default as CustomCheckbox } from './forms/CommonCheckbox';
+export { default as CustomPhoneInput } from './forms/CommonPhoneInput';
+export { default as PhoneInputField } from './forms/PhoneInputField';
 export { default as LanguageSelector } from './language/LanguageSelector';
 export { default as NotificationDrawer } from './notification/NotificationDrawer';
 export { default as Tab } from './tab/Tab';

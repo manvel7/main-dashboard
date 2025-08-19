@@ -92,3 +92,22 @@ export const notifications: Notification[] = [
     archived: true,
   },
 ];
+
+// Country options for select box
+export const countryOptions = [
+  { value: '', label: 'Select a country' },
+  { value: 'us', label: 'United States' },
+  { value: 'ca', label: 'Canada' },
+  { value: 'uk', label: 'United Kingdom' },
+  { value: 'de', label: 'Germany' },
+  { value: 'fr', label: 'France' },
+  { value: 'es', label: 'Spain' },
+  { value: 'it', label: 'Italy' },
+  { value: 'au', label: 'Australia' },
+  { value: 'jp', label: 'Japan' },
+  { value: 'cn', label: 'China' },
+  { value: 'in', label: 'India' },
+  { value: 'br', label: 'Brazil' },
+  { value: 'mx', label: 'Mexico' },
+  { value: 'ru', label: 'Russia' },
+];
