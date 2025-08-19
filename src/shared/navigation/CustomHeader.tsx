@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 import { ThemeToggle } from './ThemeToggle';
+// import LanguageSelector from '@/shared/common/language/LanguageSelector';
 
 interface CustomHeaderProps {
   title: string;
