@@ -1,9 +1,9 @@
 import React from 'react';
-import { ListItemIcon, ListItemText } from '@mui/material';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { ListItemIcon, ListItemText, Box } from '@mui/material';
+import { ExpandLess, ExpandMore, ArrowForward } from '@mui/icons-material';
 import { StyledListItem, StyledListItemButton } from './styles';
 import { useTranslation } from 'react-i18next';
-import { NavigationItemWrapper } from './NavigationItemWrapper';
+import { NavigationItemWrapper } from '@widgets/sidebar/ui/NavigationItemWrapper';
 
 interface NavigationItemProps {
   path: string;
@@ -58,9 +58,26 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
               display: isOpen ? 'block' : 'none',
             }}
           />
-          {hasChildren &&
-            isOpen &&
-            (isExpanded ? <ExpandLess /> : <ExpandMore />)}
+          {hasChildren && isOpen && (
+            isExpanded ? <ExpandLess /> : <ExpandMore />
+          )}
+          {hasChildren && isMobile && !isOpen && (
+            <Box sx={{
+              position: 'absolute',
+              right: 4,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              color: 'rgba(255, 255, 255, 0.6)',
+              zIndex: 2,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 12,
+              height: 12,
+            }}>
+              <ArrowForward sx={{ fontSize: 12 }} />
+            </Box>
+          )}
         </StyledListItemButton>
       </NavigationItemWrapper>
     </StyledListItem>

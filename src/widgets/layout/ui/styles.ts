@@ -12,6 +12,10 @@ export const MainContent = styled(Box)(({ theme }) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  // On mobile, content should not be pushed aside by sidebar
+  [theme.breakpoints.down('sm')]: {
+    marginLeft: 0,
+  },
   [theme.breakpoints.up('sm')]: {
     marginLeft: 0,
   },

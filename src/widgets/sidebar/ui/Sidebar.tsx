@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-
+import { Box } from '@mui/material';
 import { navigationRoutes } from '@app/routes';
 import { SidebarProps } from '@widgets/sidebar/model/types';
 import { useSidebar } from '@widgets/sidebar/model/useSidebar';
@@ -10,10 +10,12 @@ import {
 } from '@widgets/sidebar/ui/styles';
 import { NavigationList } from '@widgets/sidebar/ui/NavigationList';
 import { LogoutAction } from '@widgets/sidebar/ui/LogoutAction';
+import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 
 export const Sidebar: React.FC<SidebarProps> = ({
   children,
   open: controlledOpen,
+  onToggle,
 }) => {
   const {
     isOpen,
@@ -23,6 +25,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     handleNavigate,
     handleExpandClick,
     handleLogout,
+    isRouteActive,
   } = useSidebar({
     open: controlledOpen,
   });
@@ -37,6 +40,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         isMobile={isMobile}
         onNavigate={handleNavigate}
         onExpandClick={handleExpandClick}
+        isRouteActive={isRouteActive}
       />
     ),
     [
@@ -54,12 +58,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
     [isOpen, handleLogout]
   );
 
+  const renderHeader = useCallback(() => {
+    return (
+      <Box
+        onClick={onToggle}
+        sx={{
+          textAlign: isOpen ? 'left' : 'center',
+          marginLeft: isOpen ? '16px' : 0,
+        }}
+      >
+        {isOpen ? <CloseIcon /> : <MenuIcon />}
+      </Box>
+    );
+  }, [isOpen, onToggle]);
+
   return (
     <>
       <StyledDrawer
-        variant="persistent"
+        variant={isMobile && isOpen ? 'temporary' : 'persistent'}
         anchor="left"
-        open={true} // Always show the drawer
+        open={true}
         sx={{
           width: isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED,
           '& .MuiDrawer-paper': {
@@ -68,6 +86,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         }}
       >
         {children({
+          header: isMobile ? renderHeader : undefined,
           content: renderContent,
           footer: renderFooter,
         })}

@@ -3,17 +3,17 @@ import { Sidebar } from '@widgets/sidebar';
 import { CustomHeader } from '@shared/index';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { LayoutProps } from '@widgets/layout/model/types';
+import { LayoutProps } from '@widgets/layout/model';
+import { useSidebarClose } from '@widgets/sidebar';
 import { LayoutContainer, MainContent } from '@widgets/layout/ui/styles';
 import NotifictaionContent from '@features/notification/ui/NotifictaionContent';
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
-  sidebarOpen,
-  onSidebarToggle,
 }) => {
   const location = useLocation();
   const { t } = useTranslation();
+  const { sidebarOpen, onSidebarToggle } = useSidebarClose();
 
   const computedLocation = useMemo(() => {
     if (location.pathname === '/') {

@@ -39,14 +39,37 @@ export const StyledList = styled(List)<{ component?: React.ElementType }>({
 });
 
 export const StyledListItem = styled(ListItem)<{ selected?: boolean }>(
-  ({ selected }) => ({
+  ({ selected, theme }) => ({
     padding: 0,
     margin: 0,
     backgroundColor: selected ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
+    position: 'relative',
     '&:hover': {
       backgroundColor: selected
         ? 'rgba(255, 255, 255, 0.25)'
         : 'rgba(255, 255, 255, 0.1)',
+    },
+    '&::before': selected ? {
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      bottom: 0,
+      width: 3,
+      backgroundColor: '#ffffff',
+      zIndex: 1,
+    } : {},
+    [theme.breakpoints.down('sm')]: {
+      '&::before': selected ? {
+        content: '""',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        width: 4,
+        backgroundColor: '#ffffff',
+        zIndex: 1,
+      } : {},
     },
   })
 );
@@ -60,8 +83,15 @@ export const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   margin: 0, // Remove any margins
   borderRadius: 0, // Remove border radius to span full width
   backgroundColor: 'transparent', // Remove default background
+  position: 'relative',
   '&:hover': {
     backgroundColor: 'transparent', // Let parent handle hover
+  },
+  // Mobile-specific enhancements
+  [theme.breakpoints.down('sm')]: {
+    minHeight: 56, // Slightly taller for better touch targets
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   // justifyContent will be controlled by the component based on open state
 }));

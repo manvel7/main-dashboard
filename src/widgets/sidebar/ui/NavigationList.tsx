@@ -1,7 +1,7 @@
 import React from 'react';
 import { Collapse } from '@mui/material';
-import { StyledList } from './styles';
-import { NavigationItem } from './NavigationItem';
+import { StyledList } from '@widgets/sidebar/ui/styles';
+import { NavigationItem } from '@widgets/sidebar/ui/NavigationItem';
 
 interface NavigationRoute {
   path: string;
@@ -19,6 +19,7 @@ interface NavigationListProps {
   onNavigate: (path: string) => void;
   onExpandClick: (path: string) => void;
   isChildList?: boolean;
+  isRouteActive: (routePath: string) => boolean;
 }
 
 export const NavigationList: React.FC<NavigationListProps> = ({
@@ -30,6 +31,7 @@ export const NavigationList: React.FC<NavigationListProps> = ({
   onNavigate,
   onExpandClick,
   isChildList = false,
+  isRouteActive,
 }) => {
   const handleItemClick = (route: NavigationRoute) => {
     if (route.children) {
@@ -47,7 +49,7 @@ export const NavigationList: React.FC<NavigationListProps> = ({
             path={route.path}
             label={route.label}
             icon={route.icon}
-            isSelected={currentPath === route.path}
+            isSelected={isRouteActive(route.path)}
             isOpen={isOpen}
             isMobile={isMobile}
             hasChildren={!!route.children}
@@ -71,6 +73,7 @@ export const NavigationList: React.FC<NavigationListProps> = ({
                 onNavigate={onNavigate}
                 onExpandClick={onExpandClick}
                 isChildList={true}
+                isRouteActive={isRouteActive}
               />
             </Collapse>
           )}
