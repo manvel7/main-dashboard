@@ -1,4 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import api from '@/shared/api/axios';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CreateUserFormData } from '@/features/user/model/useCreateUser';
 
 export interface UserCard {
   id: string;
@@ -167,6 +169,21 @@ const initialState: UserState = {
   usersCard: mockUserCards,
   usersList: [],
 };
+
+// Async thunk
+export const createUser = createAsyncThunk(
+  "users/createUser",
+  async (user: CreateUserFormData, { rejectWithValue }) => {
+    try {
+      const response = await api.post("/users", user);
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(
+        error.response?.data || "Something went wrong"
+      );
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: 'user',

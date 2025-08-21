@@ -3,6 +3,8 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { countryOptions } from '@/shared/constants';
+import { useAppDispatch } from '@/app/store/hooks';
+import { createUser as createUserAction } from '@/features/user/model/userSlice';
 
 export interface CreateUserFormData {
   fullName: string;
@@ -52,6 +54,7 @@ const createUserSchema = yup.object({
 });
 
 const useCreateUser = () => {
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const createUser = useForm<CreateUserFormData>({
     defaultValues: defaultCreateUserValues,
@@ -60,7 +63,21 @@ const useCreateUser = () => {
   });
 
   const handleCreateUser = (values: CreateUserFormData) => {
-    console.log('create user', values);
+    try {
+      setLoading(true);
+      dispatch(createUserAction(values));
+      createUser.reset(defaultCreateUserValues, {
+        keepDirty: false,
+        keepTouched: false,
+        keepIsSubmitted: false,
+        keepSubmitCount: false,
+        keepValues: false,
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return {

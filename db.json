@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": "2154",
+      "fullName": "M",
+      "email": "m1@mail.ru",
+      "phoneNumber": "3780404444",
+      "country": "it",
+      "stateRegion": "State",
+      "city": "Yerevan",
+      "address": "Nor Norq 1",
+      "zipCode": "0072",
+      "company": "Orders",
+      "role": "CTO"
+    }
+  ]
+}
