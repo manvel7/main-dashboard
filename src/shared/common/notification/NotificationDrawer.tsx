@@ -6,7 +6,6 @@ import {
   Typography,
   IconButton,
   styled,
-  Divider,
   useTheme,
   useMediaQuery,
 } from '@mui/material';

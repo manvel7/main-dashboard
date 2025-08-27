@@ -88,9 +88,7 @@ const TabCount = styled(Chip)(({ theme }) => ({
 
 function Tab({ items, activeId, onChange, children }: TabsProps) {
   const { t } = useTranslation();
-  const handleTabClick = (id: string | number) => {
-    onChange(id);
-  };
+
 
   return (
     <Box>
@@ -99,7 +97,7 @@ function Tab({ items, activeId, onChange, children }: TabsProps) {
           <TabButton
             key={item.id}
             isActive={item.id === activeId}
-            onClick={() => handleTabClick(item.id)}
+            onClick={() => onChange(item.id)}
             role="tab"
             aria-selected={item.id === activeId}
           >

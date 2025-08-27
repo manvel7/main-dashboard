@@ -6,3 +6,4 @@ export { default as PhoneInputField } from './forms/PhoneInputField';
 export { default as LanguageSelector } from './language/LanguageSelector';
 export { default as NotificationDrawer } from './notification/NotificationDrawer';
 export { default as Tab } from './tab/Tab';
+export { CommonChip } from './chip';
