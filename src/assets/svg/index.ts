@@ -1,4 +1,6 @@
-export { ReactComponent as FacebookIcon } from './facebook.svg';
-export { ReactComponent as InstagramIcon } from './instagram.svg';
-export { ReactComponent as LinkedInIcon } from './linkedin.svg';
-export { ReactComponent as TwitterIcon } from './twitter.svg';
+import FacebookIcon from './facebook.svg';
+import InstagramIcon from './instagram.svg';
+import LinkedInIcon from './linkedin.svg';
+import TwitterIcon from './twitter.svg';
+
+export { FacebookIcon, InstagramIcon, LinkedInIcon, TwitterIcon };

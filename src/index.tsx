@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { ThemeWrapper } from '@app/theme';
 import { ReduxProvider } from '@app/providers';
 import '@shared/lib/i18n';
+import './root.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
