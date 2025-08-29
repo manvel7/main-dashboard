@@ -1,5 +1,5 @@
-import React from "react";
-import { FixedSizeList, ListChildComponentProps } from "react-window";
+import React from 'react';
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import {
   Checkbox,
   TextField,
@@ -9,8 +9,8 @@ import {
   Box,
   Typography,
   ListItemButton,
-} from "@mui/material";
-import { useCheckboxList } from "@shared/common/forms/hooks/useCheckboxList";
+} from '@mui/material';
+import { useCheckboxList } from '@shared/common/forms/hooks/useCheckboxList';
 
 type CheckboxItem<T> = {
   id: string | number;
@@ -21,7 +21,10 @@ type CheckboxListProps<T> = {
   items: CheckboxItem<T>[];
   labelKey: keyof T;
   onChange?: (selectedItems: CheckboxItem<T>[]) => void;
-  onSelectionSummaryChange?: (summary: { count: number; first?: CheckboxItem<T> }) => void;
+  onSelectionSummaryChange?: (summary: {
+    count: number;
+    first?: CheckboxItem<T>;
+  }) => void;
   onIdsChange?: (ids: Array<string | number>) => void;
   enableSelectAll?: boolean;
   enableSearch?: boolean;
@@ -64,7 +67,12 @@ function CheckboxList<T>({
         onClick={() => actions.toggleItem(item.id)}
       >
         <ListItemIcon>
-          <Checkbox edge="start" checked={checked} tabIndex={-1} disableRipple />
+          <Checkbox
+            edge="start"
+            checked={checked}
+            tabIndex={-1}
+            disableRipple
+          />
         </ListItemIcon>
         {renderItem ? (
           renderItem(item, checked)
@@ -94,12 +102,23 @@ function CheckboxList<T>({
           control={
             <Checkbox
               checked={state.selectAll && state.filteredItems.length > 0}
-              indeterminate={!state.selectAll && state.selected.size > 0 && state.selected.size < state.filteredItems.length}
+              indeterminate={
+                !state.selectAll &&
+                state.selected.size > 0 &&
+                state.selected.size < state.filteredItems.length
+              }
               onChange={actions.toggleSelectAll}
             />
           }
-          label={<Typography variant="body2" noWrap>Select All</Typography>}
-          sx={{ ml: 0.7, '& .MuiFormControlLabel-label': { whiteSpace: 'nowrap' } }}
+          label={
+            <Typography variant="body2" noWrap>
+              Select All
+            </Typography>
+          }
+          sx={{
+            ml: 0.7,
+            '& .MuiFormControlLabel-label': { whiteSpace: 'nowrap' },
+          }}
         />
       )}
 

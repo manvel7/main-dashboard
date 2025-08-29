@@ -1,15 +1,13 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from 'react';
 
-export function useSelectCheckboxList<T>(
-  params: {
-    placeholder?: string;
-    labelKey: keyof T;
-  }
-) {
+export function useSelectCheckboxList<T>(params: {
+  placeholder?: string;
+  labelKey: keyof T;
+}) {
   const { placeholder, labelKey } = params;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedCount, setSelectedCount] = useState(0);
-  const [firstLabel, setFirstLabel] = useState<string>("");
+  const [firstLabel, setFirstLabel] = useState<string>('');
 
   const open = Boolean(anchorEl);
 
@@ -24,14 +22,16 @@ export function useSelectCheckboxList<T>(
   const handleSummaryChange = useCallback(
     (summary: { count: number; first?: { data: T } }) => {
       setSelectedCount(summary.count);
-      const label = summary.first ? String((summary.first.data as any)?.[labelKey] ?? "") : "";
+      const label = summary.first
+        ? String((summary.first.data as any)?.[labelKey] ?? '')
+        : '';
       setFirstLabel(label);
     },
     [labelKey]
   );
 
   const selectedLabel = useMemo(() => {
-    if (!selectedCount) return placeholder ?? "Select items";
+    if (!selectedCount) return placeholder ?? 'Select items';
     const rest = selectedCount - 1;
     return rest > 0 ? `${firstLabel} (+${rest})` : firstLabel;
   }, [selectedCount, firstLabel, placeholder]);
@@ -42,5 +42,3 @@ export function useSelectCheckboxList<T>(
     derived: { selectedLabel },
   } as const;
 }
-
-

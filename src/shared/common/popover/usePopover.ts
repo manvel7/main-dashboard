@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useState } from "react";
+import { useCallback, useEffect, useId, useState } from 'react';
 
 export type UsePopoverReturn = {
   id: string;
@@ -38,12 +38,12 @@ export function usePopover(initialOpen = false): UsePopoverReturn {
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         closePopover();
       }
     };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [open, closePopover]);
 
   return { id, open, anchorEl, openPopover, closePopover, togglePopover };

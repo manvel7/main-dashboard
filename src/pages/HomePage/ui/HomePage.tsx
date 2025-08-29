@@ -1,16 +1,28 @@
-import { Typography, Button, useTheme, useMediaQuery, Box } from '@mui/material';
+import {
+  Typography,
+  Button,
+  useTheme,
+  useMediaQuery,
+  Box,
+} from '@mui/material';
 import { PageContainer } from '@shared/index';
 import { HomeContainer, WelcomeSection } from '@pages/HomePage/styles';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import SelectCheckboxList from '@shared/common/forms/SelectCheckboxList';
 
+interface IData {
+  id: number,
+  data: {
+    label: string,
+    value: string
+  }
+}
 
 const items = Array.from({ length: 500000 }, (_, i) => ({
   id: i + 1,
-  data: { title: `Item ${i + 1}`, description: `Description ${i + 1}` },
+  data: { label: `Item ${i + 1}`, value: `Description ${i + 1}` },
 }));
-
 
 export const HomePage: React.FC = () => {
   const theme = useTheme();
@@ -56,7 +68,7 @@ export const HomePage: React.FC = () => {
           <Box mb={2} maxWidth={400}>
             <SelectCheckboxList
               items={items}
-              labelKey="title"
+              labelKey="label"
               label={t('Select')}
               placeholder={t('Select items')}
               enableSelectAll
@@ -66,8 +78,12 @@ export const HomePage: React.FC = () => {
               onIdsChange={(ids) => console.log('selectedIds:', ids)}
               renderItem={(item) => (
                 <Box>
-                  <Typography variant="body1" fontWeight="bold">{item.data.title}</Typography>
-                  <Typography variant="caption">{item.data.description}</Typography>
+                  <Typography variant="body1" fontWeight="bold">
+                    {item.data.label}
+                  </Typography>
+                  <Typography variant="caption">
+                    {item.data.value}
+                  </Typography>
                 </Box>
               )}
             />

@@ -1,8 +1,8 @@
-import React from "react";
-import { Box, Menu, TextField, InputAdornment } from "@mui/material";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import CheckboxList from "@shared/common/forms/CheckboxList";
-import { useSelectCheckboxList } from "@shared/common/forms/hooks/useSelectCheckboxList";
+import React from 'react';
+import { Box, Menu, TextField, InputAdornment } from '@mui/material';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import CheckboxList from '@shared/common/forms/CheckboxList';
+import { useSelectCheckboxList } from '@shared/common/forms/hooks/useSelectCheckboxList';
 
 export type SelectCheckboxItem<T> = {
   id: string | number;
@@ -16,13 +16,19 @@ export type SelectCheckboxListProps<T> = {
   placeholder?: string;
   width?: number;
   onChange?: (selected: SelectCheckboxItem<T>[]) => void;
-  onSelectionSummaryChange?: (summary: { count: number; first?: SelectCheckboxItem<T> }) => void;
+  onSelectionSummaryChange?: (summary: {
+    count: number;
+    first?: SelectCheckboxItem<T>;
+  }) => void;
   onIdsChange?: (ids: Array<string | number>) => void;
   enableSelectAll?: boolean;
   enableSearch?: boolean;
   height?: number;
   itemHeight?: number;
-  renderItem?: (item: SelectCheckboxItem<T>, checked: boolean) => React.ReactNode;
+  renderItem?: (
+    item: SelectCheckboxItem<T>,
+    checked: boolean
+  ) => React.ReactNode;
 };
 
 function SelectCheckboxList<T>({
@@ -39,7 +45,10 @@ function SelectCheckboxList<T>({
   itemHeight,
   renderItem,
 }: SelectCheckboxListProps<T>) {
-  const { state, actions, derived } = useSelectCheckboxList<T>({ placeholder, labelKey });
+  const { state, actions, derived } = useSelectCheckboxList<T>({
+    placeholder,
+    labelKey,
+  });
 
   return (
     <Box>
@@ -66,8 +75,8 @@ function SelectCheckboxList<T>({
         anchorEl={state.anchorEl}
         open={state.open}
         onClose={actions.handleClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        transformOrigin={{ vertical: "top", horizontal: "left" }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         slotProps={{
           paper: {
             sx: { mt: 0.5, maxHeight: 420 },
@@ -94,5 +103,3 @@ function SelectCheckboxList<T>({
 }
 
 export default SelectCheckboxList;
-
-

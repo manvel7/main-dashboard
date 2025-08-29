@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useState } from "react";
-import { useDebounce } from "@/shared/hooks/useDebounce";
+import { useCallback, useMemo, useState } from 'react';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 
 export type CheckboxItem<T> = {
   id: string | number;
@@ -12,7 +12,10 @@ export type UseCheckboxListParams<T> = {
   enableSelectAll?: boolean;
   enableSearch?: boolean;
   onChange?: (selectedItems: CheckboxItem<T>[]) => void;
-  onSelectionSummaryChange?: (summary: { count: number; first?: CheckboxItem<T> }) => void;
+  onSelectionSummaryChange?: (summary: {
+    count: number;
+    first?: CheckboxItem<T>;
+  }) => void;
   onIdsChange?: (ids: Array<string | number>) => void;
 };
 
@@ -27,13 +30,15 @@ export function useCheckboxList<T>({
 }: UseCheckboxListParams<T>) {
   const [selected, setSelected] = useState<Set<string | number>>(new Set());
   const [selectAll, setSelectAll] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   const debouncedSearch = useDebounce(search, 300);
   const filteredItems = useMemo(
     () =>
       items.filter((item) =>
-        String(item.data[labelKey]).toLowerCase().includes(debouncedSearch.toLowerCase())
+        String(item.data[labelKey])
+          .toLowerCase()
+          .includes(debouncedSearch.toLowerCase())
       ),
     [items, debouncedSearch, labelKey]
   );
@@ -87,7 +92,9 @@ export function useCheckboxList<T>({
         }
         const MAX_ONCHANGE_ITEMS = 20000;
         if (filteredItems.length <= MAX_ONCHANGE_ITEMS) {
-          const selectedItems = filteredItems.filter((item) => !newSelected.has(item.id));
+          const selectedItems = filteredItems.filter(
+            (item) => !newSelected.has(item.id)
+          );
           onChange?.(selectedItems);
         }
         return;
@@ -108,7 +115,15 @@ export function useCheckboxList<T>({
         onChange?.(items.filter((item) => newSelected.has(item.id)));
       }
     },
-    [selected, selectAll, filteredItems, onIdsChange, onChange, items, emitSummary]
+    [
+      selected,
+      selectAll,
+      filteredItems,
+      onIdsChange,
+      onChange,
+      items,
+      emitSummary,
+    ]
   );
 
   const toggleSelectAll = useCallback(() => {
@@ -159,5 +174,3 @@ export function useCheckboxList<T>({
     },
   };
 }
-
-

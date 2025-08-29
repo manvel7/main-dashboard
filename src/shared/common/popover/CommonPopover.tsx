@@ -1,7 +1,7 @@
-import { memo, type ReactNode, type MouseEvent } from "react";
-import Popover from "@mui/material/Popover";
-import { styled } from "@mui/material/styles";
-import { Box, type PopoverProps as MuiPopoverProps } from "@mui/material";
+import { memo, type ReactNode, type MouseEvent } from 'react';
+import Popover from '@mui/material/Popover';
+import { styled } from '@mui/material/styles';
+import { Box, type PopoverProps as MuiPopoverProps } from '@mui/material';
 
 export type RenderProps = {
   open: boolean;
@@ -25,12 +25,12 @@ export type CommonPopoverProps = {
   disablePortal?: boolean;
   popoverProps?: Omit<
     MuiPopoverProps,
-    "open" | "anchorEl" | "onClose" | "children"
+    'open' | 'anchorEl' | 'onClose' | 'children'
   >;
 };
 
 const StyledPopover = styled(Popover)(({ theme }) => ({
-  "& .MuiPaper-root": {
+  '& .MuiPaper-root': {
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[6],
   },
@@ -75,8 +75,8 @@ function CommonPopoverBase({
       anchorEl={anchorEl}
       onClose={onClose}
       disablePortal={disablePortal}
-      anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-      transformOrigin={{ vertical: "top", horizontal: "left" }}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      transformOrigin={{ vertical: 'top', horizontal: 'left' }}
       {...popoverProps}
     >
       <ContentContainer>{content(renderArgs)}</ContentContainer>
