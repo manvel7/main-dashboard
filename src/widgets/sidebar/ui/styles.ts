@@ -49,27 +49,31 @@ export const StyledListItem = styled(ListItem)<{ selected?: boolean }>(
         ? 'rgba(255, 255, 255, 0.25)'
         : 'rgba(255, 255, 255, 0.1)',
     },
-    '&::before': selected ? {
-      content: '""',
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      bottom: 0,
-      width: 3,
-      backgroundColor: '#ffffff',
-      zIndex: 1,
-    } : {},
+    '&::before': selected
+      ? {
+          content: '""',
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: 3,
+          backgroundColor: '#ffffff',
+          zIndex: 1,
+        }
+      : {},
     [theme.breakpoints.down('sm')]: {
-      '&::before': selected ? {
-        content: '""',
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        bottom: 0,
-        width: 4,
-        backgroundColor: '#ffffff',
-        zIndex: 1,
-      } : {},
+      '&::before': selected
+        ? {
+            content: '""',
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: 4,
+            backgroundColor: '#ffffff',
+            zIndex: 1,
+          }
+        : {},
     },
   })
 );

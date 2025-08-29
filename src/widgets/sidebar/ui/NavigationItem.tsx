@@ -58,23 +58,25 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
               display: isOpen ? 'block' : 'none',
             }}
           />
-          {hasChildren && isOpen && (
-            isExpanded ? <ExpandLess /> : <ExpandMore />
-          )}
+          {hasChildren &&
+            isOpen &&
+            (isExpanded ? <ExpandLess /> : <ExpandMore />)}
           {hasChildren && isMobile && !isOpen && (
-            <Box sx={{
-              position: 'absolute',
-              right: 4,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: 'rgba(255, 255, 255, 0.6)',
-              zIndex: 2,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 12,
-              height: 12,
-            }}>
+            <Box
+              sx={{
+                position: 'absolute',
+                right: 4,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                color: 'rgba(255, 255, 255, 0.6)',
+                zIndex: 2,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 12,
+                height: 12,
+              }}
+            >
               <ArrowForward sx={{ fontSize: 12 }} />
             </Box>
           )}

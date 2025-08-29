@@ -89,7 +89,6 @@ const TabCount = styled(Chip)(({ theme }) => ({
 function Tab({ items, activeId, onChange, children }: TabsProps) {
   const { t } = useTranslation();
 
-
   return (
     <Box>
       <TabsContainer className="horizontal-scroll">

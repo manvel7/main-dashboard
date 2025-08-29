@@ -172,15 +172,13 @@ const initialState: UserState = {
 
 // Async thunk
 export const createUser = createAsyncThunk(
-  "users/createUser",
+  'users/createUser',
   async (user: CreateUserFormData, { rejectWithValue }) => {
     try {
-      const response = await api.post("/users", user);
+      const response = await api.post('/users', user);
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(
-        error.response?.data || "Something went wrong"
-      );
+      return rejectWithValue(error.response?.data || 'Something went wrong');
     }
   }
 );

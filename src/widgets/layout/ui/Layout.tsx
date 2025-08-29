@@ -8,9 +8,7 @@ import { useSidebarClose } from '@widgets/sidebar';
 import { LayoutContainer, MainContent } from '@widgets/layout/ui/styles';
 import NotifictaionContent from '@features/notification/ui/NotifictaionContent';
 
-export const Layout: React.FC<LayoutProps> = ({
-  children,
-}) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const { t } = useTranslation();
   const { sidebarOpen, onSidebarToggle } = useSidebarClose();

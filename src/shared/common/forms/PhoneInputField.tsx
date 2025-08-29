@@ -43,8 +43,21 @@ const getPhoneInputStyles = (theme: Theme, hasError: boolean) => ({
   },
 });
 
-export const PhoneInputField = React.forwardRef<HTMLInputElement, PhoneInputFieldProps>(
-  ({ value, onChange, onBlur, hasError, country = 'us', placeholder = 'Enter phone number' }, ref) => {
+export const PhoneInputField = React.forwardRef<
+  HTMLInputElement,
+  PhoneInputFieldProps
+>(
+  (
+    {
+      value,
+      onChange,
+      onBlur,
+      hasError,
+      country = 'us',
+      placeholder = 'Enter phone number',
+    },
+    ref
+  ) => {
     const theme = useTheme();
 
     const styles = getPhoneInputStyles(theme, hasError);

@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useMediaQuery, useTheme } from '@mui/material';
 
-
 export const useSidebarClose = () => {
   const theme = useTheme();
   const location = useLocation();
@@ -22,7 +21,7 @@ export const useSidebarClose = () => {
   // Use custom hook for sidebar closing on mobile
 
   const onSidebarToggle = useCallback(() => {
-    setSidebarOpen(prev => !prev);
+    setSidebarOpen((prev) => !prev);
   }, []);
 
   return {

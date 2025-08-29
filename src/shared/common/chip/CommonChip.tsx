@@ -1,5 +1,10 @@
 import React from 'react';
-import { Chip as MuiChip, ChipProps as MuiChipProps, Box, styled } from '@mui/material';
+import {
+  Chip as MuiChip,
+  ChipProps as MuiChipProps,
+  Box,
+  styled,
+} from '@mui/material';
 
 type SupportedVariant = 'filled' | 'outlined' | 'contained';
 
@@ -58,5 +63,3 @@ const CommonChip: React.FC<CommonChipProps> = ({
 };
 
 export default CommonChip;
-
-

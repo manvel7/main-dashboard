@@ -5,7 +5,6 @@
   scrollbar-color: #666 transparent;
 }
 
-
 /* Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 8px;

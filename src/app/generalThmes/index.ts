@@ -10,7 +10,6 @@ import {
   Shadows,
 } from '../theme/colors';
 
-
 declare module '@mui/material/styles' {
   interface TypographyVariants {
     bodySm: React.CSSProperties;
@@ -38,10 +37,9 @@ declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     bodySm: true;
     body: true;
-    bodyLg: true
+    bodyLg: true;
   }
 }
-
 
 export type GeneralTheme = {
   mode: 'light' | 'dark';
@@ -124,5 +122,3 @@ export default {
   generalLightTheme,
   generalDarkTheme,
 };
-
-

@@ -23,14 +23,44 @@ const toMuiTheme = (g: typeof generalLightTheme): Theme => {
     shadows: muiShadows as any,
     typography: {
       fontFamily: g.typography.fontFamily,
-      h1: { fontSize: g.typography.h1.size, fontWeight: g.typography.h1.weight, lineHeight: g.typography.h1.lineHeight },
-      h2: { fontSize: g.typography.h2.size, fontWeight: g.typography.h2.weight, lineHeight: g.typography.h2.lineHeight },
-      h3: { fontSize: g.typography.h3.size, fontWeight: g.typography.h3.weight, lineHeight: g.typography.h3.lineHeight },
-      h4: { fontSize: g.typography.h4.size, fontWeight: g.typography.h4.weight, lineHeight: g.typography.h4.lineHeight },
-      h5: { fontSize: g.typography.h5.size, fontWeight: g.typography.h5.weight, lineHeight: g.typography.h5.lineHeight },
-      h6: { fontSize: g.typography.h6.size, fontWeight: g.typography.h6.weight, lineHeight: g.typography.h6.lineHeight },
-      body1: { fontSize: g.typography.body.size, lineHeight: g.typography.body.lineHeight },
-      body2: { fontSize: g.typography.bodySm.size, lineHeight: g.typography.bodySm.lineHeight },
+      h1: {
+        fontSize: g.typography.h1.size,
+        fontWeight: g.typography.h1.weight,
+        lineHeight: g.typography.h1.lineHeight,
+      },
+      h2: {
+        fontSize: g.typography.h2.size,
+        fontWeight: g.typography.h2.weight,
+        lineHeight: g.typography.h2.lineHeight,
+      },
+      h3: {
+        fontSize: g.typography.h3.size,
+        fontWeight: g.typography.h3.weight,
+        lineHeight: g.typography.h3.lineHeight,
+      },
+      h4: {
+        fontSize: g.typography.h4.size,
+        fontWeight: g.typography.h4.weight,
+        lineHeight: g.typography.h4.lineHeight,
+      },
+      h5: {
+        fontSize: g.typography.h5.size,
+        fontWeight: g.typography.h5.weight,
+        lineHeight: g.typography.h5.lineHeight,
+      },
+      h6: {
+        fontSize: g.typography.h6.size,
+        fontWeight: g.typography.h6.weight,
+        lineHeight: g.typography.h6.lineHeight,
+      },
+      body1: {
+        fontSize: g.typography.body.size,
+        lineHeight: g.typography.body.lineHeight,
+      },
+      body2: {
+        fontSize: g.typography.bodySm.size,
+        lineHeight: g.typography.bodySm.lineHeight,
+      },
     },
     components: {
       MuiButton: {
@@ -56,5 +86,3 @@ const toMuiTheme = (g: typeof generalLightTheme): Theme => {
 
 export const muiLightTheme = toMuiTheme(generalLightTheme);
 export const muiDarkTheme = toMuiTheme(generalDarkTheme);
-
-

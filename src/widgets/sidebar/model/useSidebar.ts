@@ -9,7 +9,10 @@ interface UseSidebarProps {
 }
 
 // Utility function to check if a route is active (only exact matches)
-export const isRouteActive = (routePath: string, currentPath: string): boolean => {
+export const isRouteActive = (
+  routePath: string,
+  currentPath: string
+): boolean => {
   // Only exact match - no parent route activation
   return routePath === currentPath;
 };
@@ -30,7 +33,7 @@ export const useSidebar = ({ open: controlledOpen }: UseSidebarProps = {}) => {
     }
   }, [isMobile, controlledOpen]);
 
-    // Auto-expand parent routes when child routes are active
+  // Auto-expand parent routes when child routes are active
   useEffect(() => {
     const findParentRoutes = (routes: any[], currentPath: string): string[] => {
       const parentPaths: string[] = [];
@@ -58,10 +61,13 @@ export const useSidebar = ({ open: controlledOpen }: UseSidebarProps = {}) => {
 
     // Import navigationRoutes dynamically to avoid circular dependency
     import('@app/routes').then(({ navigationRoutes }) => {
-      const parentRoutes = findParentRoutes(navigationRoutes, location.pathname);
-      setExpandedItems(prev => {
+      const parentRoutes = findParentRoutes(
+        navigationRoutes,
+        location.pathname
+      );
+      setExpandedItems((prev) => {
         const newExpanded = [...prev];
-        parentRoutes.forEach(path => {
+        parentRoutes.forEach((path) => {
           if (!newExpanded.includes(path)) {
             newExpanded.push(path);
           }
@@ -104,6 +110,7 @@ export const useSidebar = ({ open: controlledOpen }: UseSidebarProps = {}) => {
     handleNavigate,
     handleExpandClick,
     handleLogout,
-    isRouteActive: (routePath: string) => isRouteActive(routePath, location.pathname),
+    isRouteActive: (routePath: string) =>
+      isRouteActive(routePath, location.pathname),
   };
 };
