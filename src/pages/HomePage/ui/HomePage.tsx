@@ -1,12 +1,26 @@
-import { Typography, Button, useTheme, useMediaQuery } from '@mui/material';
+import { Typography, Button, useTheme, useMediaQuery, Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { PageContainer } from '@shared/index';
 import { HomeContainer, WelcomeSection } from '@pages/HomePage/styles';
 import { useTranslation } from 'react-i18next';
+import { CommonPopover, usePopover } from '@shared/common';
+
+const DemoRow = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2),
+  marginTop: theme.spacing(2),
+}));
+
+const DemoButton = styled(Button)(({ theme }) => ({
+  textTransform: 'none',
+}));
 
 export const HomePage: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const { t } = useTranslation();
+  const pop = usePopover(false);
 
   return (
     <PageContainer>

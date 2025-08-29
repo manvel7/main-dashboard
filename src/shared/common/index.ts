@@ -8,3 +8,4 @@ export { default as NotificationDrawer } from './notification/NotificationDrawer
 export { default as Tab } from './tab/Tab';
 export { CommonChip } from './chip';
 export { CommonAccordion } from './accordion';
+export { CommonPopover, usePopover } from './popover';
