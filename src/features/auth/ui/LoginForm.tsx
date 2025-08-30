@@ -18,7 +18,7 @@ import styled from '@emotion/styled';
 const FormContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
-  gap: 14, // Consistent gap
+  gap: 8, // Consistent gap
 });
 
 const FormWrapper = styled(Box)({
@@ -47,16 +47,14 @@ const LoginForm = () => {
         <FormWrapper>
           <FormContainer>
             <CustomTextField name="email" label={t('Email')}>
-              {({ value, onChange, hasError, error, label }) => (
+              {({ value, onChange, hasError, label }) => (
                 <TextField
-                  sx={{ minHeight: '78px' }}
                   label={label}
                   value={value}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     onChange(e.target.value)
                   }
                   error={hasError}
-                  helperText={error?.message}
                   InputLabelProps={{
                     shrink: true, // Always show label
                   }}
@@ -67,16 +65,14 @@ const LoginForm = () => {
               )}
             </CustomTextField>
             <CustomTextField name="password" label={t('Password')}>
-              {({ value, onChange, hasError, error, label }) => (
+              {({ value, onChange, hasError, label }) => (
                 <TextField
-                  sx={{ minHeight: '78px' }}
                   label={label}
                   value={value}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     onChange(e.target.value)
                   }
                   error={hasError}
-                  helperText={error?.message}
                   type={showPassword ? 'text' : 'password'}
                   InputLabelProps={{
                     shrink: true, // Always show label
@@ -99,7 +95,7 @@ const LoginForm = () => {
               )}
             </CustomTextField>
             <CustomCheckbox
-              sx={{ mt: '-12px' }}
+              sx={{ mt: '-18px' }}
               name="rememberMe"
               label={t('Remember me')}
             >

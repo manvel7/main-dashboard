@@ -1,8 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ListItemIcon, ListItemText, Box } from '@mui/material';
 import { ExpandLess, ExpandMore, ArrowForward } from '@mui/icons-material';
 import { StyledListItem, StyledListItemButton } from './styles';
-import { useTranslation } from 'react-i18next';
 import { NavigationItemWrapper } from '@widgets/sidebar/ui/NavigationItemWrapper';
 
 interface NavigationItemProps {
@@ -45,8 +45,9 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
             onClick();
           }}
           sx={{
+            flexDirection: isOpen ? 'row' : 'column',
             justifyContent: isOpen ? 'flex-start' : 'center',
-            paddingLeft: isChild ? (isOpen ? 4 : 1.5) : isOpen ? 2 : 1.5,
+            paddingLeft: isChild ? (isOpen ? 2 : 1.5) : isOpen ? 2 : 1.5,
           }}
         >
           <ListItemIcon sx={{ color: 'inherit', minWidth: 'auto' }}>
@@ -55,7 +56,12 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
           <ListItemText
             primary={t(label)}
             sx={{
-              display: isOpen ? 'block' : 'none',
+              display: isOpen ? 'block' : isMobile ? 'block' : 'none',
+              textAlign: isOpen ? 'left' : 'center',
+              '& .MuiListItemText-primary': {
+                fontSize: isOpen ? 'inherit' : '10px',
+                lineHeight: 1.2,
+              },
             }}
           />
           {hasChildren &&

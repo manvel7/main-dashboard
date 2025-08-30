@@ -1,6 +1,6 @@
-import FacebookIcon from './facebook.svg';
-import InstagramIcon from './instagram.svg';
-import LinkedInIcon from './linkedin.svg';
-import TwitterIcon from './twitter.svg';
+import FacebookIcon from './FacebookIcon';
+import InstagramIcon from './InstagramIcon';
+import LinkedInIcon from './LinkedInIcon';
+import TwitterIcon from './TwitterIcon';
 
 export { FacebookIcon, InstagramIcon, LinkedInIcon, TwitterIcon };

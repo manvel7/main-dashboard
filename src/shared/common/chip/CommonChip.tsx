@@ -18,9 +18,16 @@ export interface CommonChipProps
 }
 
 const StyledChip = styled(MuiChip)(({ theme }) => ({
-  padding: '16px 8px',
+  padding: '16px 8px !important',
   '& .MuiChip-label': {
-    padding: 0,
+    padding: '4px 0 0 0 !important',
+    lineHeight: '1.2 !important',
+  },
+  '& .MuiChip-deleteIcon': {
+    margin: '0 !important',
+  },
+  '& .MuiChip-avatar': {
+    margin: '0 !important',
   },
 }));
 
@@ -36,10 +43,32 @@ function renderLabel(
 ): React.ReactNode {
   if (!icon) return label;
   return (
-    <Box display="inline-flex" alignItems="center" gap={1.5}>
-      {iconPosition === 'left' && <Box display="inline-flex">{icon}</Box>}
+    <Box display="inline-flex" alignItems="center" gap={1}>
+      {iconPosition === 'left' && (
+        <Box
+          display="inline-flex"
+          sx={{
+            width: 16,
+            height: 16,
+            '& > *': { width: '100%', height: '100%' },
+          }}
+        >
+          {icon}
+        </Box>
+      )}
       <Box component="span">{label}</Box>
-      {iconPosition === 'right' && <Box display="inline-flex">{icon}</Box>}
+      {iconPosition === 'right' && (
+        <Box
+          display="inline-flex"
+          sx={{
+            width: 16,
+            height: 16,
+            '& > *': { width: '100%', height: '100%' },
+          }}
+        >
+          {icon}
+        </Box>
+      )}
     </Box>
   );
 }

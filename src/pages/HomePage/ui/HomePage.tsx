@@ -1,92 +1,422 @@
+import React, { useState } from 'react';
 import {
   Typography,
-  Button,
   useTheme,
-  useMediaQuery,
   Box,
+  Paper,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+  IconButton,
+  Grid,
 } from '@mui/material';
+import {
+  Info as InfoIcon,
+  Settings as SettingsIcon,
+  Notifications as NotificationsIcon,
+  Person as PersonIcon,
+  Check as CheckIcon,
+  Star as StarIcon,
+  Delete as DeleteIcon,
+  Edit as EditIcon,
+  MoreVert as MoreVertIcon,
+} from '@mui/icons-material';
 import { PageContainer } from '@shared/index';
-import { HomeContainer, WelcomeSection } from '@pages/HomePage/styles';
 import { useTranslation } from 'react-i18next';
-import React from 'react';
+import { HomeContainer } from '@pages/HomePage/styles';
 import SelectCheckboxList from '@shared/common/forms/SelectCheckboxList';
+import CommonAccordion from '@shared/common/accordion/CommonAccordion';
+import CommonChip from '@shared/common/chip/CommonChip';
+import CommonLoadingButton from '@shared/common/forms/CommonLoadingButton';
+import CommonPopover from '@shared/common/popover/CommonPopover';
+import Tab from '@shared/common/tab/Tab';
 
-interface IData {
-  id: number,
-  data: {
-    label: string,
-    value: string
-  }
-}
-
-const items = Array.from({ length: 500000 }, (_, i) => ({
+// Sample data for SelectCheckboxList
+const items = Array.from({ length: 20 }, (_, i) => ({
   id: i + 1,
   data: { label: `Item ${i + 1}`, value: `Description ${i + 1}` },
 }));
 
+// Sample data for Tabs
+const tabItems = [
+  { id: 'overview', title: 'Overview', count: 12 },
+  { id: 'analytics', title: 'Analytics', count: 5 },
+  { id: 'reports', title: 'Reports', count: 8 },
+  { id: 'settings', title: 'Settings' },
+];
+
 export const HomePage: React.FC = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const { t } = useTranslation();
+
+  // State for components
+  const [selectedIds, setSelectedIds] = useState<(string | number)[]>([]);
+  const [activeTab, setActiveTab] = useState('overview');
+  const [popoverAnchor, setPopoverAnchor] = useState<HTMLElement | null>(null);
+  const [loadingStates, setLoadingStates] = useState({
+    primary: false,
+    secondary: false,
+    danger: false,
+  });
+
+  // Handlers
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setPopoverAnchor(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setPopoverAnchor(null);
+  };
+
+  const handleButtonClick = (type: keyof typeof loadingStates) => {
+    setLoadingStates((prev) => ({ ...prev, [type]: true }));
+    setTimeout(() => {
+      setLoadingStates((prev) => ({ ...prev, [type]: false }));
+    }, 2000);
+  };
+
+  const renderTabContent = (activeId: string | number) => {
+    switch (activeId) {
+      case 'overview':
+        return (
+          <Box p={2}>
+            <Typography variant="h6">Overview Content</Typography>
+            <Typography variant="body2" color="text.secondary">
+              This is the overview tab content with sample data and statistics.
+            </Typography>
+          </Box>
+        );
+      case 'analytics':
+        return (
+          <Box p={2}>
+            <Typography variant="h6">Analytics Content</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Analytics dashboard with charts and metrics.
+            </Typography>
+          </Box>
+        );
+      case 'reports':
+        return (
+          <Box p={2}>
+            <Typography variant="h6">Reports Content</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Generated reports and data exports.
+            </Typography>
+          </Box>
+        );
+      case 'settings':
+        return (
+          <Box p={2}>
+            <Typography variant="h6">Settings Content</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Application settings and configuration options.
+            </Typography>
+          </Box>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <PageContainer>
       <HomeContainer disableGutters maxWidth="xl">
-        {/* Welcome Section */}
-        <WelcomeSection elevation={0}>
-          <Typography
-            variant={isMobile ? 'h4' : 'h3'}
-            component="h1"
-            gutterBottom
-            fontWeight="bold"
-          >
-            {t('Welcome to Your Dashboard')}
+        <Box p={3}>
+          <Typography variant="h4" gutterBottom>
+            Shared Components Examples
           </Typography>
-          <Typography
-            variant={isMobile ? 'body1' : 'h6'}
-            sx={{ mb: 3, opacity: 0.9 }}
-          >
-            {t(
-              'Your central hub for managing and monitoring all aspects of your system. Get insights, manage users, and control your platform efficiently'
-            )}
-          </Typography>
-          <Button
-            variant="contained"
-            size="large"
+
+          <Box
             sx={{
-              backgroundColor: 'rgba(255,255,255,0.2)',
-              backdropFilter: 'blur(10px)',
-              '&:hover': {
-                backgroundColor: 'rgba(255,255,255,0.3)',
-              },
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+              gap: 3,
             }}
           >
-            {t('Get Started')}
-          </Button>
-        </WelcomeSection>
-        <Box p={2}>
-          <Box mb={2} maxWidth={400}>
-            <SelectCheckboxList
-              items={items}
-              labelKey="label"
-              label={t('Select')}
-              placeholder={t('Select items')}
-              enableSelectAll
-              enableSearch
-              height={200}
-              itemHeight={60}
-              onIdsChange={(ids) => console.log('selectedIds:', ids)}
-              renderItem={(item) => (
-                <Box>
-                  <Typography variant="body1" fontWeight="bold">
-                    {item.data.label}
-                  </Typography>
-                  <Typography variant="caption">
-                    {item.data.value}
-                  </Typography>
+            {/* SelectCheckboxList Example */}
+            <Box>
+              <Paper elevation={2} sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  SelectCheckboxList Example
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  Multi-select component with search and select all
+                  functionality
+                </Typography>
+                <SelectCheckboxList
+                  items={items}
+                  labelKey="label"
+                  label="Select Items"
+                  placeholder="Choose items from the list"
+                  enableSelectAll
+                  enableSearch
+                  height={200}
+                  itemHeight={60}
+                  onIdsChange={setSelectedIds}
+                  renderItem={(item) => (
+                    <Box>
+                      <Typography variant="body1" fontWeight="bold">
+                        {item.data.label}
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary">
+                        {item.data.value}
+                      </Typography>
+                    </Box>
+                  )}
+                />
+                <Typography variant="caption" color="text.secondary" mt={1}>
+                  Selected: {selectedIds.length} items
+                </Typography>
+              </Paper>
+            </Box>
+
+            {/* CommonAccordion Examples */}
+            <Box>
+              <Paper elevation={2} sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  CommonAccordion Examples
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  Collapsible content sections with icons and custom styling
+                </Typography>
+
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <CommonAccordion
+                    icon={<InfoIcon color="primary" />}
+                    title="Information Section"
+                    defaultExpanded
+                  >
+                    <Typography variant="body2">
+                      This is an expanded accordion with an info icon. It
+                      contains important information that users can collapse or
+                      expand.
+                    </Typography>
+                  </CommonAccordion>
+
+                  <CommonAccordion
+                    icon={<SettingsIcon color="secondary" />}
+                    title="Settings Section"
+                    borderRadius={12}
+                  >
+                    <List dense>
+                      <ListItem>
+                        <ListItemText
+                          primary="Option 1"
+                          secondary="Description for option 1"
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText
+                          primary="Option 2"
+                          secondary="Description for option 2"
+                        />
+                      </ListItem>
+                    </List>
+                  </CommonAccordion>
+
+                  <CommonAccordion
+                    icon={<NotificationsIcon color="warning" />}
+                    title="Notifications"
+                  >
+                    <Typography variant="body2">
+                      Notification settings and preferences can be configured
+                      here.
+                    </Typography>
+                  </CommonAccordion>
                 </Box>
-              )}
-            />
+              </Paper>
+            </Box>
+
+            {/* CommonChip Examples */}
+            <Box>
+              <Paper elevation={2} sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  CommonChip Examples
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  Various chip styles with icons and different variants
+                </Typography>
+
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
+                  <CommonChip
+                    label="Primary Chip"
+                    color="primary"
+                    icon={<CheckIcon />}
+                  />
+                  <CommonChip
+                    label="Secondary Chip"
+                    color="secondary"
+                    icon={<StarIcon />}
+                  />
+                  <CommonChip
+                    label="Success Chip"
+                    color="success"
+                    icon={<CheckIcon />}
+                  />
+                  <CommonChip
+                    label="Warning Chip"
+                    color="warning"
+                    icon={<NotificationsIcon />}
+                  />
+                  <CommonChip
+                    label="Error Chip"
+                    color="error"
+                    icon={<DeleteIcon />}
+                  />
+                </Box>
+
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
+                  <CommonChip
+                    label="Outlined Primary"
+                    variant="outlined"
+                    color="primary"
+                    icon={<PersonIcon />}
+                  />
+                  <CommonChip
+                    label="Outlined Secondary"
+                    variant="outlined"
+                    color="secondary"
+                    icon={<SettingsIcon />}
+                  />
+                </Box>
+
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  <CommonChip
+                    label="Right Icon"
+                    color="info"
+                    icon={<EditIcon />}
+                    iconPosition="right"
+                  />
+                  <CommonChip
+                    label="Clickable"
+                    color="primary"
+                    icon={<InfoIcon />}
+                    onClick={() => console.log('Chip clicked')}
+                  />
+                </Box>
+              </Paper>
+            </Box>
+
+            {/* CommonLoadingButton Examples */}
+            <Box>
+              <Paper elevation={2} sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  CommonLoadingButton Examples
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  Buttons with loading states and different variants
+                </Typography>
+
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <CommonLoadingButton
+                    title="Primary Loading Button"
+                    loading={loadingStates.primary}
+                    startIcon={<CheckIcon />}
+                    onClick={() => handleButtonClick('primary')}
+                  />
+
+                  <CommonLoadingButton
+                    title="Secondary Button"
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<SettingsIcon />}
+                    onClick={() => handleButtonClick('secondary')}
+                  />
+
+                  <CommonLoadingButton
+                    title="Danger Button"
+                    variant="contained"
+                    color="error"
+                    startIcon={<DeleteIcon />}
+                    loading={loadingStates.danger}
+                    onClick={() => handleButtonClick('danger')}
+                  />
+
+                  <CommonLoadingButton
+                    title="Disabled Button"
+                    disabled
+                    startIcon={<InfoIcon />}
+                  />
+
+                  <CommonLoadingButton
+                    title="Small Button"
+                    size="small"
+                    width="auto"
+                    startIcon={<StarIcon />}
+                  />
+                </Box>
+              </Paper>
+            </Box>
+
+            {/* CommonPopover Example */}
+            <Box>
+              <Paper elevation={2} sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  CommonPopover Example
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  Popover with custom content and positioning
+                </Typography>
+
+                <Box sx={{ display: 'flex', gap: 2 }}>
+                  <Button
+                    variant="outlined"
+                    onClick={handlePopoverOpen}
+                    endIcon={<MoreVertIcon />}
+                  >
+                    Open Popover
+                  </Button>
+
+                  <CommonPopover
+                    open={Boolean(popoverAnchor)}
+                    anchorEl={popoverAnchor}
+                    onOpen={handlePopoverOpen}
+                    onClose={handlePopoverClose}
+                    content={({ closePopover }) => (
+                      <Box>
+                        <Typography variant="subtitle2" gutterBottom>
+                          Popover Content
+                        </Typography>
+                        <List dense>
+                          <ListItem component="button" onClick={closePopover}>
+                            <ListItemText primary="Option 1" />
+                          </ListItem>
+                          <ListItem component="button" onClick={closePopover}>
+                            <ListItemText primary="Option 2" />
+                          </ListItem>
+                          <Divider />
+                          <ListItem component="button" onClick={closePopover}>
+                            <ListItemText primary="Delete" />
+                          </ListItem>
+                        </List>
+                      </Box>
+                    )}
+                  />
+                </Box>
+              </Paper>
+            </Box>
+
+            {/* Tab Example */}
+            <Box sx={{ gridColumn: { xs: '1', md: '1 / -1' } }}>
+              <Paper elevation={2} sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  Tab Component Example
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  Tabbed interface with content switching and count badges
+                </Typography>
+
+                <Tab
+                  items={tabItems}
+                  activeId={activeTab}
+                  onChange={(id) => setActiveTab(id as string)}
+                >
+                  {renderTabContent}
+                </Tab>
+              </Paper>
+            </Box>
           </Box>
         </Box>
       </HomeContainer>

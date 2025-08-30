@@ -25,8 +25,12 @@ const getPhoneInputStyles = (theme: Theme, hasError: boolean) => ({
     borderRadius: '8px',
     fontSize: '16px',
     paddingLeft: '48px',
-    backgroundColor: theme.palette.mode === 'dark' ? '#2d2d2d' : '#f5f5f5',
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? theme.palette.background.default
+        : '#f5f5f5',
     color: theme.palette.text.primary,
+    transition: 'border-color 0.2s ease-in-out',
   },
   buttonStyle: {
     border: hasError
@@ -35,7 +39,10 @@ const getPhoneInputStyles = (theme: Theme, hasError: boolean) => ({
         ? '1px solid rgba(255, 255, 255, 0.12)'
         : '1px solid rgba(0, 0, 0, 0.12)',
     borderRadius: '8px 0 0 8px',
-    backgroundColor: theme.palette.mode === 'dark' ? '#2d2d2d' : '#f5f5f5',
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? theme.palette.background.default
+        : '#f5f5f5',
   },
   dropdownStyle: {
     maxHeight: '170px',

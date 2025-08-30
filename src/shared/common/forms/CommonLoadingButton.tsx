@@ -16,6 +16,8 @@ type CommonLoadingButtonProps = {
   borderRadius?: number | string;
   width?: number | string;
   maxWidth?: number | string;
+  onClick?: () => void;
+  size?: 'small' | 'medium' | 'large';
 };
 
 const CommonLoadingButton: React.FC<CommonLoadingButtonProps> = ({
@@ -32,6 +34,8 @@ const CommonLoadingButton: React.FC<CommonLoadingButtonProps> = ({
   sx,
   width,
   maxWidth,
+  onClick,
+  size,
 }) => {
   const buttonSx = useMemo(
     () => ({
@@ -58,6 +62,8 @@ const CommonLoadingButton: React.FC<CommonLoadingButtonProps> = ({
       startIcon={startIcon}
       endIcon={endIcon}
       sx={buttonSx}
+      onClick={onClick}
+      size={size}
     >
       {children ?? title}
     </LoadingButton>
