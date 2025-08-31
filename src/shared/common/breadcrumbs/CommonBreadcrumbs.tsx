@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import { Breadcrumbs as MUIBreadcrumbs, Typography } from '@mui/material';
-import useCommonBreadcrumbs from '@shared/common/breadcrumbs/useCommonBreadcrumbs';
+import useCommonBreadcrumbs from '@/shared/common/breadcrumbs/hooks/useCommonBreadcrumbs';
 
 const StyledBreadcrumbLink = styled(RouterLink)(({ theme }) => ({
   color: theme.palette.text.secondary,
