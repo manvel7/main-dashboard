@@ -37,12 +37,20 @@ export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
   USERS: '/users',
-  USERS_CARD: '/users/user-cards',
-  CREATE_USER: '/users/user-create',
+  USER_CARD: '/users/user-card',
+  CREATE_USER: '/create-user',
 } as const;
 
+// Type for navigation items
+export type NavigationItem = {
+  path: string;
+  label: string;
+  icon: React.ReactElement;
+  children?: NavigationItem[];
+};
+
 // Navigation items for sidebar (routes with labels and icons)
-export const navigationRoutes = [
+export const navigationRoutes: NavigationItem[] = [
   {
     path: ROUTES.HOME,
     label: 'Home',
@@ -52,18 +60,18 @@ export const navigationRoutes = [
     path: ROUTES.USERS,
     label: 'Users',
     icon: <UsersIcon />,
-    children: [
-      {
-        path: ROUTES.USERS_CARD,
-        label: 'User Cards',
-        icon: <DashboardIcon />,
-      },
-      {
-        path: ROUTES.CREATE_USER,
-        label: 'Create User',
-        icon: <AddIcon />,
-      },
-    ],
+    // children: [
+    //   {
+    //     path: ROUTES.USER_CARD,
+    //     label: 'User Cards',
+    //     icon: <DashboardIcon />,
+    //   },
+    // ],
+  },
+  {
+    path: ROUTES.CREATE_USER,
+    label: 'Create User',
+    icon: <AddIcon />,
   },
 ];
 
@@ -113,7 +121,7 @@ export const routes = [
             ),
           },
           {
-            path: ROUTES.USERS_CARD,
+            path: ROUTES.USER_CARD,
             element: (
               <PrivateRoute>
                 <SuspensePage>
@@ -122,17 +130,17 @@ export const routes = [
               </PrivateRoute>
             ),
           },
-          {
-            path: ROUTES.CREATE_USER,
-            element: (
-              <PrivateRoute>
-                <SuspensePage>
-                  <UserCreatePage />
-                </SuspensePage>
-              </PrivateRoute>
-            ),
-          },
         ],
+      },
+      {
+        path: ROUTES.CREATE_USER,
+        element: (
+          <PrivateRoute>
+            <SuspensePage>
+              <UserCreatePage />
+            </SuspensePage>
+          </PrivateRoute>
+        ),
       },
     ],
   },

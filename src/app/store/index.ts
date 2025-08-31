@@ -11,7 +11,7 @@ export const store = configureStore({
         ignoredActions: ['persist/PERSIST'],
       },
     }),
-  devTools: process.env.NODE_ENV !== 'production' ? true : false,
+  devTools: true,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

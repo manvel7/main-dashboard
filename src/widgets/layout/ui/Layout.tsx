@@ -7,6 +7,8 @@ import { LayoutProps } from '@widgets/layout/model';
 import { useSidebarClose } from '@widgets/sidebar';
 import { LayoutContainer, MainContent } from '@widgets/layout/ui/styles';
 import NotifictaionContent from '@features/notification/ui/NotifictaionContent';
+import { CommonBreadcrumbs } from '@/shared/common/breadcrumbs';
+import { Box } from '@mui/material';
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
@@ -46,6 +48,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           title={computedLocation}
           otherChildren={<NotifictaionContent />}
         />
+        <Box sx={{ pl: 5 }}>
+          <CommonBreadcrumbs />
+        </Box>
         {children}
       </MainContent>
     </LayoutContainer>
