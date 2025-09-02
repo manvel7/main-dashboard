@@ -11,6 +11,9 @@ import {
   Divider,
   IconButton,
   Grid,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from '@mui/material';
 import {
   Info as InfoIcon,
@@ -32,6 +35,8 @@ import CommonChip from '@shared/common/chip/CommonChip';
 import CommonLoadingButton from '@shared/common/forms/CommonLoadingButton';
 import CommonPopover from '@shared/common/popover/CommonPopover';
 import Tab from '@shared/common/tab/Tab';
+import { CommonRadioGroup } from '@shared/common/forms';
+import { FormProvider, useForm } from 'react-hook-form';
 
 // Sample data for SelectCheckboxList
 const items = Array.from({ length: 20 }, (_, i) => ({
@@ -60,6 +65,29 @@ export const HomePage: React.FC = () => {
     secondary: false,
     danger: false,
   });
+
+  // Form for CommonRadioGroup example
+  const radioFormMethods = useForm<{ status: string }>({
+    defaultValues: { status: 'active' },
+    mode: 'onChange',
+  });
+
+  const renderStatusRadioGroup = ({
+    value,
+    onChange,
+    onBlur,
+    ref,
+  }: {
+    value: string | number | undefined;
+    onChange: (value: any) => void;
+    onBlur: () => void;
+    ref: React.Ref<any>;
+  }) => (
+    <RadioGroup value={value} onChange={onChange} onBlur={onBlur} ref={ref} row>
+      <FormControlLabel value="active" control={<Radio />} label="Active" />
+      <FormControlLabel value="inactive" control={<Radio />} label="Inactive" />
+    </RadioGroup>
+  );
 
   // Handlers
   const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -347,6 +375,28 @@ export const HomePage: React.FC = () => {
                     startIcon={<StarIcon />}
                   />
                 </Box>
+              </Paper>
+            </Box>
+
+            {/* CommonRadioGroup Example */}
+            <Box>
+              <Paper elevation={2} sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  CommonRadioGroup Example
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  Controlled radio group integrated with react-hook-form
+                </Typography>
+
+                <FormProvider {...radioFormMethods}>
+                  <CommonRadioGroup name="status" label="Status">
+                    {renderStatusRadioGroup}
+                  </CommonRadioGroup>
+                </FormProvider>
+
+                <Typography variant="caption" color="text.secondary" mt={1} display="block">
+                  Selected: {radioFormMethods.watch('status')}
+                </Typography>
               </Paper>
             </Box>
 
