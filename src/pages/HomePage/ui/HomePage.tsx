@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Typography,
-  useTheme,
   Box,
   Paper,
   Button,
@@ -10,10 +9,10 @@ import {
   ListItemText,
   Divider,
   IconButton,
-  Grid,
   RadioGroup,
   FormControlLabel,
   Radio,
+  TableCell,
 } from '@mui/material';
 import {
   Info as InfoIcon,
@@ -37,6 +36,7 @@ import CommonPopover from '@shared/common/popover/CommonPopover';
 import Tab from '@shared/common/tab/Tab';
 import { CommonRadioGroup } from '@shared/common/forms';
 import { FormProvider, useForm } from 'react-hook-form';
+import { CommonTable } from '@/shared/common';
 
 // Sample data for SelectCheckboxList
 const items = Array.from({ length: 20 }, (_, i) => ({
@@ -53,7 +53,6 @@ const tabItems = [
 ];
 
 export const HomePage: React.FC = () => {
-  const theme = useTheme();
   const { t } = useTranslation();
 
   // State for components
@@ -147,10 +146,41 @@ export const HomePage: React.FC = () => {
         return null;
     }
   };
+  type User = { id: number; name: string; age: number };
+
+  const users: User[] = Array.from({ length: 100000 }, (_, i) => ({
+    id: i + 1,
+    name: `User ${i + 1}`,
+    age: 20 + (i % 10),
+  }));
 
   return (
     <PageContainer>
       <HomeContainer disableGutters maxWidth="xl">
+        <CommonTable<User>
+          data={users}
+          getRowId={(row: User) => row.id}
+          renderHeader={() => (
+            <>
+              <TableCell>ID</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Age</TableCell>
+            </>
+          )}
+          renderRow={(row: User) => (
+            <>
+              <TableCell>{row.id}</TableCell>
+              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.age}</TableCell>
+            </>
+          )}
+          renderActions={(row) => (
+            <IconButton onClick={() => console.log(row)}>
+              <EditIcon />
+            </IconButton>
+          )}
+          loading={false}
+        />
         <Box p={3}>
           <Typography variant="h4" gutterBottom>
             Shared Components Examples
