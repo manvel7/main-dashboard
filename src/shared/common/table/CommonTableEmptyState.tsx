@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 
 interface CommonTableEmptyStateProps {
   message?: string;
@@ -8,8 +8,8 @@ interface CommonTableEmptyStateProps {
 }
 
 const CommonTableEmptyState: React.FC<CommonTableEmptyStateProps> = ({
-  message = "No data available",
-  icon = <InsertDriveFileIcon sx={{ fontSize: 60, color: "grey.400" }} />,
+  message = 'No data available',
+  icon = <InsertDriveFileIcon sx={{ fontSize: 60, color: 'grey.400' }} />,
 }) => {
   return (
     <Box
@@ -21,11 +21,7 @@ const CommonTableEmptyState: React.FC<CommonTableEmptyStateProps> = ({
       textAlign="center"
     >
       {icon}
-      <Typography
-        variant="h6"
-        color="textSecondary"
-        sx={{ mt: 2 }}
-      >
+      <Typography variant="h6" color="textSecondary" sx={{ mt: 2 }}>
         {message}
       </Typography>
     </Box>

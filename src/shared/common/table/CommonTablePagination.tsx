@@ -1,5 +1,5 @@
-import React from "react";
-import { TablePagination } from "@mui/material";
+import React from 'react';
+import { TablePagination } from '@mui/material';
 
 interface CommonTablePaginationProps {
   count: number;
@@ -28,8 +28,8 @@ function CommonTablePagination({
       onRowsPerPageChange={onRowsPerPageChange}
       rowsPerPageOptions={rowsPerPageOptions}
       sx={{
-        borderTop: "1px solid rgba(224, 224, 224, 1)",
-        "& .MuiTablePagination-toolbar": { minHeight: 56 },
+        borderTop: '1px solid rgba(224, 224, 224, 1)',
+        '& .MuiTablePagination-toolbar': { minHeight: 56 },
       }}
     />
   );

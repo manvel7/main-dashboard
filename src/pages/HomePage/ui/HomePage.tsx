@@ -424,7 +424,12 @@ export const HomePage: React.FC = () => {
                   </CommonRadioGroup>
                 </FormProvider>
 
-                <Typography variant="caption" color="text.secondary" mt={1} display="block">
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  mt={1}
+                  display="block"
+                >
                   Selected: {radioFormMethods.watch('status')}
                 </Typography>
               </Paper>

@@ -9,4 +9,4 @@ export { default as Tab } from './tab/Tab';
 export { CommonChip } from './chip';
 export { CommonAccordion } from './accordion';
 export { CommonPopover, usePopover } from './popover';
-export { default as CommonTable } from 'shared/common/table/CommonTable'
+export { default as CommonTable } from 'shared/common/table/CommonTable';

@@ -1,6 +1,12 @@
-import React from "react";
-import { TableBody, TableRow, TableCell, CircularProgress, Box } from "@mui/material";
-import CommonTableEmptyState from "@shared/common/table/CommonTableEmptyState";
+import React from 'react';
+import {
+  TableBody,
+  TableRow,
+  TableCell,
+  CircularProgress,
+  Box,
+} from '@mui/material';
+import CommonTableEmptyState from '@shared/common/table/CommonTableEmptyState';
 
 interface TableRowsProps<T> {
   data: T[];
@@ -17,8 +23,6 @@ function CommonTableRows<T>({
   renderActions,
   loading,
 }: TableRowsProps<T>) {
-
-
   if (loading) {
     return (
       <TableRow>
@@ -28,9 +32,8 @@ function CommonTableRows<T>({
           </Box>
         </TableCell>
       </TableRow>
-    )
+    );
   }
-
 
   if (!data.length && !loading) {
     return (
@@ -41,28 +44,25 @@ function CommonTableRows<T>({
           </TableCell>
         </TableRow>
       </TableBody>
-    )
+    );
   }
   return (
     <TableBody>
-
       {data.map((row, index) => (
         <TableRow
           key={getRowId ? getRowId(row, index) : index}
           sx={{
-            "&:nth-of-type(odd)": { backgroundColor: "grey.50" },
-            "&:hover": { backgroundColor: "grey.100" },
+            '&:nth-of-type(odd)': { backgroundColor: 'grey.50' },
+            '&:hover': { backgroundColor: 'grey.100' },
           }}
         >
           {renderRow(row, index)}
           {renderActions && (
-            <TableCell align="right">
-              {renderActions(row, index)}
-            </TableCell>
+            <TableCell align="right">{renderActions(row, index)}</TableCell>
           )}
         </TableRow>
       ))}
     </TableBody>
   );
 }
-export default CommonTableRows
+export default CommonTableRows;

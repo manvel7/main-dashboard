@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Table,
   TableHead,
@@ -6,10 +6,10 @@ import {
   TableContainer,
   Paper,
   TableCell,
-} from "@mui/material";
-import CommonTableRows from "@shared/common/table/CommonTableRows";
-import { useCommonTable } from "@shared/common/table/hooks/useCommonTable";
-import CommonTablePagination from "@shared/common/table/CommonTablePagination";
+} from '@mui/material';
+import CommonTableRows from '@shared/common/table/CommonTableRows';
+import { useCommonTable } from '@shared/common/table/hooks/useCommonTable';
+import CommonTablePagination from '@shared/common/table/CommonTablePagination';
 
 interface CommonTableProps<T> {
   data: T[];
@@ -28,7 +28,7 @@ function CommonTable<T>({
   rowsPerPageOptions = [5, 10, 25],
   getRowId,
   renderActions,
-  loading
+  loading,
 }: CommonTableProps<T>) {
   const {
     page,
@@ -43,21 +43,23 @@ function CommonTable<T>({
       sx={{
         borderRadius: 2,
         boxShadow: 3,
-        overflow: "hidden",
+        overflow: 'hidden',
       }}
     >
-      <TableContainer sx={{ borderRadius: "inherit" }}>
+      <TableContainer sx={{ borderRadius: 'inherit' }}>
         <Table>
           <TableHead>
             <TableRow
               sx={{
-                backgroundColor: "primary.main",
-                "& th:first-of-type": { borderTopLeftRadius: 16 },
-                "& th:last-of-type": { borderTopRightRadius: 16 },
+                backgroundColor: 'primary.main',
+                '& th:first-of-type': { borderTopLeftRadius: 16 },
+                '& th:last-of-type': { borderTopRightRadius: 16 },
               }}
             >
               {renderHeader()}
-              {renderActions && <TableCell sx={{ textAlign: 'end' }}>Actions</TableCell>}
+              {renderActions && (
+                <TableCell sx={{ textAlign: 'end' }}>Actions</TableCell>
+              )}
             </TableRow>
           </TableHead>
 

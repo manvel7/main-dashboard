@@ -1,7 +1,7 @@
-import React, { ReactElement } from "react";
-import get from "lodash/get";
-import { Controller, useFormContext, FieldError } from "react-hook-form";
-import { FormControl, FormControlProps, FormHelperText } from "@mui/material";
+import React, { ReactElement } from 'react';
+import get from 'lodash/get';
+import { Controller, useFormContext, FieldError } from 'react-hook-form';
+import { FormControl, FormControlProps, FormHelperText } from '@mui/material';
 
 type FormValue = string | number | undefined;
 
@@ -16,7 +16,7 @@ interface RadioGroupRenderPropParams<TRef = unknown> {
 }
 
 export interface CommonRadioGroupProps<TRef = unknown>
-  extends Omit<FormControlProps, "children"> {
+  extends Omit<FormControlProps, 'children'> {
   name: string;
   label?: string;
   maxWidth?: string;
@@ -24,15 +24,15 @@ export interface CommonRadioGroupProps<TRef = unknown>
 }
 
 const helperTextSx = {
-  minHeight: "20px",
+  minHeight: '20px',
   margin: 0,
 };
 
 function CommonRadioGroup<TRef = unknown>({
   name,
   label,
-  maxWidth = "100%",
-  variant = "outlined",
+  maxWidth = '100%',
+  variant = 'outlined',
   children,
   ...formControlProps
 }: CommonRadioGroupProps<TRef>) {
@@ -55,7 +55,7 @@ function CommonRadioGroup<TRef = unknown>({
         control={control}
         render={({ field }) =>
           children({
-            value: field.value ?? "",
+            value: field.value ?? '',
             onChange: field.onChange,
             onBlur: field.onBlur,
             ref: field.ref,
@@ -69,10 +69,10 @@ function CommonRadioGroup<TRef = unknown>({
       <FormHelperText
         sx={{
           ...helperTextSx,
-          visibility: hasError ? "visible" : "hidden",
+          visibility: hasError ? 'visible' : 'hidden',
         }}
       >
-        {hasError ? error?.message : " "}
+        {hasError ? error?.message : ' '}
       </FormHelperText>
     </FormControl>
   );
