@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  Table,
-  TableHead,
-  TableRow,
-  TableContainer,
-  Paper,
-  TableCell,
-} from '@mui/material';
-import CommonTableRows from '@shared/common/table/CommonTableRows';
+import { useMediaQuery, useTheme } from '@mui/material';
+import { DesktopTable } from '@shared/common/table/DesktopTable';
 import { useCommonTable } from '@shared/common/table/hooks/useCommonTable';
-import CommonTablePagination from '@shared/common/table/CommonTablePagination';
+import { MobileTableWrapper } from '@shared/common/table/MobileTableWrapper';
+import { useCommonTableData } from '@shared/common/table/hooks/useCommonTableData';
 
 interface CommonTableProps<T> {
   data: T[];
@@ -19,9 +13,20 @@ interface CommonTableProps<T> {
   getRowId?: (row: T, index: number) => string | number;
   renderActions?: (row: T, index: number) => React.ReactNode;
   loading?: boolean;
+
+  // Mobile
+  enableMobileCards?: boolean;
+  renderMobileCard?: (
+    row: T,
+    index: number,
+    options: { expanded: boolean; toggle: () => void }
+  ) => React.ReactNode;
+  renderMobileStickySummary?: () => React.ReactNode;
+  mobileBreakpoint?: 'xs' | 'sm' | 'md' | number;
+  mobileInfiniteScroll?: boolean;
 }
 
-function CommonTable<T>({
+export function CommonTable<T>({
   data,
   renderHeader,
   renderRow,
@@ -29,60 +34,59 @@ function CommonTable<T>({
   getRowId,
   renderActions,
   loading,
+  enableMobileCards = true,
+  renderMobileCard,
+  renderMobileStickySummary,
+  mobileBreakpoint = 'sm',
+  mobileInfiniteScroll = false,
 }: CommonTableProps<T>) {
-  const {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down(mobileBreakpoint));
+  const { page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } =
+    useCommonTable({ data, rowsPerPageOptions });
+
+  const { paginatedData, accumulatedData } = useCommonTableData({
+    data,
+    rowsPerPageOptions,
     page,
     rowsPerPage,
-    handleChangePage,
-    handleChangeRowsPerPage,
-    paginatedData,
-  } = useCommonTable({ data, rowsPerPageOptions });
+    mobileInfiniteScroll,
+  });
 
-  return (
-    <Paper
-      sx={{
-        borderRadius: 2,
-        boxShadow: 3,
-        overflow: 'hidden',
-      }}
-    >
-      <TableContainer sx={{ borderRadius: 'inherit' }}>
-        <Table>
-          <TableHead>
-            <TableRow
-              sx={{
-                backgroundColor: 'primary.main',
-                '& th:first-of-type': { borderTopLeftRadius: 16 },
-                '& th:last-of-type': { borderTopRightRadius: 16 },
-              }}
-            >
-              {renderHeader()}
-              {renderActions && (
-                <TableCell sx={{ textAlign: 'end' }}>Actions</TableCell>
-              )}
-            </TableRow>
-          </TableHead>
-
-          <CommonTableRows
-            data={paginatedData}
-            renderRow={renderRow}
-            getRowId={getRowId}
-            renderActions={renderActions}
-            loading={loading}
-          />
-        </Table>
-      </TableContainer>
-
-      <CommonTablePagination
-        count={data.length}
+  // Mobile
+  if (enableMobileCards && isMobile && renderMobileCard) {
+    return (
+      <MobileTableWrapper
+        data={data}
+        accumulatedData={accumulatedData}
+        getRowId={getRowId}
+        loading={loading}
+        renderMobileCard={renderMobileCard}
+        renderMobileStickySummary={renderMobileStickySummary}
+        mobileBreakpoint={mobileBreakpoint}
+        mobileInfiniteScroll={mobileInfiniteScroll}
         page={page}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={rowsPerPageOptions}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        handleLoadMore={() => handleChangePage(null, page + 1)}
       />
-    </Paper>
+    );
+  }
+
+  // Desktop
+  return (
+    <DesktopTable
+      paginatedData={paginatedData}
+      dataLength={data.length}
+      renderHeader={renderHeader}
+      renderRow={renderRow}
+      getRowId={getRowId}
+      renderActions={renderActions}
+      loading={loading}
+      page={page}
+      rowsPerPage={rowsPerPage}
+      rowsPerPageOptions={rowsPerPageOptions}
+      onPageChange={handleChangePage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
+    />
   );
 }
-
-export default CommonTable;

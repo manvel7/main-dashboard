@@ -4,6 +4,9 @@ import {
   Box,
   Paper,
   Button,
+  Card,
+  CardHeader,
+  CardContent,
   List,
   ListItem,
   ListItemText,
@@ -24,6 +27,8 @@ import {
   Delete as DeleteIcon,
   Edit as EditIcon,
   MoreVert as MoreVertIcon,
+  ExpandMore as ExpandMoreIcon,
+  ExpandLess as ExpandLessIcon,
 } from '@mui/icons-material';
 import { PageContainer } from '@shared/index';
 import { useTranslation } from 'react-i18next';
@@ -154,6 +159,60 @@ export const HomePage: React.FC = () => {
     age: 20 + (i % 10),
   }));
 
+  const renderMobileStickySummary = React.useCallback(() => {
+    return (
+      <Box
+        px={2}
+        py={1}
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <Typography variant="subtitle2">Users</Typography>
+        <Typography variant="caption" color="text.secondary">
+          {users.length} items
+        </Typography>
+      </Box>
+    );
+  }, [users.length]);
+
+  const renderMobileCard = React.useCallback(
+    (
+      row: User,
+      _index: number,
+      { expanded, toggle }: { expanded: boolean; toggle: () => void }
+    ) => {
+      return (
+        <Card sx={{ mx: 2 }}>
+          <CardHeader
+            title={row.name}
+            action={
+              <IconButton
+                onClick={toggle}
+                aria-label={expanded ? 'Collapse' : 'Expand'}
+              >
+                {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              </IconButton>
+            }
+          />
+          {expanded && (
+            <CardContent>
+              <Box display="flex" flexDirection="column" gap={1}>
+                <Typography variant="body2">
+                  <strong>Name:</strong> {row.name}
+                </Typography>
+                <Typography variant="body2">
+                  <strong>Age:</strong> {row.age}
+                </Typography>
+              </Box>
+            </CardContent>
+          )}
+        </Card>
+      );
+    },
+    []
+  );
+
   return (
     <PageContainer>
       <HomeContainer disableGutters maxWidth="xl">
@@ -174,12 +233,17 @@ export const HomePage: React.FC = () => {
               <TableCell>{row.age}</TableCell>
             </>
           )}
-          renderActions={(row) => (
+          renderActions={(row: User) => (
             <IconButton onClick={() => console.log(row)}>
               <EditIcon />
             </IconButton>
           )}
           loading={false}
+          enableMobileCards
+          renderMobileCard={renderMobileCard}
+          renderMobileStickySummary={renderMobileStickySummary}
+          mobileBreakpoint={600}
+          mobileInfiniteScroll
         />
         <Box p={3}>
           <Typography variant="h4" gutterBottom>
