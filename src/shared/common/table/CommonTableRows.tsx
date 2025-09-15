@@ -6,6 +6,7 @@ import {
   CircularProgress,
   Box,
 } from '@mui/material';
+import { TableBodyRow } from '@shared/common/table/styles';
 import CommonTableEmptyState from '@shared/common/table/CommonTableEmptyState';
 
 interface TableRowsProps<T> {
@@ -46,21 +47,16 @@ function CommonTableRows<T>({
       </TableBody>
     );
   }
+
   return (
     <TableBody>
       {data.map((row, index) => (
-        <TableRow
-          key={getRowId ? getRowId(row, index) : index}
-          sx={{
-            '&:nth-of-type(odd)': { backgroundColor: 'grey.50' },
-            '&:hover': { backgroundColor: 'grey.100' },
-          }}
-        >
+        <TableBodyRow key={getRowId ? getRowId(row, index) : index}>
           {renderRow(row, index)}
           {renderActions && (
             <TableCell align="right">{renderActions(row, index)}</TableCell>
           )}
-        </TableRow>
+        </TableBodyRow>
       ))}
     </TableBody>
   );

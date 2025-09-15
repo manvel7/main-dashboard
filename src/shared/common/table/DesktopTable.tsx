@@ -7,6 +7,7 @@ import {
   TableCell,
   TableContainer,
 } from '@mui/material';
+import { TableHeaderRow } from '@shared/common/table/styles';
 import CommonTableRows from '@shared/common/table/CommonTableRows';
 import CommonTablePagination from '@shared/common/table/CommonTablePagination';
 
@@ -40,22 +41,16 @@ export function DesktopTable<T>({
   onRowsPerPageChange,
 }: DesktopTableProps<T>) {
   return (
-    <Paper sx={{ borderRadius: 2, boxShadow: 3, overflow: 'hidden' }}>
+    <Paper sx={{ borderRadius: 2, boxShadow: 6, overflow: 'hidden' }}>
       <TableContainer sx={{ borderRadius: 'inherit' }}>
         <Table>
           <TableHead>
-            <TableRow
-              sx={{
-                backgroundColor: 'primary.main',
-                '& th:first-of-type': { borderTopLeftRadius: 16 },
-                '& th:last-of-type': { borderTopRightRadius: 16 },
-              }}
-            >
+            <TableHeaderRow>
               {renderHeader()}
               {renderActions && (
                 <TableCell sx={{ textAlign: 'end' }}>Actions</TableCell>
               )}
-            </TableRow>
+            </TableHeaderRow>
           </TableHead>
 
           <CommonTableRows

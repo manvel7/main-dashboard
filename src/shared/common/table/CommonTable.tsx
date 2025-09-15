@@ -43,7 +43,7 @@ export function CommonTable<T>({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down(mobileBreakpoint));
   const { page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } =
-    useCommonTable({ data, rowsPerPageOptions });
+    useCommonTable({ data, rowsPerPageOptions, layoutKey: isMobile });
 
   const { paginatedData, accumulatedData } = useCommonTableData({
     data,

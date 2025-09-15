@@ -4,12 +4,14 @@ interface UseCommonTableProps<T> {
   data: T[];
   rowsPerPageOptions?: number[];
   initialRowsPerPage?: number;
+  layoutKey?: unknown; // changes trigger pagination reset (e.g., mobile/desktop switch)
 }
 
 export const useCommonTable = <T>({
   data,
   rowsPerPageOptions = [5, 10, 25],
   initialRowsPerPage,
+  layoutKey,
 }: UseCommonTableProps<T>) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(
@@ -35,6 +37,11 @@ export const useCommonTable = <T>({
     const end = start + rowsPerPage;
     return data.slice(start, end);
   }, [data, page, rowsPerPage]);
+
+  // Reset page when layout changes (e.g., mobile <-> desktop)
+  React.useEffect(() => {
+    setPage(0);
+  }, [layoutKey]);
 
   return {
     page,
