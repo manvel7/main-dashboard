@@ -1,6 +1,8 @@
+import { AxiosError } from 'axios';
 import api from '@/shared/api/axios';
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CreateUserFormData } from '@/features/user/model/useCreateUser';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 
 export interface UserCard {
   id: string;
@@ -177,8 +179,9 @@ export const createUser = createAsyncThunk(
     try {
       const response = await api.post('/users', user);
       return response.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data || 'Something went wrong');
+    } catch (err) {
+      const error = err as AxiosError<{ message: string }>;
+      return rejectWithValue(error.response?.data?.message || 'Something went wrong');
     }
   }
 );

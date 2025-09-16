@@ -16,6 +16,7 @@ import {
   FormControlLabel,
   Radio,
   TableCell,
+  CardMedia,
 } from '@mui/material';
 import {
   Info as InfoIcon,
@@ -42,6 +43,12 @@ import Tab from '@shared/common/tab/Tab';
 import { CommonRadioGroup } from '@shared/common/forms';
 import { FormProvider, useForm } from 'react-hook-form';
 import { CommonTable } from '@/shared/common';
+import { EmblaOptionsType } from 'embla-carousel';
+import Carousel from '@/shared/common/carousel/Carousel';
+import UserCardItem from '@/features/user/ui/UserCardItem';
+import { useAppSelector } from '@/app/store/hooks';
+import { selectUsersCard } from '@/features/user/model/selectors';
+import { UsersCardGrid } from '@/features/user/styles';
 
 // Sample data for SelectCheckboxList
 const items = Array.from({ length: 20 }, (_, i) => ({
@@ -213,10 +220,70 @@ export const HomePage: React.FC = () => {
     []
   );
 
+
+  const items = [
+    {
+      image: "https://picsum.photos/id/1018/600/400",
+      title: "Beautiful Landscape",
+      description: "A breathtaking view of mountains and lake."
+    },
+    {
+      image: "https://picsum.photos/id/1025/600/400",
+      title: "Cute Puppy",
+      description: "Adorable puppy enjoying the sunshine."
+    },
+    {
+      image: "https://picsum.photos/id/1018/600/400",
+      title: "Beautiful Landscape",
+      description: "A breathtaking view of mountains and lake."
+    },
+    {
+      image: "https://picsum.photos/id/1025/600/400",
+      title: "Cute Puppy",
+      description: "Adorable puppy enjoying the sunshine."
+    },
+  ];
   return (
     <PageContainer>
       <HomeContainer disableGutters maxWidth="xl">
-        <CommonTable<User>
+        <Carousel
+          items={items}
+          autoplay
+          autoplaySpeed={2500}
+          infinite={true}
+          showDots={false}
+          showArrows
+          slidesToShow={4}
+          height={450}
+          responsive={[
+            { breakpoint: 1024, slidesToShow: 4 },
+            { breakpoint: 600, slidesToShow: 2 },
+            { breakpoint: 480, slidesToShow: 1 },
+          ]}
+          renderItem={({ title, description, image }) => (
+            <Card sx={{ borderRadius: 3, boxShadow: 3, m: 2 }}>
+              <CardMedia
+                component="img"
+                image={image}
+                height={200}
+                alt={title}
+                sx={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h6" component="div">
+                  {title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  {description}
+                </Typography>
+                <Button variant="contained" size="small" onClick={() => { }}>
+                  Apply
+                </Button>
+              </CardContent>
+            </Card>
+          )}
+        />
+        {/* <CommonTable<User>
           data={users}
           getRowId={(row: User) => row.id}
           renderHeader={() => (
@@ -244,8 +311,8 @@ export const HomePage: React.FC = () => {
           renderMobileStickySummary={renderMobileStickySummary}
           mobileBreakpoint={600}
           mobileInfiniteScroll
-        />
-        <Box p={3}>
+        /> */}
+        {/* <Box p={3}>
           <Typography variant="h4" gutterBottom>
             Shared Components Examples
           </Typography>
@@ -257,7 +324,6 @@ export const HomePage: React.FC = () => {
               gap: 3,
             }}
           >
-            {/* SelectCheckboxList Example */}
             <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
@@ -294,7 +360,6 @@ export const HomePage: React.FC = () => {
               </Paper>
             </Box>
 
-            {/* CommonAccordion Examples */}
             <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
@@ -351,7 +416,6 @@ export const HomePage: React.FC = () => {
               </Paper>
             </Box>
 
-            {/* CommonChip Examples */}
             <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
@@ -421,7 +485,6 @@ export const HomePage: React.FC = () => {
               </Paper>
             </Box>
 
-            {/* CommonLoadingButton Examples */}
             <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
@@ -472,7 +535,6 @@ export const HomePage: React.FC = () => {
               </Paper>
             </Box>
 
-            {/* CommonRadioGroup Example */}
             <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
@@ -499,7 +561,6 @@ export const HomePage: React.FC = () => {
               </Paper>
             </Box>
 
-            {/* CommonPopover Example */}
             <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
@@ -547,7 +608,6 @@ export const HomePage: React.FC = () => {
               </Paper>
             </Box>
 
-            {/* Tab Example */}
             <Box sx={{ gridColumn: { xs: '1', md: '1 / -1' } }}>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
@@ -567,7 +627,7 @@ export const HomePage: React.FC = () => {
               </Paper>
             </Box>
           </Box>
-        </Box>
+        </Box> */}
       </HomeContainer>
     </PageContainer>
   );
