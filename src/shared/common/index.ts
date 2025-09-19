@@ -10,3 +10,4 @@ export { CommonChip } from './chip';
 export { CommonAccordion } from './accordion';
 export { CommonPopover, usePopover } from './popover';
 export { CommonTable } from '@shared/common/table/CommonTable';
+export { default as CommonInfiniteScroll } from './infinite-scroll/CommonInfiniteScroll';

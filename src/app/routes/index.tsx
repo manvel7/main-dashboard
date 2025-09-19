@@ -5,10 +5,12 @@ import {
   People as UsersIcon,
   Home as HomeIcon,
   Add as AddIcon,
+  List as ChecklistIcon,
 } from '@mui/icons-material';
 import { Layout } from '@widgets/layout';
 import { SuspensePage } from '@shared/index';
 import PrivateRoute from '@app/routes/PrivetRoutes';
+import InfiniteScrollPosts from '@/features/posts/ui/InfiniteScrollPosts';
 
 // Home page
 const HomePage = lazy(() =>
@@ -26,9 +28,16 @@ const UserCardPage = lazy(() =>
     default: module.UserCardPage,
   }))
 );
+
 const UserCreatePage = lazy(() =>
   import('@pages/User/UserCreatePage').then((module) => ({
     default: module.UserCreatePage,
+  }))
+);
+
+const InfiniteScrollPage = lazy(() =>
+  import('@pages/PostPage/ui/InfinityPostPage').then((module) => ({
+    default: module.InfiniteScrollPage,
   }))
 );
 
@@ -39,6 +48,7 @@ export const ROUTES = {
   USERS: '/users',
   USER_CARD: '/users/user-card',
   CREATE_USER: '/create-user',
+  POSTS: '/posts',
 } as const;
 
 // Type for navigation items
@@ -72,6 +82,11 @@ export const navigationRoutes: NavigationItem[] = [
     path: ROUTES.CREATE_USER,
     label: 'Create User',
     icon: <AddIcon />,
+  },
+  {
+    path: ROUTES.POSTS,
+    label: 'Posts List',
+    icon: <ChecklistIcon />,
   },
 ];
 
@@ -138,6 +153,16 @@ export const routes = [
           <PrivateRoute>
             <SuspensePage>
               <UserCreatePage />
+            </SuspensePage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: ROUTES.POSTS,
+        element: (
+          <PrivateRoute>
+            <SuspensePage>
+              <InfiniteScrollPage />
             </SuspensePage>
           </PrivateRoute>
         ),

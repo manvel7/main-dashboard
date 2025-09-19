@@ -1,6 +1,6 @@
-import { useState, useRef, useCallback, useEffect } from "react";
-import { useFileUpload } from "@shared/common/image/hooks/useFileUpload";
-import { ImageFile } from "@shared/common/image/ImageDropzone";
+import { useState, useRef, useCallback, useEffect } from 'react';
+import { useFileUpload } from '@shared/common/image/hooks/useFileUpload';
+import { ImageFile } from '@shared/common/image/ImageDropzone';
 
 type Props = {
   multiple?: boolean;
@@ -21,18 +21,23 @@ export function useImageDropzone({
   const { progress, uploading, uploadFile, removeProgress } = useFileUpload();
 
   const makePreview = (file: File) => URL.createObjectURL(file);
-  const clearObjectURLs = (items: ImageFile[]) => items.forEach((i) => URL.revokeObjectURL(i.preview));
+  const clearObjectURLs = (items: ImageFile[]) =>
+    items.forEach((i) => URL.revokeObjectURL(i.preview));
 
   const handleFiles = useCallback(
     (filesList: FileList | null) => {
       if (!filesList) return;
       const files = Array.from(filesList);
 
-      const imageFiles = files.filter((f) => f.type.startsWith("image/"));
-      if (imageFiles.length !== files.length) setError("Only image files are allowed.");
+      const imageFiles = files.filter((f) => f.type.startsWith('image/'));
+      if (imageFiles.length !== files.length)
+        setError('Only image files are allowed.');
 
       const tooLarge = imageFiles.find((f) => f.size > maxSizeBytes);
-      if (tooLarge) setError(`File \"${tooLarge.name}\" is larger than ${(maxSizeBytes / (1024 * 1024)).toFixed(1)} MB.`);
+      if (tooLarge)
+        setError(
+          `File \"${tooLarge.name}\" is larger than ${(maxSizeBytes / (1024 * 1024)).toFixed(1)} MB.`
+        );
 
       const canAccept = Math.max(0, maxFiles - images.length);
       const toAdd = imageFiles.slice(0, canAccept);
@@ -55,12 +60,15 @@ export function useImageDropzone({
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    e.dataTransfer.dropEffect = "copy";
+    e.dataTransfer.dropEffect = 'copy';
   };
 
   const openFileDialog = () => inputRef.current?.click();
 
-  const removeImage = (index: number, removeProgressFn: (name: string) => void) => {
+  const removeImage = (
+    index: number,
+    removeProgressFn: (name: string) => void
+  ) => {
     const removed = images[index];
     const next = images.filter((_, i) => i !== index);
     URL.revokeObjectURL(removed.preview);
@@ -71,7 +79,7 @@ export function useImageDropzone({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleFiles(e.target.files);
-    e.currentTarget.value = "";
+    e.currentTarget.value = '';
   };
 
   const handleCloseError = () => setError(null);

@@ -4,30 +4,30 @@ import {
   Typography,
   LinearProgress,
   IconButton,
-} from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { styled } from "@mui/material/styles";
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { styled } from '@mui/material/styles';
 
-const ImageWrapper = styled("div")(({ theme }) => ({
-  position: "relative",
+const ImageWrapper = styled('div')(({ theme }) => ({
+  position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  overflow: "hidden",
+  overflow: 'hidden',
   boxShadow: theme.shadows[2],
-  "&:hover .delete-btn": {
+  '&:hover .delete-btn': {
     opacity: 1,
   },
 }));
 
 const DeleteButton = styled(IconButton)(() => ({
-  position: "absolute",
+  position: 'absolute',
   top: 8,
   right: 8,
   opacity: 0,
-  transition: "opacity 0.3s",
-  background: "rgba(0,0,0,0.5)",
-  color: "#fff",
-  "&:hover": {
-    background: "rgba(0,0,0,0.7)",
+  transition: 'opacity 0.3s',
+  background: 'rgba(0,0,0,0.5)',
+  color: '#fff',
+  '&:hover': {
+    background: 'rgba(0,0,0,0.7)',
   },
 }));
 
@@ -55,13 +55,14 @@ export default function ImageCard({
       <img
         src={img.preview}
         alt={img.file.name}
-        style={{ width: "100%", height: 140, objectFit: "cover", display: "block" }}
+        style={{
+          width: '100%',
+          height: 140,
+          objectFit: 'cover',
+          display: 'block',
+        }}
       />
-      <DeleteButton
-        className="delete-btn"
-        size="small"
-        onClick={() => { }}
-      >
+      <DeleteButton className="delete-btn" size="small" onClick={() => {}}>
         <DeleteIcon fontSize="small" />
       </DeleteButton>
       <Box sx={{ p: 1 }}>

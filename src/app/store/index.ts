@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userSlice } from '@features/user/model/userSlice';
+import postsReducer from '@features/posts/model/postsSlice';
 
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
+    posts: postsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

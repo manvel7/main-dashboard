@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export function useFileUpload() {
   const [progress, setProgress] = useState<Record<string, number>>({});

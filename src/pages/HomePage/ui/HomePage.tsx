@@ -246,10 +246,9 @@ export const HomePage: React.FC = () => {
 
   const [files, setFiles] = useState<File[]>([]);
 
-
   const handleFilesChange = (newFiles: File[]) => {
     setFiles(newFiles);
-    console.log("Selected files:", newFiles);
+    console.log('Selected files:', newFiles);
   };
 
   return (
@@ -295,7 +294,7 @@ export const HomePage: React.FC = () => {
                 >
                   {description}
                 </Typography>
-                <Button variant="contained" size="small" onClick={() => { }}>
+                <Button variant="contained" size="small" onClick={() => {}}>
                   Apply
                 </Button>
               </CardContent>

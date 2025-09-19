@@ -1,5 +1,5 @@
-import { Grid } from "@mui/material";
-import ImageCard from "@shared/common/image/ImageCard";
+import { Grid } from '@mui/material';
+import ImageCard from '@shared/common/image/ImageCard';
 
 interface ImageGridProps {
   images: any[];
@@ -26,7 +26,7 @@ export default function ImageGrid({
             img={img}
             idx={idx}
             removeImage={removeImage}
-            removeProgress={() => { }}
+            removeProgress={() => {}}
             uploadFile={uploadFile}
             uploading={uploading}
             progress={progress}
