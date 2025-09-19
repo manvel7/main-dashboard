@@ -1,6 +1,6 @@
-import React from "react";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { ArrowLeft, ArrowRight } from "./styles";
+import React from 'react';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
+import { ArrowLeft, ArrowRight } from './styles';
 
 interface ArrowsProps {
   onPrev: () => void;
@@ -8,7 +8,11 @@ interface ArrowsProps {
   show?: boolean;
 }
 
-export const Arrows: React.FC<ArrowsProps> = ({ onPrev, onNext, show = true }) => {
+export const Arrows: React.FC<ArrowsProps> = ({
+  onPrev,
+  onNext,
+  show = true,
+}) => {
   if (!show) return null;
   return (
     <>
@@ -23,5 +27,3 @@ export const Arrows: React.FC<ArrowsProps> = ({ onPrev, onNext, show = true }) =
 };
 
 export default Arrows;
-
-

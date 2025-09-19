@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export interface BreakpointSettings {
   breakpoint: number;
@@ -29,7 +29,10 @@ export const useCarousel = ({
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const startX = useRef<number>(0);
 
-  const maxIndex = useMemo(() => Math.max(itemCount - visibleSlides, 0), [itemCount, visibleSlides]);
+  const maxIndex = useMemo(
+    () => Math.max(itemCount - visibleSlides, 0),
+    [itemCount, visibleSlides]
+  );
 
   // Handle responsive breakpoints
   useEffect(() => {
@@ -41,12 +44,14 @@ export const useCarousel = ({
         }
       });
       setVisibleSlides(matchedSlides);
-      setCurrentIndex((prev) => Math.min(prev, Math.max(itemCount - matchedSlides, 0)));
+      setCurrentIndex((prev) =>
+        Math.min(prev, Math.max(itemCount - matchedSlides, 0))
+      );
     };
 
     handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [responsive, slidesToShow, itemCount]);
 
   const goTo = useCallback(
@@ -113,12 +118,19 @@ export const useCarousel = ({
       onTouchStart,
       onTouchEnd,
     }),
-    [currentIndex, visibleSlides, maxIndex, next, prev, goTo, onTouchStart, onTouchEnd]
+    [
+      currentIndex,
+      visibleSlides,
+      maxIndex,
+      next,
+      prev,
+      goTo,
+      onTouchStart,
+      onTouchEnd,
+    ]
   );
 
   return api;
 };
 
 export type UseCarouselApi = ReturnType<typeof useCarousel>;
-
-

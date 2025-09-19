@@ -1,8 +1,11 @@
-import React from "react";
-import Arrows from "@shared/common/carousel/Arrows";
-import Dots from "@shared/common/carousel/Dots";
-import { CarouselRoot, Slide, Track } from "@shared/common/carousel/styles";
-import { useCarousel, BreakpointSettings } from "@shared/common/carousel/useCarousel";
+import React from 'react';
+import Arrows from '@shared/common/carousel/Arrows';
+import Dots from '@shared/common/carousel/Dots';
+import { CarouselRoot, Slide, Track } from '@shared/common/carousel/styles';
+import {
+  useCarousel,
+  BreakpointSettings,
+} from '@shared/common/carousel/useCarousel';
 
 interface CarouselProps<T> {
   items: T[];
@@ -31,7 +34,15 @@ function Carousel<T>({
   height = 300,
   onSlideChange,
 }: CarouselProps<T>) {
-  const { currentIndex, visibleSlides, maxIndex, next, prev, onTouchStart, onTouchEnd } = useCarousel({
+  const {
+    currentIndex,
+    visibleSlides,
+    maxIndex,
+    next,
+    prev,
+    onTouchStart,
+    onTouchEnd,
+  } = useCarousel({
     itemCount: items.length,
     autoplay,
     autoplaySpeed,
@@ -67,5 +78,3 @@ function Carousel<T>({
 }
 
 export default Carousel;
-
-

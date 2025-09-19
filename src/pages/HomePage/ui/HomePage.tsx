@@ -220,27 +220,26 @@ export const HomePage: React.FC = () => {
     []
   );
 
-
   const items = [
     {
-      image: "https://picsum.photos/id/1018/600/400",
-      title: "Beautiful Landscape",
-      description: "A breathtaking view of mountains and lake."
+      image: 'https://picsum.photos/id/1018/600/400',
+      title: 'Beautiful Landscape',
+      description: 'A breathtaking view of mountains and lake.',
     },
     {
-      image: "https://picsum.photos/id/1025/600/400",
-      title: "Cute Puppy",
-      description: "Adorable puppy enjoying the sunshine."
+      image: 'https://picsum.photos/id/1025/600/400',
+      title: 'Cute Puppy',
+      description: 'Adorable puppy enjoying the sunshine.',
     },
     {
-      image: "https://picsum.photos/id/1018/600/400",
-      title: "Beautiful Landscape",
-      description: "A breathtaking view of mountains and lake."
+      image: 'https://picsum.photos/id/1018/600/400',
+      title: 'Beautiful Landscape',
+      description: 'A breathtaking view of mountains and lake.',
     },
     {
-      image: "https://picsum.photos/id/1025/600/400",
-      title: "Cute Puppy",
-      description: "Adorable puppy enjoying the sunshine."
+      image: 'https://picsum.photos/id/1025/600/400',
+      title: 'Cute Puppy',
+      description: 'Adorable puppy enjoying the sunshine.',
     },
   ];
   return (
@@ -273,10 +272,14 @@ export const HomePage: React.FC = () => {
                 <Typography gutterBottom variant="h6" component="div">
                   {title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mb: 2 }}
+                >
                   {description}
                 </Typography>
-                <Button variant="contained" size="small" onClick={() => { }}>
+                <Button variant="contained" size="small" onClick={() => {}}>
                   Apply
                 </Button>
               </CardContent>
