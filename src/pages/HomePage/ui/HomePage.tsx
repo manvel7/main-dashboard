@@ -260,7 +260,7 @@ export const HomePage: React.FC = () => {
           maxSizeBytes={5 * 1024 * 1024}
           onFilesChange={handleFilesChange}
         />
-        <Carousel
+        {/* <Carousel
           items={items}
           autoplay
           autoplaySpeed={2500}
@@ -300,8 +300,8 @@ export const HomePage: React.FC = () => {
               </CardContent>
             </Card>
           )}
-        />
-        {/* <CommonTable<User>
+        /> */}
+        <CommonTable<User>
           data={users}
           getRowId={(row: User) => row.id}
           renderHeader={() => (
@@ -329,7 +329,7 @@ export const HomePage: React.FC = () => {
           renderMobileStickySummary={renderMobileStickySummary}
           mobileBreakpoint={600}
           mobileInfiniteScroll
-        /> */}
+        />
         {/* <Box p={3}>
           <Typography variant="h4" gutterBottom>
             Shared Components Examples

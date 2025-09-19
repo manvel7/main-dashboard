@@ -72,7 +72,7 @@ export const usePostsInfiniteScroll = () => {
         setIsLoading(false);
       }
     }
-  }, [status, items.length, maxLimit, isLoading, page, limit, dispatch]);
+  }, [status, items.length, maxLimit, isLoading, page, limit]);
 
   return {
     items,
@@ -80,5 +80,6 @@ export const usePostsInfiniteScroll = () => {
     error,
     isLoading,
     fetchMoreData,
+    status
   } as const;
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import { useCallback } from 'react';
 import { Box, Typography, styled } from '@mui/material';
 import PostCard from '@features/posts/ui/PostCard';
 import type { Post } from '@features/posts/model/postsSlice';

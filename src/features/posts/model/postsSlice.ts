@@ -20,11 +20,11 @@ interface PostsState {
 const initialState: PostsState = {
   items: [],
   page: 1,
-  limit: 10,
+  limit: 5,
   hasMore: true,
   status: 'idle',
   error: null,
-  maxLimit: 100,
+  maxLimit: 10,
 };
 
 export const fetchPosts = createAsyncThunk(
