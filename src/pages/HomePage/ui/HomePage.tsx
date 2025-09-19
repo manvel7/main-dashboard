@@ -49,6 +49,7 @@ import UserCardItem from '@/features/user/ui/UserCardItem';
 import { useAppSelector } from '@/app/store/hooks';
 import { selectUsersCard } from '@/features/user/model/selectors';
 import { UsersCardGrid } from '@/features/user/styles';
+import ImageDropzone from '@/shared/common/image/ImageDropzone';
 
 // Sample data for SelectCheckboxList
 const items = Array.from({ length: 20 }, (_, i) => ({
@@ -242,9 +243,24 @@ export const HomePage: React.FC = () => {
       description: 'Adorable puppy enjoying the sunshine.',
     },
   ];
+
+  const [files, setFiles] = useState<File[]>([]);
+
+
+  const handleFilesChange = (newFiles: File[]) => {
+    setFiles(newFiles);
+    console.log("Selected files:", newFiles);
+  };
+
   return (
     <PageContainer>
       <HomeContainer disableGutters maxWidth="xl">
+        <ImageDropzone
+          multiple
+          maxFiles={5}
+          maxSizeBytes={5 * 1024 * 1024}
+          onFilesChange={handleFilesChange}
+        />
         <Carousel
           items={items}
           autoplay
@@ -279,7 +295,7 @@ export const HomePage: React.FC = () => {
                 >
                   {description}
                 </Typography>
-                <Button variant="contained" size="small" onClick={() => {}}>
+                <Button variant="contained" size="small" onClick={() => { }}>
                   Apply
                 </Button>
               </CardContent>
