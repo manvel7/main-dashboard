@@ -83,6 +83,7 @@ function CheckboxList<T>({
     );
   };
 
+
   return (
     <Box width="100%">
       {flags.enableSearch && (
@@ -98,28 +99,35 @@ function CheckboxList<T>({
       )}
 
       {flags.enableSelectAll && (
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={state.selectAll && state.filteredItems.length > 0}
-              indeterminate={
-                !state.selectAll &&
-                state.selected.size > 0 &&
-                state.selected.size < state.filteredItems.length
+        (() => {
+          const totalCount = state.filteredItems.length;
+          const selectedCount = state.selected.size;
+          const allChecked = state.selectAll
+            ? totalCount > 0 && selectedCount === 0
+            : totalCount > 0 && selectedCount === totalCount;
+          const indeterminate =
+            totalCount > 0 && selectedCount > 0 && selectedCount < totalCount;
+          return (
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={allChecked}
+                  indeterminate={indeterminate}
+                  onChange={actions.toggleSelectAll}
+                />
               }
-              onChange={actions.toggleSelectAll}
+              label={
+                <Typography variant="body2" noWrap>
+                  Select All
+                </Typography>
+              }
+              sx={{
+                ml: 0.7,
+                '& .MuiFormControlLabel-label': { whiteSpace: 'nowrap' },
+              }}
             />
-          }
-          label={
-            <Typography variant="body2" noWrap>
-              Select All
-            </Typography>
-          }
-          sx={{
-            ml: 0.7,
-            '& .MuiFormControlLabel-label': { whiteSpace: 'nowrap' },
-          }}
-        />
+          );
+        })()
       )}
 
       <FixedSizeList

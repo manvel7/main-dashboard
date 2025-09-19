@@ -52,7 +52,7 @@ import { UsersCardGrid } from '@/features/user/styles';
 import ImageDropzone from '@/shared/common/image/ImageDropzone';
 
 // Sample data for SelectCheckboxList
-const items = Array.from({ length: 20 }, (_, i) => ({
+const items = Array.from({ length: 200000 }, (_, i) => ({
   id: i + 1,
   data: { label: `Item ${i + 1}`, value: `Description ${i + 1}` },
 }));
@@ -77,6 +77,8 @@ export const HomePage: React.FC = () => {
     secondary: false,
     danger: false,
   });
+
+  console.log(selectedIds, 'selectedIds')
 
   // Form for CommonRadioGroup example
   const radioFormMethods = useForm<{ status: string }>({
@@ -221,7 +223,7 @@ export const HomePage: React.FC = () => {
     []
   );
 
-  const items = [
+  const carouselItems = [
     {
       image: 'https://picsum.photos/id/1018/600/400',
       title: 'Beautiful Landscape',
@@ -261,7 +263,7 @@ export const HomePage: React.FC = () => {
           onFilesChange={handleFilesChange}
         />
         {/* <Carousel
-          items={items}
+          items={carouselItems}
           autoplay
           autoplaySpeed={2500}
           infinite={true}
@@ -330,7 +332,7 @@ export const HomePage: React.FC = () => {
           mobileBreakpoint={600}
           mobileInfiniteScroll
         />
-        {/* <Box p={3}>
+        <Box p={3}>
           <Typography variant="h4" gutterBottom>
             Shared Components Examples
           </Typography>
@@ -645,7 +647,7 @@ export const HomePage: React.FC = () => {
               </Paper>
             </Box>
           </Box>
-        </Box> */}
+        </Box>
       </HomeContainer>
     </PageContainer>
   );
