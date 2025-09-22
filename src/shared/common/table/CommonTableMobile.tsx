@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import { useMobileTable } from '@shared/common/table/hooks/useMobileTable';
 import CommonTableEmptyState from '@shared/common/table/CommonTableEmptyState';
@@ -95,4 +95,9 @@ function CommonTableMobile<T>({
   );
 }
 
-export default CommonTableMobile;
+// Preserve generics when memoizing so consumers can pass T safely
+const MemoizedCommonTableMobile = memo(
+  CommonTableMobile
+) as <T>(props: CommonTableMobileProps<T>) => React.ReactElement;
+
+export default MemoizedCommonTableMobile;

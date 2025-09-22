@@ -65,6 +65,27 @@ export function useMobileTable<T>({
     }
   }, [handleScroll]);
 
+  // Ensure newly loaded/appended items are expanded by default
+  useEffect(() => {
+    setExpandedMap((previousExpandedMap) => {
+      let hasChanges = false;
+      const nextExpandedMap: Record<string | number, boolean> = {
+        ...previousExpandedMap,
+      };
+
+      for (let index = 0; index < data.length; index += 1) {
+        const row = data[index];
+        const key = getRowId ? getRowId(row, index) : index;
+        if (!(key in nextExpandedMap)) {
+          nextExpandedMap[key] = true; // open newly added items by default
+          hasChanges = true;
+        }
+      }
+
+      return hasChanges ? nextExpandedMap : previousExpandedMap;
+    });
+  }, [data, getRowId]);
+
   return {
     containerRef,
     expandedMap,

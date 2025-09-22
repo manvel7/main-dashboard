@@ -196,27 +196,17 @@ export const HomePage: React.FC = () => {
         <Card sx={{ mx: 2 }}>
           <CardHeader
             title={row.name}
-            action={
-              <IconButton
-                onClick={toggle}
-                aria-label={expanded ? 'Collapse' : 'Expand'}
-              >
-                {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-              </IconButton>
-            }
           />
-          {expanded && (
-            <CardContent>
-              <Box display="flex" flexDirection="column" gap={1}>
-                <Typography variant="body2">
-                  <strong>Name:</strong> {row.name}
-                </Typography>
-                <Typography variant="body2">
-                  <strong>Age:</strong> {row.age}
-                </Typography>
-              </Box>
-            </CardContent>
-          )}
+          <CardContent>
+            <Box display="flex" flexDirection="column" gap={1}>
+              <Typography variant="body2">
+                <strong>Name:</strong> {row.name}
+              </Typography>
+              <Typography variant="body2">
+                <strong>Age:</strong> {row.age}
+              </Typography>
+            </Box>
+          </CardContent>
         </Card>
       );
     },
