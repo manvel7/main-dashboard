@@ -17,6 +17,7 @@ import {
   Radio,
   TableCell,
   CardMedia,
+  Grid,
 } from '@mui/material';
 import {
   Info as InfoIcon,
@@ -50,6 +51,7 @@ import { useAppSelector } from '@/app/store/hooks';
 import { selectUsersCard } from '@/features/user/model/selectors';
 import { UsersCardGrid } from '@/features/user/styles';
 import ImageDropzone from '@/shared/common/image/ImageDropzone';
+import { FriendSuggestionsSlider, Friend } from '@/shared/common';
 
 // Sample data for SelectCheckboxList
 const items = Array.from({ length: 200000 }, (_, i) => ({
@@ -65,6 +67,58 @@ const tabItems = [
   { id: 'settings', title: 'Settings' },
 ];
 
+// Sample data for Friends Suggestions
+const mockFriends: Friend[] = [
+  {
+    id: '1',
+    name: 'Sarah Johnson',
+    profilePicture: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+    mutualFriends: 12,
+    isOnline: true,
+    lastSeen: 'Active now',
+  },
+  {
+    id: '2',
+    name: 'Michael Chen',
+    profilePicture: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+    mutualFriends: 8,
+    isOnline: false,
+    lastSeen: '2 hours ago',
+  },
+  {
+    id: '3',
+    name: 'Emily Rodriguez',
+    profilePicture: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+    mutualFriends: 5,
+    isOnline: true,
+    lastSeen: 'Active now',
+  },
+  {
+    id: '4',
+    name: 'David Kim',
+    profilePicture: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+    mutualFriends: 15,
+    isOnline: false,
+    lastSeen: '1 day ago',
+  },
+  {
+    id: '5',
+    name: 'Lisa Thompson',
+    profilePicture: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
+    mutualFriends: 3,
+    isOnline: true,
+    lastSeen: 'Active now',
+  },
+  {
+    id: '6',
+    name: 'James Wilson',
+    profilePicture: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face',
+    mutualFriends: 7,
+    isOnline: false,
+    lastSeen: '3 hours ago',
+  },
+];
+
 export const HomePage: React.FC = () => {
   const { t } = useTranslation();
 
@@ -77,6 +131,7 @@ export const HomePage: React.FC = () => {
     secondary: false,
     danger: false,
   });
+  const [friends, setFriends] = useState<Friend[]>(mockFriends);
 
   console.log(selectedIds, 'selectedIds')
 
@@ -117,6 +172,28 @@ export const HomePage: React.FC = () => {
     setTimeout(() => {
       setLoadingStates((prev) => ({ ...prev, [type]: false }));
     }, 2000);
+  };
+
+  // Friends suggestions handlers
+  const handleAddFriend = (friendId: string) => {
+    const friend = friends.find(f => f.id === friendId);
+    if (friend) {
+      console.log(`Friend request sent to ${friend.name}`);
+      // In a real app, you would make an API call here
+    }
+  };
+
+  const handleRemoveSuggestion = (friendId: string) => {
+    setFriends(prev => prev.filter(friend => friend.id !== friendId));
+    console.log('Suggestion removed');
+  };
+
+  const handleViewProfile = (friendId: string) => {
+    const friend = friends.find(f => f.id === friendId);
+    if (friend) {
+      console.log(`Viewing profile of ${friend.name}`);
+      // In a real app, you would navigate to the profile page
+    }
   };
 
   const renderTabContent = (activeId: string | number) => {
@@ -436,7 +513,7 @@ export const HomePage: React.FC = () => {
               </Paper>
             </Box>
 
-            <Box>
+            {/* <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
                   CommonChip Examples
@@ -503,9 +580,9 @@ export const HomePage: React.FC = () => {
                   />
                 </Box>
               </Paper>
-            </Box>
+            </Box> */}
 
-            <Box>
+            {/* <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
                   CommonLoadingButton Examples
@@ -553,9 +630,9 @@ export const HomePage: React.FC = () => {
                   />
                 </Box>
               </Paper>
-            </Box>
+            </Box> */}
 
-            <Box>
+            {/* <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
                   CommonRadioGroup Example
@@ -579,9 +656,9 @@ export const HomePage: React.FC = () => {
                   Selected: {radioFormMethods.watch('status')}
                 </Typography>
               </Paper>
-            </Box>
+            </Box> */}
 
-            <Box>
+            {/* <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
                   CommonPopover Example
@@ -626,9 +703,9 @@ export const HomePage: React.FC = () => {
                   />
                 </Box>
               </Paper>
-            </Box>
+            </Box> */}
 
-            <Box sx={{ gridColumn: { xs: '1', md: '1 / -1' } }}>
+            {/* <Box sx={{ gridColumn: { xs: '1', md: '1 / -1' } }}>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>
                   Tab Component Example
@@ -645,10 +722,10 @@ export const HomePage: React.FC = () => {
                   {renderTabContent}
                 </Tab>
               </Paper>
-            </Box>
+            </Box> */}
           </Box>
         </Box>
       </HomeContainer>
-    </PageContainer>
+    </PageContainer >
   );
 };

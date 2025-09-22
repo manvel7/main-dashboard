@@ -11,3 +11,10 @@ export { CommonAccordion } from './accordion';
 export { CommonPopover, usePopover } from './popover';
 export { CommonTable } from '@shared/common/table/CommonTable';
 export { default as CommonInfiniteScroll } from './infinite-scroll/CommonInfiniteScroll';
+export {
+  FriendRequestCard,
+  FriendSuggestionsSlider,
+  type Friend,
+  type FriendRequestCardProps,
+  type FriendSuggestionsSliderProps,
+} from './friends-suggestions';
