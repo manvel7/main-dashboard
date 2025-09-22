@@ -47,7 +47,6 @@ export function CommonTable<T>({
 
   const { paginatedData, accumulatedData } = useCommonTableData({
     data,
-    rowsPerPageOptions,
     page,
     rowsPerPage,
     mobileInfiniteScroll,

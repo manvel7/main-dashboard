@@ -80,6 +80,6 @@ export const usePostsInfiniteScroll = () => {
     error,
     isLoading,
     fetchMoreData,
-    status
+    status,
   } as const;
 };

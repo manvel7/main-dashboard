@@ -47,7 +47,17 @@ function CommonTableMobile<T>({
   }
 
   return (
-    <Box ref={containerRef} height={480} overflow="auto" position="relative">
+    <Box
+      ref={containerRef}
+      height={480}
+      overflow="auto"
+      position="relative"
+      sx={{
+        msOverflowStyle: 'none',
+        scrollbarWidth: 'none',
+        '&::-webkit-scrollbar': { display: 'none' },
+      }}
+    >
       {renderStickySummary && (
         <Box
           position="sticky"

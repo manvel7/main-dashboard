@@ -9,12 +9,7 @@ import {
   IconButton,
   Chip,
 } from '@mui/material';
-import {
-  PersonAdd,
-  Close,
-  Visibility,
-  Circle,
-} from '@mui/icons-material';
+import { PersonAdd, Close, Visibility, Circle } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import { FriendRequestCardProps } from './types';
 
@@ -152,10 +147,7 @@ const FriendRequestCard: React.FC<FriendRequestCardProps> = ({
 
         <ProfileSection>
           <Box sx={{ position: 'relative' }}>
-            <StyledAvatar
-              src={friend.profilePicture}
-              alt={friend.name}
-            >
+            <StyledAvatar src={friend.profilePicture} alt={friend.name}>
               {friend.name.charAt(0).toUpperCase()}
             </StyledAvatar>
             {friend.isOnline && <OnlineIndicator />}
@@ -176,8 +168,9 @@ const FriendRequestCard: React.FC<FriendRequestCardProps> = ({
 
           {friend.mutualFriends > 0 && (
             <MutualFriendsChip
-              label={`${friend.mutualFriends} mutual friend${friend.mutualFriends > 1 ? 's' : ''
-                }`}
+              label={`${friend.mutualFriends} mutual friend${
+                friend.mutualFriends > 1 ? 's' : ''
+              }`}
               size="small"
             />
           )}

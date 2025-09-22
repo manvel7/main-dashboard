@@ -1,20 +1,21 @@
 import { useMemo } from 'react';
-import { useCommonTable } from '@shared/common/table/hooks/useCommonTable';
 
 export function useCommonTableData<T>({
   data,
-  rowsPerPageOptions,
   page,
   rowsPerPage,
   mobileInfiniteScroll,
 }: {
   data: T[];
-  rowsPerPageOptions: number[];
   page: number;
   rowsPerPage: number;
   mobileInfiniteScroll: boolean;
 }) {
-  const { paginatedData } = useCommonTable({ data, rowsPerPageOptions });
+  const paginatedData = useMemo(() => {
+    const start = page * rowsPerPage;
+    const end = start + rowsPerPage;
+    return data.slice(start, end);
+  }, [data, page, rowsPerPage]);
 
   const accumulatedData = useMemo(() => {
     if (!mobileInfiniteScroll) return paginatedData;

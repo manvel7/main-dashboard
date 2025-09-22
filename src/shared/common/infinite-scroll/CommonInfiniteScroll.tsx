@@ -41,7 +41,6 @@ function CommonInfiniteScroll<ItemType>(
     listWrapper: ListWrapper,
   } = props;
 
-
   const Wrapper: React.ElementType = ListWrapper || DefaultList;
 
   return (
@@ -55,9 +54,7 @@ function CommonInfiniteScroll<ItemType>(
     >
       <Wrapper {...(ListWrapper ? {} : { className: listClassName })}>
         {items.map((item, index) => (
-          <React.Fragment
-            key={keyExtractor(item)}
-          >
+          <React.Fragment key={keyExtractor(item)}>
             {renderItem(item, index)}
           </React.Fragment>
         ))}

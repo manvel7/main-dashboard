@@ -83,7 +83,6 @@ function CheckboxList<T>({
     );
   };
 
-
   return (
     <Box width="100%">
       {flags.enableSearch && (
@@ -98,7 +97,7 @@ function CheckboxList<T>({
         />
       )}
 
-      {flags.enableSelectAll && (
+      {flags.enableSelectAll &&
         (() => {
           const totalCount = state.filteredItems.length;
           const selectedCount = state.selected.size;
@@ -127,8 +126,7 @@ function CheckboxList<T>({
               }}
             />
           );
-        })()
-      )}
+        })()}
 
       <FixedSizeList
         height={height}
