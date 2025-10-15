@@ -79,6 +79,16 @@ export const useSidebar = ({ open: controlledOpen }: UseSidebarProps = {}) => {
 
   const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen;
 
+  const onSidebarToggle = useCallback(() => {
+    if (controlledOpen !== undefined) {
+      // Controlled mode: delegate to parent if provided in component via prop
+      // The Sidebar component will receive onToggle and call it; here we only expose a no-op to keep the API consistent
+      // Consumers using the hook directly in uncontrolled mode will toggle internal state
+    } else {
+      setInternalOpen((prev) => !prev);
+    }
+  }, [controlledOpen]);
+
   const handleNavigate = useCallback(
     (path: string) => {
       navigate(path);
@@ -112,5 +122,6 @@ export const useSidebar = ({ open: controlledOpen }: UseSidebarProps = {}) => {
     handleLogout,
     isRouteActive: (routePath: string) =>
       isRouteActive(routePath, location.pathname),
+    onSidebarToggle,
   };
 };

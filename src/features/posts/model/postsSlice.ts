@@ -20,11 +20,11 @@ interface PostsState {
 const initialState: PostsState = {
   items: [],
   page: 1,
-  limit: 5,
+  limit: 12,
   hasMore: true,
   status: 'idle',
   error: null,
-  maxLimit: 10,
+  maxLimit: 50,
 };
 
 export const fetchPosts = createAsyncThunk(
@@ -63,25 +63,9 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action: PayloadAction<Post[]>) => {
         state.status = 'succeeded';
-        console.log(
-          'Redux: Received posts:',
-          action.payload.length,
-          'Current total:',
-          state.items.length,
-          'New total:',
-          state.items.length + action.payload.length
-        );
         state.items = [...state.items, ...action.payload];
         state.page += 1;
         state.hasMore = state.items.length < state.maxLimit;
-        console.log(
-          'Redux: Updated hasMore to:',
-          state.hasMore,
-          'items.length:',
-          state.items.length,
-          'maxLimit:',
-          state.maxLimit
-        );
       })
       .addCase(fetchPosts.rejected, (state, action: any) => {
         state.status = 'failed';

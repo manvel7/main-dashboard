@@ -4,16 +4,17 @@ import { CustomHeader } from '@shared/index';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { LayoutProps } from '@widgets/layout/model';
-import { useSidebarClose } from '@widgets/sidebar';
+import { SidebarProvider, useSidebarController } from '@app/context';
 import { LayoutContainer, MainContent } from '@widgets/layout/ui/styles';
 import NotifictaionContent from '@features/notification/ui/NotifictaionContent';
 import { CommonBreadcrumbs } from '@/shared/common/breadcrumbs';
 import { Box } from '@mui/material';
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
+const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const { t } = useTranslation();
-  const { sidebarOpen, onSidebarToggle } = useSidebarClose();
+  const { sidebarOpen, onSidebarToggle } = useSidebarController();
+
 
   const computedLocation = useMemo(() => {
     if (location.pathname === '/') {
@@ -54,5 +55,13 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </MainContent>
     </LayoutContainer>
+  );
+};
+
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
+  return (
+    <SidebarProvider>
+      <LayoutContent>{children}</LayoutContent>
+    </SidebarProvider>
   );
 };

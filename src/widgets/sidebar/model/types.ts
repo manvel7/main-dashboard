@@ -11,3 +11,9 @@ export interface SidebarProps {
   open?: boolean;
   onToggle?: () => void;
 }
+
+export interface SidebarControllerContextValue {
+  sidebarOpen: boolean;
+  onSidebarToggle: () => void;
+  isMobile: boolean;
+}

@@ -75,14 +75,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       <StyledDrawer
-        variant={isMobile && isOpen ? 'temporary' : 'persistent'}
+        variant={isMobile ? 'temporary' : 'persistent'}
         anchor="left"
-        open={true}
+        open={isOpen}
+        ModalProps={{ keepMounted: true }}
         sx={{
-          width: isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED,
+          width: isMobile ? (isOpen ? SIDEBAR_WIDTH : 0) : (isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED),
           '& .MuiDrawer-paper': {
-            width: isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED,
+            width: isMobile ? (isOpen ? SIDEBAR_WIDTH : 0) : (isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED),
           },
+          display: isMobile && !isOpen ? 'none' : 'block',
         }}
       >
         {children({

@@ -454,61 +454,65 @@ export const Shadows = {
 // Material UI-like spacing (base 8px)
 export const spacingUnit = 8 as const;
 
+// Base values
+// 1rem = 16px
+// Spacing unit = 4px
+
 export const Spacing = {
-  0: '0px',
-  0.5: `${spacingUnit * 0.5}px`,
-  1: `${spacingUnit * 1}px`,
-  1.5: `${spacingUnit * 1.5}px`,
-  2: `${spacingUnit * 2}px`,
-  2.5: `${spacingUnit * 2.5}px`,
-  3: `${spacingUnit * 3}px`,
-  3.5: `${spacingUnit * 3.5}px`,
-  4: `${spacingUnit * 4}px`,
-  5: `${spacingUnit * 5}px`,
-  6: `${spacingUnit * 6}px`,
-  7: `${spacingUnit * 7}px`,
-  8: `${spacingUnit * 8}px`,
-  9: `${spacingUnit * 9}px`,
-  10: `${spacingUnit * 10}px`,
-  11: `${spacingUnit * 11}px`,
-  12: `${spacingUnit * 12}px`,
+  0: '0',               // 0px
+  0.5: '0.125rem',      // 2px
+  1: '0.25rem',         // 4px
+  1.5: '0.375rem',      // 6px
+  2: '0.5rem',          // 8px
+  2.5: '0.625rem',      // 10px
+  3: '0.75rem',         // 12px
+  3.5: '0.875rem',      // 14px
+  4: '1rem',            // 16px
+  5: '1.25rem',         // 20px
+  6: '1.5rem',          // 24px
+  7: '1.75rem',         // 28px
+  8: '2rem',            // 32px
+  9: '2.25rem',         // 36px
+  10: '2.5rem',         // 40px
+  11: '2.75rem',        // 44px
+  12: '3rem',           // 48px
 } as const;
 
-// Convenience aliases matching typical usage semantics
+// Convenience aliases
 export const Margin = Spacing;
 export const Padding = Spacing;
 
-// Font sizes (12px to 68px, step 2)
+// Font sizes (12px → 68px, step 2)
 export const FontSizes = {
-  12: '12px',
-  14: '14px',
-  16: '16px',
-  18: '18px',
-  20: '20px',
-  22: '22px',
-  24: '24px',
-  26: '26px',
-  28: '28px',
-  30: '30px',
-  32: '32px',
-  34: '34px',
-  36: '36px',
-  38: '38px',
-  40: '40px',
-  42: '42px',
-  44: '44px',
-  46: '46px',
-  48: '48px',
-  50: '50px',
-  52: '52px',
-  54: '54px',
-  56: '56px',
-  58: '58px',
-  60: '60px',
-  62: '62px',
-  64: '64px',
-  66: '66px',
-  68: '68px',
+  12: '0.75rem',   // 12px
+  14: '0.875rem',  // 14px
+  16: '1rem',      // 16px
+  18: '1.125rem',  // 18px
+  20: '1.25rem',   // 20px
+  22: '1.375rem',  // 22px
+  24: '1.5rem',    // 24px
+  26: '1.625rem',  // 26px
+  28: '1.75rem',   // 28px
+  30: '1.875rem',  // 30px
+  32: '2rem',      // 32px
+  34: '2.125rem',  // 34px
+  36: '2.25rem',   // 36px
+  38: '2.375rem',  // 38px
+  40: '2.5rem',    // 40px
+  42: '2.625rem',  // 42px
+  44: '2.75rem',   // 44px
+  46: '2.875rem',  // 46px
+  48: '3rem',      // 48px
+  50: '3.125rem',  // 50px
+  52: '3.25rem',   // 52px
+  54: '3.375rem',  // 54px
+  56: '3.5rem',    // 56px
+  58: '3.625rem',  // 58px
+  60: '3.75rem',   // 60px
+  62: '3.875rem',  // 62px
+  64: '4rem',      // 64px
+  66: '4.125rem',  // 66px
+  68: '4.25rem',   // 68px
 } as const;
 
 // Font weights

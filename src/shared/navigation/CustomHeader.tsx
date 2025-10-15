@@ -1,7 +1,9 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Box, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import { ThemeToggle } from './ThemeToggle';
+import { useSidebarController } from '@/app/context';
+import { Menu as MenuIcon } from '@mui/icons-material';
 // import LanguageSelector from '@/shared/common/language/LanguageSelector';
 
 interface CustomHeaderProps {
@@ -32,8 +34,8 @@ const HeaderTop = styled(Box)(({ theme }) => ({
 
 const TitleSection = styled(Box)(() => ({
   display: 'flex',
-  flexDirection: 'column',
-  gap: '4px',
+  alignItems: 'center',
+  gap: '8px',
 }));
 
 const OtherChildrenSection = styled(Box)(() => ({
@@ -51,10 +53,22 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
   otherChildren,
   children,
 }) => {
+  const { onSidebarToggle, isMobile } = useSidebarController();
+
+  const handleMenuClick = () => {
+    onSidebarToggle();
+  };
+
+
   return (
     <HeaderContainer>
       <HeaderTop>
         <TitleSection>
+          {isMobile && (
+            <IconButton aria-label="open menu" onClick={handleMenuClick} size="large">
+              <MenuIcon />
+            </IconButton>
+          )}
           <Typography
             variant="h4"
             component="h1"

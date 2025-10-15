@@ -11,17 +11,17 @@ const DefaultList = styled(Box)(({ theme }) => ({
 }));
 
 export interface CommonInfiniteScrollProps<ItemType> {
-  items: ItemType[];
-  hasMore: boolean;
-  isLoading: boolean;
-  loadMore: () => Promise<void> | void;
-  renderItem: (item: ItemType, index: number) => React.ReactNode;
-  keyExtractor: (item: ItemType) => string | number;
-  loader?: React.ReactNode;
-  scrollThreshold?: number | string;
-  className?: string;
-  listClassName?: string;
-  listWrapper?: React.ElementType;
+  readonly items: ItemType[];
+  readonly hasMore: boolean;
+  readonly isLoading: boolean;
+  readonly loadMore: () => Promise<void> | void;
+  readonly renderItem: (item: ItemType, index: number) => React.ReactNode;
+  readonly keyExtractor: (item: ItemType) => string | number;
+  readonly loader?: React.ReactNode;
+  readonly scrollThreshold?: number | string;
+  readonly className?: string;
+  readonly listClassName?: string;
+  readonly listWrapper?: React.ElementType;
 }
 
 function CommonInfiniteScroll<ItemType>(
