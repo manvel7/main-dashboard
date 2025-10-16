@@ -7,12 +7,18 @@ interface SidebarControllerContextValue {
   isMobile: boolean;
 }
 
-const SidebarControllerContext = React.createContext<SidebarControllerContextValue | null>(null);
+const SidebarControllerContext =
+  React.createContext<SidebarControllerContextValue | null>(null);
 
-export const SidebarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const SidebarProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const { isOpen, onSidebarToggle, isMobile } = useSidebar();
 
-  const value = React.useMemo(() => ({ sidebarOpen: isOpen, onSidebarToggle, isMobile }), [isOpen, onSidebarToggle, isMobile]);
+  const value = React.useMemo(
+    () => ({ sidebarOpen: isOpen, onSidebarToggle, isMobile }),
+    [isOpen, onSidebarToggle, isMobile]
+  );
 
   return (
     <SidebarControllerContext.Provider value={value}>
@@ -28,5 +34,3 @@ export const useSidebarController = (): SidebarControllerContextValue => {
   }
   return ctx;
 };
-
-

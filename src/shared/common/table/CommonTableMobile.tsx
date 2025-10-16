@@ -96,8 +96,8 @@ function CommonTableMobile<T>({
 }
 
 // Preserve generics when memoizing so consumers can pass T safely
-const MemoizedCommonTableMobile = memo(
-  CommonTableMobile
-) as <T>(props: CommonTableMobileProps<T>) => React.ReactElement;
+const MemoizedCommonTableMobile = memo(CommonTableMobile) as <T>(
+  props: CommonTableMobileProps<T>
+) => React.ReactElement;
 
 export default MemoizedCommonTableMobile;

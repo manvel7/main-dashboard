@@ -38,7 +38,6 @@ export const usePostsInfiniteScroll = () => {
   }, []);
 
   const fetchMoreData = useCallback(async () => {
-
     if (status !== 'loading' && items.length < maxLimit && !isLoading) {
       setIsLoading(true);
       try {

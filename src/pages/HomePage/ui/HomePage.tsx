@@ -43,7 +43,11 @@ import CommonPopover from '@shared/common/popover/CommonPopover';
 import Tab from '@shared/common/tab/Tab';
 import { CommonRadioGroup } from '@shared/common/forms';
 import { FormProvider, useForm } from 'react-hook-form';
-import { CommonTable } from '@/shared/common';
+import {
+  CommonTable,
+  CommonVirtualList,
+  CommonVirtualTable,
+} from '@/shared/common';
 import { EmblaOptionsType } from 'embla-carousel';
 import Carousel from '@/shared/common/carousel/Carousel';
 import UserCardItem from '@/features/user/ui/UserCardItem';
@@ -194,9 +198,7 @@ export const HomePage: React.FC = () => {
     ) => {
       return (
         <Card sx={{ mx: 2 }}>
-          <CardHeader
-            title={row.name}
-          />
+          <CardHeader title={row.name} />
           <CardContent>
             <Box display="flex" flexDirection="column" gap={1}>
               <Typography variant="body2">
@@ -237,6 +239,21 @@ export const HomePage: React.FC = () => {
   ];
 
   const [files, setFiles] = useState<File[]>([]);
+  const [selectAnchor, setSelectAnchor] = useState<HTMLElement | null>(null);
+  const [selectOpen, setSelectOpen] = useState(false);
+  const [selectedOptionId, setSelectedOptionId] = useState<
+    number | string | null
+  >(null);
+
+  type Option = { id: number; label: string };
+  const options: Option[] = React.useMemo(
+    () =>
+      Array.from({ length: 5000 }, (_, i) => ({
+        id: i + 1,
+        label: `Option ${i + 1}`,
+      })),
+    []
+  );
 
   const handleFilesChange = (newFiles: File[]) => {
     setFiles(newFiles);
@@ -334,6 +351,86 @@ export const HomePage: React.FC = () => {
               gap: 3,
             }}
           >
+            <Box>
+              <Paper elevation={2} sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  Virtualized Table Mode
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  Sticky header with large data set rendered via virtualization
+                </Typography>
+                <CommonVirtualTable<User>
+                  items={users}
+                  height={360}
+                  rowHeight={48}
+                  gridTemplateColumns="1fr 2fr 1fr"
+                  keyExtractor={(u) => u.id}
+                  renderHeader={() => (
+                    <>
+                      <Typography>ID</Typography>
+                      <Typography>Name</Typography>
+                      <Typography>Age</Typography>
+                    </>
+                  )}
+                  renderRow={(row) => (
+                    <>
+                      <Typography>{row.id}</Typography>
+                      <Typography>{row.name}</Typography>
+                      <Typography>{row.age}</Typography>
+                    </>
+                  )}
+                />
+              </Paper>
+            </Box>
+
+            <Box>
+              <Paper elevation={2} sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                  Virtualized Select Mode
+                </Typography>
+                <Typography variant="body2" color="text.secondary" mb={2}>
+                  Dropdown with thousands of options rendered efficiently
+                </Typography>
+                <Button
+                  variant="outlined"
+                  onClick={(e) => {
+                    setSelectAnchor(e.currentTarget);
+                    setSelectOpen(true);
+                  }}
+                >
+                  {selectedOptionId == null
+                    ? 'Open Select'
+                    : `Selected: ${selectedOptionId}`}
+                </Button>
+
+                <CommonVirtualList<Option>
+                  items={options}
+                  height={320}
+                  itemSize={44}
+                  keyExtractor={(o) => o.id}
+                  selectedIds={
+                    selectedOptionId == null ? [] : [selectedOptionId]
+                  }
+                  onItemClick={(opt) => {
+                    setSelectedOptionId(opt.id);
+                    setSelectOpen(false);
+                  }}
+                  renderItem={(opt, _i, { selected }) => (
+                    <ListItemText
+                      primary={opt.label}
+                      secondary={selected ? 'Selected' : undefined}
+                    />
+                  )}
+                  selectModeProps={{
+                    open: selectOpen,
+                    anchorEl: selectAnchor,
+                    onClose: () => setSelectOpen(false),
+                    paperWidth: 320,
+                    maxMenuHeight: 360,
+                  }}
+                />
+              </Paper>
+            </Box>
             <Box>
               <Paper elevation={2} sx={{ p: 3 }}>
                 <Typography variant="h6" gutterBottom>

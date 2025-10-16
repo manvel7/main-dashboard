@@ -80,9 +80,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
         open={isOpen}
         ModalProps={{ keepMounted: true }}
         sx={{
-          width: isMobile ? (isOpen ? SIDEBAR_WIDTH : 0) : (isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED),
+          width: isMobile
+            ? isOpen
+              ? SIDEBAR_WIDTH
+              : 0
+            : isOpen
+              ? SIDEBAR_WIDTH
+              : SIDEBAR_WIDTH_COLLAPSED,
           '& .MuiDrawer-paper': {
-            width: isMobile ? (isOpen ? SIDEBAR_WIDTH : 0) : (isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_COLLAPSED),
+            width: isMobile
+              ? isOpen
+                ? SIDEBAR_WIDTH
+                : 0
+              : isOpen
+                ? SIDEBAR_WIDTH
+                : SIDEBAR_WIDTH_COLLAPSED,
           },
           display: isMobile && !isOpen ? 'none' : 'block',
         }}

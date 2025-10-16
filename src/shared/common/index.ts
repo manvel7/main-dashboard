@@ -11,6 +11,8 @@ export { CommonAccordion } from './accordion';
 export { CommonPopover, usePopover } from './popover';
 export { CommonTable } from '@shared/common/table/CommonTable';
 export { default as CommonInfiniteScroll } from './infinite-scroll/CommonInfiniteScroll';
+export { default as CommonVirtualList } from './virtual-list/CommonVirtualList';
+export { default as CommonVirtualTable } from './virtual-list/CommonVirtualTable';
 export {
   FriendRequestCard,
   FriendSuggestionsSlider,

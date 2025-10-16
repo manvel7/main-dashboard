@@ -15,7 +15,6 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
   const { t } = useTranslation();
   const { sidebarOpen, onSidebarToggle } = useSidebarController();
 
-
   const computedLocation = useMemo(() => {
     if (location.pathname === '/') {
       return t('Home');

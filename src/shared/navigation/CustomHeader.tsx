@@ -59,13 +59,16 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
     onSidebarToggle();
   };
 
-
   return (
     <HeaderContainer>
       <HeaderTop>
         <TitleSection>
           {isMobile && (
-            <IconButton aria-label="open menu" onClick={handleMenuClick} size="large">
+            <IconButton
+              aria-label="open menu"
+              onClick={handleMenuClick}
+              size="large"
+            >
               <MenuIcon />
             </IconButton>
           )}
