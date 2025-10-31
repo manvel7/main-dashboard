@@ -1,1 +1,1 @@
-export { default as useLanguageSelector } from './useLanguageSelector';
+export { default as useLanguageSelector } from '@shared/hooks/useLanguageSelector';

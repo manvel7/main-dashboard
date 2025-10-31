@@ -10,7 +10,7 @@ import {
 import { Layout } from '@widgets/layout';
 import { SuspensePage } from '@shared/index';
 import PrivateRoute from '@app/routes/PrivetRoutes';
-import InfiniteScrollPosts from '@/features/posts/ui/InfiniteScrollPosts';
+import { CategoryOutlined } from '@mui/icons-material';
 
 // Home page
 const HomePage = lazy(() =>
@@ -41,6 +41,14 @@ const InfiniteScrollPage = lazy(() =>
   }))
 );
 
+const CategoryScrollProductList = lazy(() =>
+  import('@/pages/ProductsPage/ui/CategoryScrollProductList').then(
+    (module) => ({
+      default: module.default,
+    })
+  )
+);
+
 // Route paths as constants for type safety and easy imports
 export const ROUTES = {
   HOME: '/',
@@ -49,6 +57,7 @@ export const ROUTES = {
   USER_CARD: '/users/user-card',
   CREATE_USER: '/create-user',
   POSTS: '/posts',
+  PRODUCTS: '/products',
 } as const;
 
 // Type for navigation items
@@ -87,6 +96,11 @@ export const navigationRoutes: NavigationItem[] = [
     path: ROUTES.POSTS,
     label: 'Posts List',
     icon: <ChecklistIcon />,
+  },
+  {
+    path: ROUTES.PRODUCTS,
+    label: 'Products',
+    icon: <CategoryOutlined />,
   },
 ];
 
@@ -163,6 +177,16 @@ export const routes = [
           <PrivateRoute>
             <SuspensePage>
               <InfiniteScrollPage />
+            </SuspensePage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: ROUTES.PRODUCTS,
+        element: (
+          <PrivateRoute>
+            <SuspensePage>
+              <CategoryScrollProductList />
             </SuspensePage>
           </PrivateRoute>
         ),
