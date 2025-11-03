@@ -7,3 +7,6 @@ export { LoginPage } from '@pages/LoginPage';
 // User pages
 export { UserCardPage } from '@pages/User/UserCardPage';
 export { UserCreatePage } from '@pages/User/UserCreatePage';
+
+// Board page
+export { BoardPage } from '@pages/BoardPage';

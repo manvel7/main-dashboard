@@ -3,8 +3,14 @@ export type Product = {
   name: string;
 };
 
+export interface ICategory {
+  id: string,
+  name: string,
+  products: Product[]
+}
+
 // Demo data
-export function makeDemoData(cats = 6, productsPer = 15): Category[] {
+export function makeDemoData(cats = 6, productsPer = 15): ICategory[] {
   return Array.from({ length: cats }).map((_, ci) => ({
     id: String(ci + 1),
     name: `Category ${ci + 1}`,

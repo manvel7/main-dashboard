@@ -6,6 +6,7 @@ import {
   Home as HomeIcon,
   Add as AddIcon,
   List as ChecklistIcon,
+  ViewKanban as BoardIcon,
 } from '@mui/icons-material';
 import { Layout } from '@widgets/layout';
 import { SuspensePage } from '@shared/index';
@@ -49,6 +50,10 @@ const CategoryScrollProductList = lazy(() =>
   )
 );
 
+const BoardPage = lazy(() =>
+  import('@pages/BoardPage').then((module) => ({ default: module.BoardPage }))
+);
+
 // Route paths as constants for type safety and easy imports
 export const ROUTES = {
   HOME: '/',
@@ -58,6 +63,7 @@ export const ROUTES = {
   CREATE_USER: '/create-user',
   POSTS: '/posts',
   PRODUCTS: '/products',
+  BOARD: '/board',
 } as const;
 
 // Type for navigation items
@@ -101,6 +107,11 @@ export const navigationRoutes: NavigationItem[] = [
     path: ROUTES.PRODUCTS,
     label: 'Products',
     icon: <CategoryOutlined />,
+  },
+  {
+    path: ROUTES.BOARD,
+    label: 'Board',
+    icon: <BoardIcon />,
   },
 ];
 
@@ -187,6 +198,16 @@ export const routes = [
           <PrivateRoute>
             <SuspensePage>
               <CategoryScrollProductList />
+            </SuspensePage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: ROUTES.BOARD,
+        element: (
+          <PrivateRoute>
+            <SuspensePage>
+              <BoardPage />
             </SuspensePage>
           </PrivateRoute>
         ),
