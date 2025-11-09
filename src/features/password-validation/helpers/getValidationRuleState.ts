@@ -11,6 +11,7 @@ export const getValidationRuleState = (
   isValid: boolean,
   theme: Theme
 ): ValidationRuleState => {
+  
   if (!isTouched) {
     return {
       color: theme.palette.text.secondary,
