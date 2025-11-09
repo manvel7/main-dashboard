@@ -1,0 +1,2 @@
+export { PasswordValidationPage } from './ui';
+

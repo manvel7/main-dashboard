@@ -7,6 +7,7 @@ import {
   Add as AddIcon,
   List as ChecklistIcon,
   ViewKanban as BoardIcon,
+  Lock as LockIcon,
 } from '@mui/icons-material';
 import { Layout } from '@widgets/layout';
 import { SuspensePage } from '@shared/index';
@@ -54,6 +55,12 @@ const BoardPage = lazy(() =>
   import('@pages/BoardPage').then((module) => ({ default: module.BoardPage }))
 );
 
+const PasswordValidationPage = lazy(() =>
+  import('@pages/PasswordValidationPage').then((module) => ({
+    default: module.PasswordValidationPage,
+  }))
+);
+
 // Route paths as constants for type safety and easy imports
 export const ROUTES = {
   HOME: '/',
@@ -64,6 +71,7 @@ export const ROUTES = {
   POSTS: '/posts',
   PRODUCTS: '/products',
   BOARD: '/board',
+  PASSWORD_VALIDATION: '/password-validation',
 } as const;
 
 // Type for navigation items
@@ -112,6 +120,11 @@ export const navigationRoutes: NavigationItem[] = [
     path: ROUTES.BOARD,
     label: 'Board',
     icon: <BoardIcon />,
+  },
+  {
+    path: ROUTES.PASSWORD_VALIDATION,
+    label: 'Password Validation',
+    icon: <LockIcon />,
   },
 ];
 
@@ -208,6 +221,16 @@ export const routes = [
           <PrivateRoute>
             <SuspensePage>
               <BoardPage />
+            </SuspensePage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: ROUTES.PASSWORD_VALIDATION,
+        element: (
+          <PrivateRoute>
+            <SuspensePage>
+              <PasswordValidationPage />
             </SuspensePage>
           </PrivateRoute>
         ),
