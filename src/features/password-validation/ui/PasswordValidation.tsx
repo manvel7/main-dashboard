@@ -6,24 +6,12 @@ import { usePasswordValidation } from '../hooks';
 import { ValidationRule } from './ValidationRule';
 import { StyledPasswordValidationContainer, StyledRulesContainer } from '../styles';
 
-interface PasswordTextFieldProps {
-  value: string | number | undefined;
-  onChange: (value: string | number | undefined) => void;
-  onBlur: () => void;
-  hasError: boolean;
-  label?: string;
-}
-
 export const PasswordValidation: React.FC = () => {
-  const {
-    passwordForm,
-    validationRules,
-    validationResult,
-  } = usePasswordValidation();
+  const { passwordForm, validationRules, validationResult } = usePasswordValidation();
 
   const rulesList = useMemo(
     () =>
-      validationRules.map((rule) => (
+      validationRules.map(rule => (
         <ValidationRule
           key={rule.id}
           label={rule.label}
@@ -44,29 +32,17 @@ export const PasswordValidation: React.FC = () => {
 
           <Box sx={{ mb: 3 }}>
             <CustomTextField name="password" label="Password">
-              {({
-                value,
-                onChange,
-                onBlur,
-                hasError,
-                label,
-              }: PasswordTextFieldProps) => (
+              {({ value, onChange, onBlur, hasError, label }) => (
                 <TextField
                   fullWidth
                   label={label}
                   type="password"
                   value={value}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    onChange(e.target.value)
-                  }
+                  onChange={e => onChange(e.target.value)}
                   onBlur={onBlur}
                   error={hasError}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    autoComplete: 'new-password',
-                  }}
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ autoComplete: 'new-password' }}
                   variant="outlined"
                 />
               )}
@@ -79,4 +55,3 @@ export const PasswordValidation: React.FC = () => {
     </FormProvider>
   );
 };
-

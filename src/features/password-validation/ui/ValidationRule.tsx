@@ -19,24 +19,10 @@ export const ValidationRule: React.FC<ValidationRuleProps> = ({
 
   return (
     <StyledValidationRule>
-      <Icon
-        fontSize="small"
-        sx={{
-          color,
-          flexShrink: 0,
-        }}
-      />
-      <Typography
-        variant="body2"
-        sx={{
-          color,
-          fontSize: '0.875rem',
-          marginLeft: 1,
-        }}
-      >
+      <Icon fontSize="small" sx={{ color, flexShrink: 0 }} />
+      <Typography variant="body2" sx={{ color, fontSize: '0.875rem', marginLeft: 1 }}>
         {label}
       </Typography>
     </StyledValidationRule>
   );
 };
-
