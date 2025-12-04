@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react';
+import { FormProvider } from 'react-hook-form';
 import { ArrowBack } from '@mui/icons-material';
 import CommonModal from '@/shared/common/dialog/CommonModal';
 import { Box, Container, DialogActions, styled } from '@mui/material';
 import { useStepper } from '@/shared/common/stepper/hooks/useStepper';
+import { CommonStepper } from '@/shared/common/stepper/CommonStepper';
 import useToogleModal from '@/shared/common/dialog/hooks/useToogleModal';
 import CommonLoadingButton from '@/shared/common/forms/CommonLoadingButton';
-import { CommonStepper } from '@/shared/common/stepper/CommonStepper';
-import { useUserProcessDocument } from '@/processes/UserDocumentProcesses/hooks/uerProcessUserDocument';
-import { FormProvider } from 'react-hook-form';
 import { DocumentUpload } from '@/processes/UserDocumentProcesses/DocumentUpload/DocumentUpload';
+import { useUserProcessDocument } from '@/processes/UserDocumentProcesses/hooks/uerProcessUserDocument';
 
 const StyledActionWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -17,10 +17,18 @@ const StyledActionWrapper = styled(Box)(({ theme }) => ({
   gap: theme.spacing(1),
 }));
 
+const styles = {
+  '& .MuiDialogContent-root': {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: 400, // set min height
+  },
+}
+
 export const UserCardPage: React.FC = () => {
   const { open, toggleModal } = useToogleModal();
-  const { handleSubmit, documentForm } = useUserProcessDocument();
   const { activeStep, next, back } = useStepper(4);
+  const { handleSubmit, documentForm } = useUserProcessDocument();
 
   const steps = useMemo(
     () => [
@@ -53,13 +61,7 @@ export const UserCardPage: React.FC = () => {
       <CommonLoadingButton title="Open Modal" onClick={toggleModal} />
 
       <CommonModal
-        sx={{
-          '& .MuiDialogContent-root': {
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: 400, // set min height
-          },
-        }}
+        sx={styles}
         open={open}
         onClose={toggleModal}
         title="Complete your profile"
@@ -71,8 +73,6 @@ export const UserCardPage: React.FC = () => {
             style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
           >
             <CommonStepper steps={steps} activeStep={activeStep} />
-
-            {/* Push DialogActions to the bottom */}
             <Box mt="auto">
               <DialogActions>
                 <StyledActionWrapper>
