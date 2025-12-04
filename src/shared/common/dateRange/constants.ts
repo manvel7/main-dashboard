@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import { ValueOf } from '@/shared/constants';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -21,9 +22,7 @@ export const TIME_RANGE_OPTIONS = {
   LAST_30_DAYS: 'last30Days',
 } as const;
 
-export type QuickSelectOption =
-  (typeof TIME_RANGE_OPTIONS)[keyof typeof TIME_RANGE_OPTIONS];
-
+export type QuickSelectOption = ValueOf<typeof TIME_RANGE_OPTIONS>;
 // ---------- Quick Select Options ----------
 export const quickOptions: { label: string; value: QuickSelectOption }[] = [
   { label: 'Today', value: 'today' },

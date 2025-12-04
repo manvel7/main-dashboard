@@ -111,3 +111,7 @@ export const countryOptions = [
   { value: 'mx', label: 'Mexico' },
   { value: 'ru', label: 'Russia' },
 ];
+
+
+
+export type ValueOf<T> = T[keyof T];
